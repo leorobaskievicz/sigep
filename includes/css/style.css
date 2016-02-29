@@ -64,21 +64,35 @@
 	margin-top: 10px;
 }
 
-.carrinho-painel
+.login-header
 {	
-	width: 110px;
+	width: auto;
 	height: 50px;
-	margin-top: 5px;
+	margin-top: 0px;
 	margin-right: 7%;
-	padding-left: 40px;
-	padding-top: 10px;
-	float: right;
-	background-image: url("/includes/images/cart.png");
-	background-repeat: no-repeat;
+	padding: 0px;
+	padding-top: 5px;
+	padding-right: 50px;
+	text-align: right;
+	background-image: url("/includes/images/cadastro_header.png");
+	background-position: right;
 	background-size: auto 80%;
-	background-position: 0px 3px;
-	font-size: 16px;
+	background-repeat: no-repeat;
+}
+
+.login-header header
+{
+	height: auto;
 	font-weight: bold;
+	font-size: 18px;
+}
+
+.login-header p
+{
+	height: auto;
+	padding: 0px;
+	font-size: 12px;
+	font-weight: normal;
 }
 
 .navbar
@@ -119,6 +133,27 @@
 	margin: 0px auto 0px auto;
 }
 
+.produto-destaque
+{
+	width: 250px;
+	height: auto;
+	float: right;
+}
+
+.list-group
+{
+	width: 510px;
+}
+
+.list-group-item
+{
+	width: 250px;
+	padding: 5px 3px !important;
+	float:left;
+	border-left: none !important;
+	border-right: none !important;
+}
+
 .main-painel
 {
 	border: none;
@@ -137,4 +172,24 @@
 	background-color: #E6E6E6;
 	position: relative;
 	bottom: 0;
+}
+
+/*
+	DEFINIÇÕES PARA GRID DE PRODUTOS
+*/
+
+.thumbnail p /* Preço do produto */
+{
+	font-weight: bold;
+	font-size: 14px;
+}
+
+.thumbnail p strike /* Preço De */
+{
+	font-size: 12px;
+}
+
+.thumbnail p:last-child /* Botões de comprar e detalhes */
+{
+	text-align: center;
 }

@@ -58,8 +58,8 @@ for ($i = 1; $i <= 20; $i++) {
 					<img src="'. base_url("includes/images/produtos/thumbnail/".$i) .'" alt="Nome do Produto">
 					<div class="caption">
 						<h3>Produto # '.$i.'</h3>
-						<p>R$ 10,99</p>
-						<p><a href="#" class="btn btn-success" role="button">Comprar</a> <a href="#" class="btn btn-default" role="button">Detalhes</a></p>
+						<p><strike>De: R$ 15,99</strike> Por:  R$ 10,99</p>
+						<p><a href="#" class="btn btn-default" role="button">Detalhes</a> <a href="#" class="btn btn-success" role="button">Comprar</a> </p>
 					</div>
 				</div>
 			</div>');

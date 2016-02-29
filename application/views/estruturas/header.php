@@ -118,8 +118,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			</div>
 			<!-- MOSTRA PAINEL COM MINHA CESTA -->
 			<div class="col-xs-6 col-sm-4">
-				<div class="carrinho-painel">
-					0 itens
+				<div class="login-header">
+					<header>Olá, visitante!</header>
+					<p>
+						Fazer login ou se cadastrar.
+					</p>
 				</div>
 			</div>
 		</div>
@@ -136,23 +139,116 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="#">Home</a>
+				<!-- <a class="navbar-brand" href="#">Home</a> -->
 			</div>
 			<!-- Collect the nav links, forms, and other content for toggling -->
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
-					<li><a href="#">Link <span class="sr-only">(current)</span></a></li>
-					<li><a href="#">Link</a></li>
+					<li><a href="#" target="_self">Home</a></li>
 					<li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Aparelhos <span class="caret"></span></a>
+						<ul class="dropdown-menu list-group">
+							<li  class="produto-destaque">
+								<div class="col-xs-12 col-sm-12">
+									<div class="thumbnail">
+										<img src="<?= base_url("includes/images/produtos/thumbnail/2") ?>" alt="Nome do Produto">
+										<div class="caption">
+											<h3>Produto # 1</h3>
+											<p><strike>De: R$ 15,99</strike> Por:  R$ 10,99</p>
+											<p><a href="#" class="btn btn-default" role="button">Detalhes</a> <a href="#" class="btn btn-success" role="button">Comprar</a> </p>
+										</div>
+									</div>
+								</div>	
+							</li>
+							<li class="list-group-item"><a href="#">Olhos</a></li>
+							<li class="list-group-item"><a href="#">Acessórios</a></li>
+							<li class="list-group-item"><a href="#">Digestor</a></li>
+            				<li class="list-group-item"><a href="#">Veja Mais...</a></li>
+            				
+						</ul>
+					</li>
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Medicamentos <span class="caret"></span></a>
 						<ul class="dropdown-menu">
-							<li><a href="#">Action</a></li>
-							<li><a href="#">Another action</a></li>
-							<li><a href="#">Something else here</a></li>
+							<li><a href="#">Cabelo</a></li>
+							<li><a href="#">Higieno Bucal</a></li>
+							<li><a href="#">Corpo</a></li>
+							<li><a href="#">Rosto</a></li>
+							<li><a href="#">Pressã Alta</a></li>
 							<li role="separator" class="divider"></li>
-							<li><a href="#">Separated link</a></li>
+            				<li><a href="#">Veja Mais...</a></li>
+						</ul>
+					</li>
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Genéricos <span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href="#">Cabelo</a></li>
+							<li><a href="#">Higieno Bucal</a></li>
+							<li><a href="#">Corpo</a></li>
+							<li><a href="#">Rosto</a></li>
+							<li><a href="#">Pressã Alta</a></li>
 							<li role="separator" class="divider"></li>
-							<li><a href="#">One more separated link</a></li>
+            				<li><a href="#">Veja Mais...</a></li>
+						</ul>
+					</li>
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dermocosméticos <span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href="#">Cabelo</a></li>
+							<li><a href="#">Higieno Bucal</a></li>
+							<li><a href="#">Corpo</a></li>
+							<li><a href="#">Rosto</a></li>
+							<li><a href="#">Pressã Alta</a></li>
+							<li role="separator" class="divider"></li>
+            				<li><a href="#">Veja Mais...</a></li>
+						</ul>
+					</li>
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Sua Beleza <span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href="#">Cabelo</a></li>
+							<li><a href="#">Higieno Bucal</a></li>
+							<li><a href="#">Corpo</a></li>
+							<li><a href="#">Rosto</a></li>
+							<li><a href="#">Pressã Alta</a></li>
+							<li role="separator" class="divider"></li>
+            				<li><a href="#">Veja Mais...</a></li>
+						</ul>
+					</li>
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Seu Dia a Dia <span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href="#">Cabelo</a></li>
+							<li><a href="#">Higieno Bucal</a></li>
+							<li><a href="#">Corpo</a></li>
+							<li><a href="#">Rosto</a></li>
+							<li><a href="#">Pressã Alta</a></li>
+							<li role="separator" class="divider"></li>
+            				<li><a href="#">Veja Mais...</a></li>
+						</ul>
+					</li>
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Outros <span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href="#">Cabelo</a></li>
+							<li><a href="#">Higieno Bucal</a></li>
+							<li><a href="#">Corpo</a></li>
+							<li><a href="#">Rosto</a></li>
+							<li><a href="#">Pressã Alta</a></li>
+							<li role="separator" class="divider"></li>
+            				<li><a href="#">Veja Mais...</a></li>
+						</ul>
+					</li>
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">0 itens </a>
+						<ul class="dropdown-menu">
+							<li><a href="#">Cabelo</a></li>
+							<li><a href="#">Higieno Bucal</a></li>
+							<li><a href="#">Corpo</a></li>
+							<li><a href="#">Rosto</a></li>
+							<li><a href="#">Pressã Alta</a></li>
+							<li role="separator" class="divider"></li>
+            				<li><a href="#">Veja Mais...</a></li>
 						</ul>
 					</li>
 				</ul>
