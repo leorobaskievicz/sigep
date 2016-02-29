@@ -85,28 +85,43 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 	<!-- CABECALHO GERAL DO SITE -->
 	<div class="main-header">
-		<div class="menu-cliente">
-			<div class="row">
-				<div class="col-xs-6 col-sm-4"></div>
-				<div class="col-xs-6 col-sm-4">
-					<ul>
-						<li><a href="#" target="_self"><span class="glyphicon glyphicon-phone-alt"></span> (41) 3246-4533</a></li>
-						<li><a href="#" target="_self"><span class="glyphicon glyphicon-envelope"></span> sac@tecworks.com.br</a></li>
-					</ul>
-				</div>
-				<div class="col-xs-6 col-sm-4">
-					<ul id="menu-cliente-right">
-						<li><a href="#" target="_self">Meu Cadastro</a></li>
-						<li><a href="#" target="_self">Meus Pedidos</a></li>
-						<li><a href="#" target="_self">Contato</a></li>
-						<li><a href="#" target="_self">Duvidas</a></li>
-					</ul>
-				</div>
+		<div class="row menu-cliente">
+			<div class="col-xs-6 col-sm-4"></div>
+			<div class="col-xs-6 col-sm-4">
+				<ul>
+					<li><a href="#" target="_self"><span class="glyphicon glyphicon-phone-alt"></span> (41) 3246-4533</a></li>
+					<li><a href="#" target="_self"><span class="glyphicon glyphicon-envelope"></span> sac@tecworks.com.br</a></li>
+				</ul>
+			</div>
+			<div class="col-xs-6 col-sm-4">
+				<ul id="menu-cliente-right">
+					<li><a href="#" target="_self">Meu Cadastro</a></li>
+					<li><a href="#" target="_self">Meus Pedidos</a></li>
+					<li><a href="#" target="_self">Contato</a></li>
+					<li><a href="#" target="_self">Duvidas</a></li>
+				</ul>
 			</div>
 		</div>
-		<!-- MOSTRA PAINEL COM MINHA CESTA -->
-		<div class="carrinho-painel">
-			0 itens
+		<div class="row">
+			<!-- MOSTRA LOGOTIPO DA EMPRESA -->
+			<div class="col-xs-6 col-sm-4 main-logo">
+				<a href="#" target="_self"><img src="<?= base_url("includes/images/logo.png") ?>" alt="Logo"/></a>
+			</div>
+			<!-- BARRA DE PESQUISA DO SITE -->
+			<div class="col-xs-6 col-sm-4 main-search">
+				<div class="input-group">
+					<input type="text" class="form-control" placeholder="Pesquisar">
+					<span class="input-group-btn">
+						<button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
+					</span>
+				</div><!-- /input-group -->
+			</div>
+			<!-- MOSTRA PAINEL COM MINHA CESTA -->
+			<div class="col-xs-6 col-sm-4">
+				<div class="carrinho-painel">
+					0 itens
+				</div>
+			</div>
 		</div>
 	</div>
 
@@ -123,7 +138,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				</button>
 				<a class="navbar-brand" href="#">Home</a>
 			</div>
-
 			<!-- Collect the nav links, forms, and other content for toggling -->
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
@@ -142,14 +156,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						</ul>
 					</li>
 				</ul>
-				<form class="navbar-form navbar-right" role="search">
-					<div class="form-group input-group">
-						<input type="text" class="form-control" placeholder="Pesquisar">
-						<span class="input-group-btn">
-		        			<button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
-		      			</span>
-					</div>
-				</form>
 			</div><!-- /.navbar-collapse -->
 		</div><!-- /.container-fluid -->
 	</nav>

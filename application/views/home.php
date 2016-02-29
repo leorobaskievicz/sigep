@@ -14,18 +14,17 @@ echo ('<div id="home-slider">
 			<!-- Wrapper for slides -->
 			<div class="carousel-inner" role="listbox">
 				<div class="item active">
-					<img src="..." alt="...">
+					<img src="'. base_url("includes/images/1.png") .'" alt="Banner 1" class="slider-img">
 					<div class="carousel-caption">
-					...
+						<h3>Banner 1 de exibição</h3>
 					</div>
 				</div>
 				<div class="item">
-					<img src="..." alt="...">
+					<img src="'. base_url("includes/images/2.png") .'" alt="banner 2" class="slider-img">
 					<div class="carousel-caption">
-					...
+						<h3>Banner 2 de exibição no site</h3>
 					</div>
 				</div>
-				...
 			</div>
 
 			<!-- Controls -->
@@ -56,11 +55,11 @@ for ($i = 1; $i <= 20; $i++) {
 	} else {
 		echo ('<div class="col-xs-6 col-sm-3">
 				<div class="thumbnail">
-					<img src="..." alt="...">
+					<img src="'. base_url("includes/images/produtos/thumbnail/".$i) .'" alt="Nome do Produto">
 					<div class="caption">
-						<h3>Thumbnail label</h3>
-						<p>...</p>
-						<p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+						<h3>Produto # '.$i.'</h3>
+						<p>R$ 10,99</p>
+						<p><a href="#" class="btn btn-success" role="button">Comprar</a> <a href="#" class="btn btn-default" role="button">Detalhes</a></p>
 					</div>
 				</div>
 			</div>');
