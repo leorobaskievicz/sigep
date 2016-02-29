@@ -1,0 +1,14 @@
+
+/*
+	DEFINICOES PARA A PAGINA HOME
+	TODOS OS ELEMENTOS DEFINIDOS AQUI SAO USADOS SOMENTE NA
+	PAGINA INICIAL DO SITE
+*/
+
+#home-slider
+{
+	margin: 0px auto 30px auto;
+	border: none ;
+	height: auto;
+	width: 100%;
+}
