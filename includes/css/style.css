@@ -5,10 +5,10 @@
 
 .main-header
 {
-	padding: 10px;
+	padding: 20px 0px 20px 0px;
 	margin: 0px;
 	border: none;
-	height: 80px;
+	height: auto;
 	
 	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+0,f3f3f3+50,ededed+51,ffffff+100;White+Gloss+%232 */
 	background: #ffffff; /* Old browsers */
@@ -35,7 +35,11 @@
 	padding: 0px;
 }
 
-.menu-cliente ul#menu-cliente-right { float: right; }
+.menu-cliente ul#menu-cliente-right 
+{
+	margin-top: -7px; 
+	float: right; 
+}
 .menu-cliente li { float: left; }
 .menu-cliente li:last-child { padding-left: 0px !important; }
 .menu-cliente li:last-child a { border: none; }
@@ -55,13 +59,29 @@
 {
 	width: 250px;
 	height: 70px;
-	margin-top: -20px;
+	margin-top: -15px;
 	margin-left: 5%;
 }
 
 .main-search
 {
 	margin-top: 10px;
+}
+
+.sugestao-produtos
+{
+	width: 93% !important;
+	border: none;
+	position: absolute;
+	z-index: 8;
+	display: none;
+}
+
+.sugestao-produtos li
+{
+	width: 100%;
+	float: inherit;
+	padding: 10px !important;
 }
 
 .login-header
@@ -122,7 +142,7 @@
 
 .affix /* CONFIGURACAO DO MENUBAR QUANDO USUARIO ROLA A PAGINA E MENU FICA SEMPRE NO TOPO */
 {
-	margin: -80px 0px 0px 0px !important;
+	margin: -110px 0px 0px 0px !important;
 	width: 100% !important;
 	z-index: 10;
 }
@@ -152,6 +172,50 @@
 	float:left;
 	border-left: none !important;
 	border-right: none !important;
+}
+
+.minha-cesta-menu
+{
+	padding-left: 30px;
+	font-size: 16px;
+	font-weight: bold;
+	background-image: url("/includes/images/cart.png");
+	background-repeat: no-repeat;
+	background-position: 0px 5px;
+	background-size: auto 80%;
+}
+
+.minha-cesta-menu ul
+{
+	width: 450px;
+	height: 400px;
+	margin-left: -200px;
+}
+
+.minha-cesta-menu header
+{
+	font-size: 20px;
+	font-weight: bold;
+	text-align: center;
+	padding: 10px;
+	border-bottom: dotted 1px #555;
+}
+
+.minha-cesta-menu article
+{
+	padding: 5px;
+	height: 300px;
+	width: 445px;
+	overflow: scroll;
+}
+
+.minha-cesta-menu footer
+{
+	border-top: dotted 1px #555;
+	padding: 10px;
+	text-align: right;
+	font-size: 16px;
+	font-weight: bold;
 }
 
 .main-painel

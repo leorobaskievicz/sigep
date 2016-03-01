@@ -56,10 +56,27 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			$("[name=horas]").mask("99:99");
 			// Funcao para corrigir tamanho da tela modal de acordo com monitor
 			$('#myModal').on('show.bs.modal', function () {
-			    $('.modal .modal-body').css('overflow-y', 'auto'); 
-			    $('.modal .modal-body').css('height', $(window).height() * 0.7);
+				$('.modal .modal-body').css('overflow-y', 'auto'); 
+				$('.modal .modal-body').css('height', $(window).height() * 0.7);
 			});
 			NProgress.done();// Encerre barra de progresso
+
+			$('[name=search]').on("keyup", function () {
+				var valor = $(this).val();
+				if (valor != "")
+					$('.sugestao-produtos').collapse("show");
+				else
+					$('.sugestao-produtos').collapse("hide");
+			});
+
+			$('[name=search]').on("blur", function () {
+				$('.sugestao-produtos').collapse("hide");
+			});
+
+			$('[name=search]').on("focus", function () {
+				if ($(this).val() != "")
+					$('.sugestao-produtos').collapse("show");
+			});
 		});
 	</script>
 </head>
@@ -110,11 +127,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			<!-- BARRA DE PESQUISA DO SITE -->
 			<div class="col-xs-6 col-sm-4 main-search">
 				<div class="input-group">
-					<input type="text" class="form-control" placeholder="Pesquisar">
+					<input type="text" class="form-control" name="search" placeholder="Pesquisar" autocomplete="off">
 					<span class="input-group-btn">
 						<button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
 					</span>
 				</div><!-- /input-group -->
+				<ul class="list-group sugestao-produtos">
+					<li class="list-group-item"><a href="#">Olhos</a></li>
+					<li class="list-group-item"><a href="#">Acessórios</a></li>
+					<li class="list-group-item"><a href="#">Digestor</a></li>
+    				<li class="list-group-item"><a href="#">Veja Mais...</a></li>
+				</ul>
 			</div>
 			<!-- MOSTRA PAINEL COM MINHA CESTA -->
 			<div class="col-xs-6 col-sm-4">
@@ -129,7 +152,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	</div>
 
 	<!-- MENUBAR PRINCIPAL DO SITE -->
-	<nav class="navbar navbar-default" data-spy="affix" data-offset-top="80" data-offset-bottom="200">
+	<nav class="navbar navbar-default" data-spy="affix" data-offset-top="110" data-offset-bottom="200">
 		<div class="container-fluid main-menubar">
 			<!-- Brand and toggle get grouped for better mobile display -->
 			<div class="navbar-header">
@@ -239,16 +262,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             				<li><a href="#">Veja Mais...</a></li>
 						</ul>
 					</li>
-					<li class="dropdown">
+					<li class="dropdown minha-cesta-menu">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">0 itens </a>
 						<ul class="dropdown-menu">
-							<li><a href="#">Cabelo</a></li>
-							<li><a href="#">Higieno Bucal</a></li>
-							<li><a href="#">Corpo</a></li>
-							<li><a href="#">Rosto</a></li>
-							<li><a href="#">Pressã Alta</a></li>
-							<li role="separator" class="divider"></li>
-            				<li><a href="#">Veja Mais...</a></li>
+							<li>
+								<header>Meu Carrinho</header>
+								<article>Cesta Vazia</article>
+								<footer>TOTAL R$ 0,00</footer>
+							</li>
 						</ul>
 					</li>
 				</ul>
