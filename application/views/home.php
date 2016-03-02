@@ -56,6 +56,7 @@ for ($i = 1; $i <= 20; $i++) {
 		echo ('<div class="col-xs-6 col-sm-3">
 				<div class="thumbnail">
 					<img src="'. base_url("includes/images/produtos/thumbnail/".$i) .'" alt="Nome do Produto">
+					<div class="codigo">Codigo: '.$i.'</div>
 					<div class="caption">
 						<h3>Produto # '.$i.'</h3>
 						<p><strike>De: R$ 15,99</strike> Por:  R$ 10,99</p>
@@ -66,3 +67,24 @@ for ($i = 1; $i <= 20; $i++) {
 	}
 }
 echo ('</div>');
+
+// MOSTRA LINKS DE PROXIMA PAGINA E ANTERIOR
+echo ('<nav id="navPages">
+	<ul class="pagination">
+		<li>
+			<a href="#" aria-label="Previous">
+				<span aria-hidden="true">&laquo;</span>
+			</a>
+		</li>
+		<li><a href="#">1</a></li>
+		<li><a href="#">2</a></li>
+		<li><a href="#">3</a></li>
+		<li><a href="#">4</a></li>
+		<li><a href="#">5</a></li>
+		<li>
+			<a href="#" aria-label="Next">
+				<span aria-hidden="true">&raquo;</span>
+			</a>
+		</li>
+	</ul>
+	</nav>');

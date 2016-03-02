@@ -47,8 +47,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			// Configura a barra de loader
 			NProgress.configure({ showSpinner: true });
 			NProgress.start();// Inicia barra de progresso
-			$('#nprogress .bar').css({'background': '#00FFFF'});
-			$('#nprogress .peg').css({'box-shadow': '0 0 10px #00FFFF, 0 0 5px #00FFFF'});
+			$('#nprogress .bar').css({'background': '#3f4c6b'});
+			$('#nprogress .peg').css({'box-shadow': '0 0 10px #3f4c6b, 0 0 5px #3f4c6b'});
 			$('#nprogress .spinner-icon').css({'border-top-color': '#fff', 'border-left-color': '#fff'});
 			// Configura mascára nos campos necessários
 			$("[name=data]").mask("99/99/9999");
@@ -81,7 +81,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			$('[name=cadastro-cliente]').on("submit", function (event) {
 				event.preventDefault();
 
-				alert('ok');
+				var nome = $('[name=nome]');
+
+				if (nome.val() == "") {
+					nome.parent('div').parent('div').addClass('has-error');
+					nome.parent('div').append('<span class="help-block">Campo obrigatorio</span>');
+					nome.focus();
+				}
 
 			});
 		});
@@ -109,57 +115,59 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 	<!-- CABECALHO GERAL DO SITE -->
 	<div class="main-header">
-		<div class="row menu-cliente">
-			<div class="col-xs-6 col-sm-4"></div>
-			<div class="col-xs-6 col-sm-4">
-				<ul>
-					<li><a href="#" target="_self"><span class="glyphicon glyphicon-phone-alt"></span> (41) 3246-4533</a></li>
-					<li><a href="#" target="_self"><span class="glyphicon glyphicon-envelope"></span> sac@tecworks.com.br</a></li>
-				</ul>
+		<div class="content-header">
+			<div class="row menu-cliente">
+				<div class="col-xs-6 col-sm-4"></div>
+				<div class="col-xs-6 col-sm-4">
+					<ul>
+						<li><a href="#" target="_self"><span class="glyphicon glyphicon-phone-alt"></span> (41) 3246-4533</a></li>
+						<li><a href="#" target="_self"><span class="glyphicon glyphicon-envelope"></span> sac@tecworks.com.br</a></li>
+					</ul>
+				</div>
+				<div class="col-xs-6 col-sm-4">
+					<ul id="menu-cliente-right">
+						<li><a href="#" target="_self">Meu Cadastro</a></li>
+						<li><a href="#" target="_self">Meus Pedidos</a></li>
+						<li><a href="#" target="_self">Contato</a></li>
+						<li><a href="#" target="_self">Duvidas</a></li>
+					</ul>
+				</div>
 			</div>
-			<div class="col-xs-6 col-sm-4">
-				<ul id="menu-cliente-right">
-					<li><a href="#" target="_self">Meu Cadastro</a></li>
-					<li><a href="#" target="_self">Meus Pedidos</a></li>
-					<li><a href="#" target="_self">Contato</a></li>
-					<li><a href="#" target="_self">Duvidas</a></li>
-				</ul>
-			</div>
-		</div>
-		<div class="row">
-			<!-- MOSTRA LOGOTIPO DA EMPRESA -->
-			<div class="col-xs-6 col-sm-4 main-logo">
-				<a href="#" target="_self"><img src="<?= base_url("includes/images/logo.png") ?>" alt="Logo"/></a>
-			</div>
-			<!-- BARRA DE PESQUISA DO SITE -->
-			<div class="col-xs-6 col-sm-4 main-search">
-				<div class="input-group">
-					<input type="text" class="form-control" name="search" placeholder="Pesquisar" autocomplete="off">
-					<span class="input-group-btn">
-						<button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
-					</span>
-				</div><!-- /input-group -->
-				<ul class="list-group sugestao-produtos">
-					<li class="list-group-item"><a href="#">Olhos</a></li>
-					<li class="list-group-item"><a href="#">Acessórios</a></li>
-					<li class="list-group-item"><a href="#">Digestor</a></li>
-    				<li class="list-group-item"><a href="#">Veja Mais...</a></li>
-				</ul>
-			</div>
-			<!-- MOSTRA PAINEL COM MINHA CESTA -->
-			<div class="col-xs-6 col-sm-4">
-				<div class="login-header">
-					<header>Olá, visitante!</header>
-					<p>
-						Fazer login ou se cadastrar.
-					</p>
+			<div class="row">
+				<!-- MOSTRA LOGOTIPO DA EMPRESA -->
+				<div class="col-xs-6 col-sm-3 main-logo">
+					<a href="#" target="_self"><img src="<?= base_url("includes/images/logo.png") ?>" alt="Logo"/></a>
+				</div>
+				<!-- BARRA DE PESQUISA DO SITE -->
+				<div class="col-xs-6 col-sm-6 main-search">
+					<div class="input-group">
+						<input type="text" class="form-control" name="search" placeholder="Pesquisar" autocomplete="off">
+						<span class="input-group-btn">
+							<button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
+						</span>
+					</div><!-- /input-group -->
+					<ul class="list-group sugestao-produtos">
+						<li class="list-group-item"><a href="#">Olhos</a></li>
+						<li class="list-group-item"><a href="#">Acessórios</a></li>
+						<li class="list-group-item"><a href="#">Digestor</a></li>
+	    				<li class="list-group-item"><a href="#">Veja Mais...</a></li>
+					</ul>
+				</div>
+				<!-- MOSTRA PAINEL COM MINHA CESTA -->
+				<div class="col-xs-6 col-sm-3">
+					<div class="login-header">
+						<header>Olá, visitante!</header>
+						<p>
+							Fazer login ou se cadastrar.
+						</p>
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 
 	<!-- MENUBAR PRINCIPAL DO SITE -->
-	<nav class="navbar navbar-default" data-spy="affix" data-offset-top="110" data-offset-bottom="200">
+	<nav class="navbar navbar-default" data-spy="affix" data-offset-top="100" data-offset-bottom="200">
 		<div class="container-fluid main-menubar">
 			<!-- Brand and toggle get grouped for better mobile display -->
 			<div class="navbar-header">

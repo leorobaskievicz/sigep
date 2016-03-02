@@ -11,9 +11,15 @@
 	border: none ;
 	height: auto;
 	width: 100%;
+	background-color: #FFF;
 }
 
 .slider-img
 {
 	margin: 0px auto;
+}
+
+.carousel-control, .carousel-control:hover 
+{
+  opacity: 0 !important;
 }

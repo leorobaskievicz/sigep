@@ -1,27 +1,31 @@
 /*
 	CONFIGURACOES GLOBAIS DO SITE --
 	TODAS AS PAGINAS DO SITE CONTEM ELEMENTOS QUE TEM ESSAS CONFIGURACOES
+	COR PRINCIPAL #3f4c6b
+	COR SECUNDARIA #999
 */
 
 .main-header
 {
-	padding: 20px 0px 20px 0px;
+	padding: 0px;
 	margin: 0px;
 	border: none;
 	height: auto;
-	
-	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+0,f3f3f3+50,ededed+51,ffffff+100;White+Gloss+%232 */
-	background: #ffffff; /* Old browsers */
-	background: -moz-linear-gradient(top,  #ffffff 0%, #f3f3f3 50%, #ededed 51%, #ffffff 100%); /* FF3.6-15 */
-	background: -webkit-linear-gradient(top,  #ffffff 0%,#f3f3f3 50%,#ededed 51%,#ffffff 100%); /* Chrome10-25,Safari5.1-6 */
-	background: linear-gradient(to bottom,  #ffffff 0%,#f3f3f3 50%,#ededed 51%,#ffffff 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ffffff',GradientType=0 ); /* IE6-9 */
+	background-color: #7787A8;
+	color: #FFF;
+}
+
+.content-header
+{
+	padding: 20px 0px 20px 0px;
+	width: 90%;
+	margin: 0px auto;
 }
 
 .main-header .menu-cliente
 {
 	text-align: right;
-	margin: -10px auto 0px auto;
+	margin: -17px auto 0px auto;
 }
 
 .menu-cliente ul, .menu-cliente ul#menu-cliente-right
@@ -37,8 +41,11 @@
 
 .menu-cliente ul#menu-cliente-right 
 {
-	margin-top: -7px; 
-	float: right; 
+	width: 340px;
+	margin-top: 0px; 
+	margin-left: 0px;
+	margin-right: -20px;
+	float: right;
 }
 .menu-cliente li { float: left; }
 .menu-cliente li:last-child { padding-left: 0px !important; }
@@ -47,12 +54,12 @@
 
 .menu-cliente li a
 {
-	color: #000;
 	text-decoration: none;
 	font-size: 16px;
 	font-weight: bold;
-	border-right: solid 1px #333;
+	border-right: solid 1px #CCC;
 	padding: 2px 10px;
+	color: #FFF;
 }
 
 .main-header .main-logo img
@@ -60,13 +67,9 @@
 	width: 250px;
 	height: 70px;
 	margin-top: -15px;
-	margin-left: 5%;
 }
 
-.main-search
-{
-	margin-top: 10px;
-}
+.main-search div { margin-top: 10px; }
 
 .sugestao-produtos
 {
@@ -89,7 +92,6 @@
 	width: auto;
 	height: 50px;
 	margin-top: 0px;
-	margin-right: 7%;
 	padding: 0px;
 	padding-top: 5px;
 	padding-right: 50px;
@@ -117,6 +119,7 @@
 
 .navbar
 {
+	border: solid 1px #3f4c6b !important;
 	border-radius: 0px !important;
 	-moz-border-radius: 0px !important;
 	-webkit-border-radius: 0px !important;
@@ -142,7 +145,7 @@
 
 .affix /* CONFIGURACAO DO MENUBAR QUANDO USUARIO ROLA A PAGINA E MENU FICA SEMPRE NO TOPO */
 {
-	margin: -110px 0px 0px 0px !important;
+	margin: -100px 0px 0px 0px !important;
 	width: 100% !important;
 	z-index: 10;
 }
@@ -151,6 +154,24 @@
 {
 	width: 90%;
 	margin: 0px auto 0px auto;
+}
+
+.navbar .navbar-nav 
+{
+  display: inline-block;
+  float: none;
+  vertical-align: top;
+}
+
+.navbar .navbar-collapse { text-align: center; }
+.navbar .navbar-nav>.open>a, .navbar .navbar-nav>.open>a:hover, .navbar .navbar-nav>.open>a:focus 
+{ 
+	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#606c88+0,3f4c6b+100 */
+	background: #606c88; /* Old browsers */
+	background: -moz-radial-gradient(center, ellipse cover,  #606c88 0%, #3f4c6b 100%); /* FF3.6-15 */
+	background: -webkit-radial-gradient(center, ellipse cover,  #606c88 0%,#3f4c6b 100%); /* Chrome10-25,Safari5.1-6 */
+	background: radial-gradient(ellipse at center,  #606c88 0%,#3f4c6b 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#606c88', endColorstr='#3f4c6b',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
 }
 
 .produto-destaque
@@ -163,6 +184,8 @@
 .list-group
 {
 	width: 510px;
+	border: solid 3px #999 !important;
+	border-top: none !important;
 }
 
 .list-group-item
@@ -174,6 +197,8 @@
 	border-right: none !important;
 }
 
+.list-group li:nth-child(2) { border: none !important; }
+
 .minha-cesta-menu
 {
 	padding-left: 30px;
@@ -181,7 +206,7 @@
 	font-weight: bold;
 	background-image: url("/includes/images/cart.png");
 	background-repeat: no-repeat;
-	background-position: 0px 5px;
+	background-position: 5px;
 	background-size: auto 80%;
 }
 
@@ -190,6 +215,8 @@
 	width: 450px;
 	height: 400px;
 	margin-left: -200px;
+	border: solid 3px #999;
+	border-top: solid 1px #999;
 }
 
 .minha-cesta-menu header
@@ -199,6 +226,7 @@
 	text-align: center;
 	padding: 10px;
 	border-bottom: dotted 1px #555;
+	color: #3f4c6b;
 }
 
 .minha-cesta-menu article
@@ -216,6 +244,7 @@
 	text-align: right;
 	font-size: 16px;
 	font-weight: bold;
+	color: #3f4c6b;
 }
 
 .main-painel
@@ -231,9 +260,10 @@
 {
 	width: 100%;
 	padding: 0px;
-	margin: 15px 0px 0px 0px;
+	margin: 15px 0px -15px 0px;
 	height: 200px;
-	background-color: #E6E6E6;
+	border-top: solid 20px #313E54;
+	background-color: #3f4c6b;
 	position: relative;
 	bottom: 0;
 }
@@ -242,18 +272,83 @@
 	DEFINIÇÕES PARA GRID DE PRODUTOS
 */
 
+.thumbnail
+{
+	border: solid 1px #999;
+}
+
+.thumbnail img
+{
+	max-height: 170px;
+}
+
+.thumbnail .codigo
+{
+	font-size: 10px;
+	text-align: center;
+	color: #999;
+}
+
+.thumbnail h3
+{
+	color: #999;
+}
+
 .thumbnail p /* Preço do produto */
 {
 	font-weight: bold;
 	font-size: 14px;
+	color: #3f4c6b;
 }
 
 .thumbnail p strike /* Preço De */
 {
 	font-size: 12px;
+	color: #3f4c6b;
 }
 
 .thumbnail p:last-child /* Botões de comprar e detalhes */
 {
 	text-align: center;
+}
+
+/*
+	DEFINICOES PARA BOTOES UTILIZADOS EM TODO O SITE
+*/
+
+/*
+	DEFINICOES SOBRE PAGINACAO LINKS DE ANTE E PROX
+*/
+
+#navPages
+{
+	text-align: center;
+}
+
+#navPages ul li a
+{
+	color: #3f4c6b !important;
+}
+
+/*
+	DEFINICOES PARA BARRA DE LOCALIZACAO DO SITE
+*/
+
+.breadcrumb
+{
+	background-color: #FFF !important;
+	padding: 3px !important;
+	margin: 0px 0px 5px 0px !important;
+}
+
+.breadcrumb li:first-child
+{
+	font-size: 12px;
+
+}
+
+.breadcrumb li:first-child, .breadcrumb li a
+{
+	color: #999;
+	font-size: 12px;
 }

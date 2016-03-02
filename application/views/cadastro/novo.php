@@ -3,6 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 // MOSTRA A LOCALIZACAO QUE USUARIO ESTA NO SITE
 echo ('<ol class="breadcrumb">
+			<li><span class="glyphicon glyphicon-record"> </span>  Voce esta aqui </li>
 			<li><a href="'. base_url() .'">Home</a></li>
 			<li><a href="'. base_url("Cadastro") .'">Cadastro</a></li>
 			<li><a href="'. base_url("Cadastro/novo") .'">Novo</a></li>
