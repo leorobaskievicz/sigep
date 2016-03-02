@@ -77,6 +77,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				if ($(this).val() != "")
 					$('.sugestao-produtos').collapse("show");
 			});
+
+			$('[name=cadastro-cliente]').on("submit", function (event) {
+				event.preventDefault();
+
+				alert('ok');
+
+			});
 		});
 	</script>
 </head>
