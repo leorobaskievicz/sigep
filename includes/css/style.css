@@ -22,6 +22,40 @@
 	margin: 0px auto;
 }
 
+.main-header .sup-header
+{
+	border: none;
+	text-align: center;
+	padding: 0px;
+	margin-top: 0px;
+	background-color: #5C6C82;	
+}
+
+.main-header .sup-header ul
+{
+	list-style-type: none;
+	list-style-image: none;
+	display: inline-block;
+  	float: none;
+  	vertical-align: top;
+  	padding: 0px;
+  	margin: 0px;
+}
+
+.main-header .sup-header ul li
+{
+	float: left;
+	padding: 0px;
+  	margin: 0px;
+}
+
+.main-header .sup-header ul li a
+{
+	padding-right: 15px;
+	color: #FFF;
+	font-size: 12px;
+}
+
 .main-header .menu-cliente
 {
 	text-align: right;
@@ -64,8 +98,8 @@
 
 .main-header .main-logo img
 {
-	width: 250px;
-	height: 70px;
+	width: 70%;
+	height: auto;
 	margin-top: -15px;
 }
 
@@ -106,14 +140,14 @@
 {
 	height: auto;
 	font-weight: bold;
-	font-size: 18px;
+	font-size: 1em;
 }
 
 .login-header p
 {
 	height: auto;
 	padding: 0px;
-	font-size: 12px;
+	font-size: 0.8em;
 	font-weight: normal;
 }
 
@@ -145,7 +179,7 @@
 
 .affix /* CONFIGURACAO DO MENUBAR QUANDO USUARIO ROLA A PAGINA E MENU FICA SEMPRE NO TOPO */
 {
-	margin: -100px 0px 0px 0px !important;
+	margin: -119px 0px 0px 0px !important;
 	width: 100% !important;
 	z-index: 10;
 }

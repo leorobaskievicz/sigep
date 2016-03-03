@@ -82,11 +82,137 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				event.preventDefault();
 
 				var nome = $('[name=nome]');
+				var sobrenome = $('[name=sobrenome]');
+				var cpf = $('[name=cpf]');
+				var telefone = $('[name=telefone]');
+				var email = $('[name=email]');
+				var senha = $('[name=senha]');
+				var confsenha = $('[name=confsenha]');
+				var cep = $('[name=cep]');
+				var rua = $('[name=rua]');
+				var numero = $('[name=numero]');
+				var bairro = $('[name=bairro]');
+				var cidade = $('[name=cidade]');
+				var estado = $('[name=estado]');
+				var cepent = $('[name=cepent]');
+				var ruaent = $('[name=ruaent]');
+				var numeroent = $('[name=numeroent]');
+				var bairroent = $('[name=bairroent]');
+				var cidadeent = $('[name=cidadeent]');
+				var estadoent = $('[name=estadoent]');
 
 				if (nome.val() == "") {
 					nome.parent('div').parent('div').addClass('has-error');
 					nome.parent('div').append('<span class="help-block">Campo obrigatorio</span>');
 					nome.focus();
+				}
+
+				if (sobrenome.val() == "") {
+					sobrenome.parent('div').parent('div').addClass('has-error');
+					sobrenome.parent('div').append('<span class="help-block">Campo obrigatorio</span>');
+					sobrenome.focus();
+				}
+
+				if (cpf.val() == "") {
+					cpf.parent('div').parent('div').addClass('has-error');
+					cpf.parent('div').append('<span class="help-block">Campo obrigatorio</span>');
+					cpf.focus();
+				}
+
+				if (telefone.val() == "") {
+					telefone.parent('div').parent('div').addClass('has-error');
+					telefone.parent('div').append('<span class="help-block">Campo obrigatorio</span>');
+					telefone.focus();
+				}
+
+				if (email.val() == "") {
+					email.parent('div').parent('div').addClass('has-error');
+					email.parent('div').append('<span class="help-block">Campo obrigatorio</span>');
+					email.focus();
+				}
+
+				if (senha.val() == "") {
+					senha.parent('div').parent('div').addClass('has-error');
+					senha.parent('div').append('<span class="help-block">Campo obrigatorio</span>');
+					senha.focus();
+				}
+
+				if (confsenha.val() == "") {
+					confsenha.parent('div').parent('div').addClass('has-error');
+					confsenha.parent('div').append('<span class="help-block">Campo obrigatorio</span>');
+					confsenha.focus();
+				}
+
+				if (cep.val() == "") {
+					cep.parent('div').parent('div').addClass('has-error');
+					cep.parent('div').append('<span class="help-block">Campo obrigatorio</span>');
+					cep.focus();
+				}
+
+				if (rua.val() == "") {
+					rua.parent('div').parent('div').addClass('has-error');
+					rua.parent('div').append('<span class="help-block">Campo obrigatorio</span>');
+					rua.focus();
+				}
+
+				if (numero.val() == "") {
+					numero.parent('div').parent('div').addClass('has-error');
+					numero.parent('div').append('<span class="help-block">Campo obrigatorio</span>');
+					numero.focus();
+				}
+
+				if (bairro.val() == "") {
+					bairro.parent('div').parent('div').addClass('has-error');
+					bairro.parent('div').append('<span class="help-block">Campo obrigatorio</span>');
+					bairro.focus();
+				}
+
+				if (cidade.val() == "") {
+					cidade.parent('div').parent('div').addClass('has-error');
+					cidade.parent('div').append('<span class="help-block">Campo obrigatorio</span>');
+					cidade.focus();
+				}
+
+				if (estado.val() == "") {
+					estado.parent('div').parent('div').addClass('has-error');
+					estado.parent('div').append('<span class="help-block">Campo obrigatorio</span>');
+					estado.focus();
+				}
+
+				if (cepent.val() == "") {
+					cepent.parent('div').parent('div').addClass('has-error');
+					cepent.parent('div').append('<span class="help-block">Campo obrigatorio</span>');
+					cepent.focus();
+				}
+
+				if (ruaent.val() == "") {
+					ruaent.parent('div').parent('div').addClass('has-error');
+					ruaent.parent('div').append('<span class="help-block">Campo obrigatorio</span>');
+					ruaent.focus();
+				}
+
+				if (numeroent.val() == "") {
+					numeroent.parent('div').parent('div').addClass('has-error');
+					numeroent.parent('div').append('<span class="help-block">Campo obrigatorio</span>');
+					numeroent.focus();
+				}
+
+				if (bairroent.val() == "") {
+					bairroent.parent('div').parent('div').addClass('has-error');
+					bairroent.parent('div').append('<span class="help-block">Campo obrigatorio</span>');
+					bairroent.focus();
+				}
+
+				if (cidadeent.val() == "") {
+					cidadeent.parent('div').parent('div').addClass('has-error');
+					cidadeent.parent('div').append('<span class="help-block">Campo obrigatorio</span>');
+					cidadeent.focus();
+				}
+
+				if (estadoent.val() == "") {
+					estadoent.parent('div').parent('div').addClass('has-error');
+					estadoent.parent('div').append('<span class="help-block">Campo obrigatorio</span>');
+					estadoent.focus();
 				}
 
 			});
@@ -115,16 +241,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 	<!-- CABECALHO GERAL DO SITE -->
 	<div class="main-header">
+		<div class="row sup-header">
+			<div class="col-xs-12 col-sm-12">
+				<ul>
+					<li><a href="#" target="_self"><span class="glyphicon glyphicon-phone-alt"></span> (41) 3246-4533</a></li>
+					<li><a href="#" target="_self"><span class="glyphicon glyphicon-envelope"></span> sac@tecworks.com.br</a></li>
+				</ul>
+			</div>
+		</div>
 		<div class="content-header">
 			<div class="row menu-cliente">
-				<div class="col-xs-6 col-sm-4"></div>
-				<div class="col-xs-6 col-sm-4">
-					<ul>
-						<li><a href="#" target="_self"><span class="glyphicon glyphicon-phone-alt"></span> (41) 3246-4533</a></li>
-						<li><a href="#" target="_self"><span class="glyphicon glyphicon-envelope"></span> sac@tecworks.com.br</a></li>
-					</ul>
-				</div>
-				<div class="col-xs-6 col-sm-4">
+				<div class="col-xs-12 col-sm-12">
 					<ul id="menu-cliente-right">
 						<li><a href="#" target="_self">Meu Cadastro</a></li>
 						<li><a href="#" target="_self">Meus Pedidos</a></li>
@@ -135,11 +262,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			</div>
 			<div class="row">
 				<!-- MOSTRA LOGOTIPO DA EMPRESA -->
-				<div class="col-xs-6 col-sm-3 main-logo">
+				<div class="col-xs-2 col-sm-4 main-logo">
 					<a href="#" target="_self"><img src="<?= base_url("includes/images/logo.png") ?>" alt="Logo"/></a>
 				</div>
 				<!-- BARRA DE PESQUISA DO SITE -->
-				<div class="col-xs-6 col-sm-6 main-search">
+				<div class="col-xs-8 col-sm-4 main-search">
 					<div class="input-group">
 						<input type="text" class="form-control" name="search" placeholder="Pesquisar" autocomplete="off">
 						<span class="input-group-btn">
@@ -154,7 +281,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					</ul>
 				</div>
 				<!-- MOSTRA PAINEL COM MINHA CESTA -->
-				<div class="col-xs-6 col-sm-3">
+				<div class="col-xs-2 col-sm-4">
 					<div class="login-header">
 						<header>Olá, visitante!</header>
 						<p>
@@ -167,7 +294,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	</div>
 
 	<!-- MENUBAR PRINCIPAL DO SITE -->
-	<nav class="navbar navbar-default" data-spy="affix" data-offset-top="100" data-offset-bottom="200">
+	<nav class="navbar navbar-default" data-spy="affix" data-offset-top="119" data-offset-bottom="200">
 		<div class="container-fluid main-menubar">
 			<!-- Brand and toggle get grouped for better mobile display -->
 			<div class="navbar-header">
