@@ -24,6 +24,7 @@
 
 .main-header .sup-header
 {
+	width: 101%;
 	border: none;
 	text-align: center;
 	padding: 0px;
@@ -220,6 +221,7 @@
 	width: 510px;
 	border: solid 3px #999 !important;
 	border-top: none !important;
+	margin-top: 1px !important;
 }
 
 .list-group-item
@@ -300,6 +302,46 @@
 	background-color: #3f4c6b;
 	position: relative;
 	bottom: 0;
+}
+
+/*
+	DEFINIÇÕES PARA MENU LEFT
+	BARRA DE LINKS AO LADO ESQUERDO DA PAGINA
+*/
+
+.menuLeft
+{
+	border: none;
+	margin: 0px !important;
+}
+
+.menuLeft .panel-heading
+{
+	background-color: #7787A8 !important;
+	color: #FFF !important;
+	font-weight: bold;
+}
+
+.menuLeft .list-group
+{
+	border: none !important;
+	width: 100% !important;
+}
+
+.menuLeft .list-group li
+{
+	width: 100% !important;
+	border-top: solid 1px #CCC !important;
+	border-left: none !important;
+	border-right: none !important;
+	border-bottom: none !important;
+	float: inherit !important;
+	padding: 10px 15px !important;
+}
+
+.menuLeft .list-group li:first-child
+{
+	border: none !important;
 }
 
 /*

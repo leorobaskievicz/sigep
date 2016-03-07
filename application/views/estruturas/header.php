@@ -103,115 +103,115 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 				if (nome.val() == "") {
 					nome.parent('div').parent('div').addClass('has-error');
-					nome.parent('div').append('<span class="help-block">Campo obrigatorio</span>');
+					nome.parent('div').append('<span class="help-block">Campo obrigatório.</span>');
 					nome.focus();
 				}
 
 				if (sobrenome.val() == "") {
 					sobrenome.parent('div').parent('div').addClass('has-error');
-					sobrenome.parent('div').append('<span class="help-block">Campo obrigatorio</span>');
+					sobrenome.parent('div').append('<span class="help-block">Campo obrigatório.</span>');
 					sobrenome.focus();
 				}
 
 				if (cpf.val() == "") {
 					cpf.parent('div').parent('div').addClass('has-error');
-					cpf.parent('div').append('<span class="help-block">Campo obrigatorio</span>');
+					cpf.parent('div').append('<span class="help-block">Campo obrigatório.</span>');
 					cpf.focus();
 				}
 
 				if (telefone.val() == "") {
 					telefone.parent('div').parent('div').addClass('has-error');
-					telefone.parent('div').append('<span class="help-block">Campo obrigatorio</span>');
+					telefone.parent('div').append('<span class="help-block">Campo obrigatório.</span>');
 					telefone.focus();
 				}
 
 				if (email.val() == "") {
 					email.parent('div').parent('div').addClass('has-error');
-					email.parent('div').append('<span class="help-block">Campo obrigatorio</span>');
+					email.parent('div').append('<span class="help-block">Campo obrigatório.</span>');
 					email.focus();
 				}
 
 				if (senha.val() == "") {
 					senha.parent('div').parent('div').addClass('has-error');
-					senha.parent('div').append('<span class="help-block">Campo obrigatorio</span>');
+					senha.parent('div').append('<span class="help-block">Campo obrigatório.</span>');
 					senha.focus();
 				}
 
 				if (confsenha.val() == "") {
 					confsenha.parent('div').parent('div').addClass('has-error');
-					confsenha.parent('div').append('<span class="help-block">Campo obrigatorio</span>');
+					confsenha.parent('div').append('<span class="help-block">Campo obrigatório.</span>');
 					confsenha.focus();
 				}
 
 				if (cep.val() == "") {
 					cep.parent('div').parent('div').addClass('has-error');
-					cep.parent('div').append('<span class="help-block">Campo obrigatorio</span>');
+					cep.parent('div').append('<span class="help-block">Campo obrigatório.</span>');
 					cep.focus();
 				}
 
 				if (rua.val() == "") {
 					rua.parent('div').parent('div').addClass('has-error');
-					rua.parent('div').append('<span class="help-block">Campo obrigatorio</span>');
+					rua.parent('div').append('<span class="help-block">Campo obrigatório.</span>');
 					rua.focus();
 				}
 
 				if (numero.val() == "") {
 					numero.parent('div').parent('div').addClass('has-error');
-					numero.parent('div').append('<span class="help-block">Campo obrigatorio</span>');
+					numero.parent('div').append('<span class="help-block">Campo obrigatório.</span>');
 					numero.focus();
 				}
 
 				if (bairro.val() == "") {
 					bairro.parent('div').parent('div').addClass('has-error');
-					bairro.parent('div').append('<span class="help-block">Campo obrigatorio</span>');
+					bairro.parent('div').append('<span class="help-block">Campo obrigatório.</span>');
 					bairro.focus();
 				}
 
 				if (cidade.val() == "") {
 					cidade.parent('div').parent('div').addClass('has-error');
-					cidade.parent('div').append('<span class="help-block">Campo obrigatorio</span>');
+					cidade.parent('div').append('<span class="help-block">Campo obrigatório.</span>');
 					cidade.focus();
 				}
 
 				if (estado.val() == "") {
 					estado.parent('div').parent('div').addClass('has-error');
-					estado.parent('div').append('<span class="help-block">Campo obrigatorio</span>');
+					estado.parent('div').append('<span class="help-block">Campo obrigatório.</span>');
 					estado.focus();
 				}
 
 				if (cepent.val() == "") {
 					cepent.parent('div').parent('div').addClass('has-error');
-					cepent.parent('div').append('<span class="help-block">Campo obrigatorio</span>');
+					cepent.parent('div').append('<span class="help-block">Campo obrigatório.</span>');
 					cepent.focus();
 				}
 
 				if (ruaent.val() == "") {
 					ruaent.parent('div').parent('div').addClass('has-error');
-					ruaent.parent('div').append('<span class="help-block">Campo obrigatorio</span>');
+					ruaent.parent('div').append('<span class="help-block">Campo obrigatório.</span>');
 					ruaent.focus();
 				}
 
 				if (numeroent.val() == "") {
 					numeroent.parent('div').parent('div').addClass('has-error');
-					numeroent.parent('div').append('<span class="help-block">Campo obrigatorio</span>');
+					numeroent.parent('div').append('<span class="help-block">Campo obrigatório.</span>');
 					numeroent.focus();
 				}
 
 				if (bairroent.val() == "") {
 					bairroent.parent('div').parent('div').addClass('has-error');
-					bairroent.parent('div').append('<span class="help-block">Campo obrigatorio</span>');
+					bairroent.parent('div').append('<span class="help-block">Campo obrigatório.</span>');
 					bairroent.focus();
 				}
 
 				if (cidadeent.val() == "") {
 					cidadeent.parent('div').parent('div').addClass('has-error');
-					cidadeent.parent('div').append('<span class="help-block">Campo obrigatorio</span>');
+					cidadeent.parent('div').append('<span class="help-block">Campo obrigatório.</span>');
 					cidadeent.focus();
 				}
 
 				if (estadoent.val() == "") {
 					estadoent.parent('div').parent('div').addClass('has-error');
-					estadoent.parent('div').append('<span class="help-block">Campo obrigatorio</span>');
+					estadoent.parent('div').append('<span class="help-block">Campo obrigatório.</span>');
 					estadoent.focus();
 				}
 
@@ -244,6 +244,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<div class="row sup-header">
 			<div class="col-xs-12 col-sm-12">
 				<ul>
+					<li><a href="#" target="_self">Av. Brasília, 5540, sala 05 - Novo Mundo - Curitiba - PR - CEP: 81.020-010</li>
 					<li><a href="#" target="_self"><span class="glyphicon glyphicon-phone-alt"></span> (41) 3246-4533</a></li>
 					<li><a href="#" target="_self"><span class="glyphicon glyphicon-envelope"></span> sac@tecworks.com.br</a></li>
 				</ul>
