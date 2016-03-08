@@ -10,7 +10,7 @@
 	padding: 0px;
 	margin: 0px;
 	border: none;
-	height: auto;
+	height: 105px;
 	background-color: #7787A8;
 	color: #FFF;
 }
@@ -99,7 +99,7 @@
 
 .main-header .main-logo img
 {
-	width: 70%;
+	width: 250px;
 	height: auto;
 	margin-top: -15px;
 }
@@ -141,14 +141,14 @@
 {
 	height: auto;
 	font-weight: bold;
-	font-size: 1em;
+	font-size: 18px;
 }
 
 .login-header p
 {
 	height: auto;
 	padding: 0px;
-	font-size: 0.8em;
+	font-size: 12px;
 	font-weight: normal;
 }
 
@@ -180,7 +180,7 @@
 
 .affix /* CONFIGURACAO DO MENUBAR QUANDO USUARIO ROLA A PAGINA E MENU FICA SEMPRE NO TOPO */
 {
-	margin: -119px 0px 0px 0px !important;
+	margin: -105px 0px 0px 0px !important;
 	width: 100% !important;
 	z-index: 10;
 }
@@ -219,7 +219,7 @@
 .list-group
 {
 	width: 510px;
-	border: solid 3px #999 !important;
+	border: solid 3px #5C6C82 !important;
 	border-top: none !important;
 	margin-top: 1px !important;
 }
@@ -251,8 +251,8 @@
 	width: 450px;
 	height: 400px;
 	margin-left: -200px;
-	border: solid 3px #999;
-	border-top: solid 1px #999;
+	border: solid 3px #5C6C82;
+	border-top: solid 1px #5C6C82;
 }
 
 .minha-cesta-menu header
@@ -296,12 +296,58 @@
 {
 	width: 100%;
 	padding: 0px;
+	padding-bottom: 20px;
 	margin: 15px 0px -15px 0px;
-	height: 200px;
-	border-top: solid 20px #313E54;
+	height: auto;
 	background-color: #3f4c6b;
 	position: relative;
 	bottom: 0;
+}
+
+.main-footer .row { padding: 0px !important;  margin: 0px !important; }
+
+.search-footer
+{
+	padding: 15px;
+	background-color: #313E54;
+}
+
+.search-footer .input-group { margin: 0px auto !important; }
+
+.main-footer .aviso-footer
+{
+	color: #FFF;
+	font-size: 12px;
+	margin: 20px auto !important;
+	border: none;
+	text-align: center;
+}
+
+.main-footer .table-footer
+{
+	width: 80%;
+	margin: 0px auto !important;
+}
+
+.main-footer .table-footer header
+{
+	font-size: 14px;
+	font-weight: bold;
+	color: #E6E6E6;
+	border-bottom: dotted 1px #E6E6E6;
+}
+
+.main-footer .table-footer article, .main-footer .table-footer article ul, .main-footer .table-footer article li, .main-footer .table-footer article a
+{
+	font-size: 12px;
+	padding: 3px;
+	color: #FFF;
+}
+
+.main-footer .table-footer article ul 
+{
+	list-style-image: none;
+	list-style-type: none;
 }
 
 /*

@@ -60,7 +60,7 @@ for ($i = 1; $i <= 20; $i++) {
 					<div class="caption">
 						<h3>Produto # '.$i.'</h3>
 						<p><strike>De: R$ 15,99</strike> Por:  R$ 10,99</p>
-						<p><a href="#" class="btn btn-default" role="button">Detalhes</a> <a href="#" class="btn btn-success" role="button">Comprar</a> </p>
+						<p><a href="#" class="btn btn-default" role="button">Detalhes</a> <a href="#" class="btn btn-primary" role="button">Comprar</a> </p>
 					</div>
 				</div>
 			</div>');

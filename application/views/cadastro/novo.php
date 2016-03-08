@@ -55,6 +55,7 @@ echo ('<form action="'. base_url("Cadastro/salvar") .'" method="POST" name="cada
 					echo ('<label class="col-xs-3 col-sm-2 control-label" for="selectbasic">Sexo</label>
 						<div class="col-xs-4 col-sm-4">
 							<select id="selectbasic" name="sexo" class="form-control">
+								<option value="0">-- </option>
 								<option value="f">Feminio</option>
 								<option value="m">Masculino</option>
 							</select>
@@ -240,11 +241,11 @@ echo ('<form action="'. base_url("Cadastro/salvar") .'" method="POST" name="cada
 					echo ('<label class="col-xs-5 col-sm-5 control-label" for="radios">Usar mesmo endereço</label>
 					<div class="col-xs-5 col-sm-5"> 
 						<label class="radio-inline" for="radios-0">
-							<input type="radio" name="mesmoEndereco" id="radios-0" value="1" checked="checked">
+							<input type="radio" name="mesmoEndereco" id="radios-0" value="1">
 							Sim
 						</label> 
 						<label class="radio-inline" for="radios-1">
-							<input type="radio" name="mesmoEndereco" id="radios-1" value="0">
+							<input type="radio" name="mesmoEndereco" id="radios-1" value="0" checked="checked">
 							Não
 						</label> 
 					</div>');
@@ -285,7 +286,7 @@ echo ('<form action="'. base_url("Cadastro/salvar") .'" method="POST" name="cada
 					</div>');
 					echo ('<label class="col-xs-3 col-sm-2 control-label" for="textinput">UF*</label>');
 					echo ('<div class="col-xs-4 col-sm-4">
-						<select id="textinput" name="estadoentent" placeholder="Estado" class="form-control input-md">
+						<select id="textinput" name="estadoent" placeholder="Estado" class="form-control input-md">
 							<option value="0">--</option>
                             <option value="AC">Acre</option>
                             <option value="AL">Alagoas</option>

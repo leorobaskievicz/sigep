@@ -116,7 +116,7 @@ class CI_DB_pdo_driver extends CI_DB {
 		$this->dsn = NULL;
 	}
 
-	// --------------------------------------------------------------------
+	// -------------------------------------------------------------------- 
 
 	/**
 	 * Database connection
@@ -127,6 +127,9 @@ class CI_DB_pdo_driver extends CI_DB {
 	public function db_connect($persistent = FALSE)
 	{
 		$this->options[PDO::ATTR_PERSISTENT] = $persistent;
+		$this->options[PDO::ATTR_ERRMODE] = PDO::ERRMODE_EXCEPTION;
+		$this->options[PDO::ATTR_CASE] = PDO::CASE_LOWER;
+		$this->options[PDO::ATTR_DEFAULT_FETCH_MODE] = PDO::FETCH_OBJ;
 
 		try
 		{

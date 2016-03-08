@@ -42,182 +42,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<link rel="stylesheet" href="<?= base_url('includes/js/nprogress/nprogress.css') ?>">
 	<!-- Include jQuery Mask -->
 	<script src="<?= base_url('includes/js/jqueryMask.js') ?>"></script>
-	<script language="javascript">
-		$(document).on("ready", function () {
-			// Configura a barra de loader
-			NProgress.configure({ showSpinner: true });
-			NProgress.start();// Inicia barra de progresso
-			$('#nprogress .bar').css({'background': '#3f4c6b'});
-			$('#nprogress .peg').css({'box-shadow': '0 0 10px #3f4c6b, 0 0 5px #3f4c6b'});
-			$('#nprogress .spinner-icon').css({'border-top-color': '#fff', 'border-left-color': '#fff'});
-			// Configura mascára nos campos necessários
-			$("[name=data]").mask("99/99/9999");
-			$("#data").mask("99/99/9999");
-			$("[name=horas]").mask("99:99");
-			// Funcao para corrigir tamanho da tela modal de acordo com monitor
-			$('#myModal').on('show.bs.modal', function () {
-				$('.modal .modal-body').css('overflow-y', 'auto'); 
-				$('.modal .modal-body').css('height', $(window).height() * 0.7);
-			});
-			NProgress.done();// Encerre barra de progresso
-
-			$('[name=search]').on("keyup", function () {
-				var valor = $(this).val();
-				if (valor != "")
-					$('.sugestao-produtos').collapse("show");
-				else
-					$('.sugestao-produtos').collapse("hide");
-			});
-
-			$('[name=search]').on("blur", function () {
-				$('.sugestao-produtos').collapse("hide");
-			});
-
-			$('[name=search]').on("focus", function () {
-				if ($(this).val() != "")
-					$('.sugestao-produtos').collapse("show");
-			});
-
-			$('[name=cadastro-cliente]').on("submit", function (event) {
-				event.preventDefault();
-
-				var nome = $('[name=nome]');
-				var sobrenome = $('[name=sobrenome]');
-				var cpf = $('[name=cpf]');
-				var telefone = $('[name=telefone]');
-				var email = $('[name=email]');
-				var senha = $('[name=senha]');
-				var confsenha = $('[name=confsenha]');
-				var cep = $('[name=cep]');
-				var rua = $('[name=rua]');
-				var numero = $('[name=numero]');
-				var bairro = $('[name=bairro]');
-				var cidade = $('[name=cidade]');
-				var estado = $('[name=estado]');
-				var cepent = $('[name=cepent]');
-				var ruaent = $('[name=ruaent]');
-				var numeroent = $('[name=numeroent]');
-				var bairroent = $('[name=bairroent]');
-				var cidadeent = $('[name=cidadeent]');
-				var estadoent = $('[name=estadoent]');
-
-				if (nome.val() == "") {
-					nome.parent('div').parent('div').addClass('has-error');
-					nome.parent('div').append('<span class="help-block">Campo obrigatório.</span>');
-					nome.focus();
-				}
-
-				if (sobrenome.val() == "") {
-					sobrenome.parent('div').parent('div').addClass('has-error');
-					sobrenome.parent('div').append('<span class="help-block">Campo obrigatório.</span>');
-					sobrenome.focus();
-				}
-
-				if (cpf.val() == "") {
-					cpf.parent('div').parent('div').addClass('has-error');
-					cpf.parent('div').append('<span class="help-block">Campo obrigatório.</span>');
-					cpf.focus();
-				}
-
-				if (telefone.val() == "") {
-					telefone.parent('div').parent('div').addClass('has-error');
-					telefone.parent('div').append('<span class="help-block">Campo obrigatório.</span>');
-					telefone.focus();
-				}
-
-				if (email.val() == "") {
-					email.parent('div').parent('div').addClass('has-error');
-					email.parent('div').append('<span class="help-block">Campo obrigatório.</span>');
-					email.focus();
-				}
-
-				if (senha.val() == "") {
-					senha.parent('div').parent('div').addClass('has-error');
-					senha.parent('div').append('<span class="help-block">Campo obrigatório.</span>');
-					senha.focus();
-				}
-
-				if (confsenha.val() == "") {
-					confsenha.parent('div').parent('div').addClass('has-error');
-					confsenha.parent('div').append('<span class="help-block">Campo obrigatório.</span>');
-					confsenha.focus();
-				}
-
-				if (cep.val() == "") {
-					cep.parent('div').parent('div').addClass('has-error');
-					cep.parent('div').append('<span class="help-block">Campo obrigatório.</span>');
-					cep.focus();
-				}
-
-				if (rua.val() == "") {
-					rua.parent('div').parent('div').addClass('has-error');
-					rua.parent('div').append('<span class="help-block">Campo obrigatório.</span>');
-					rua.focus();
-				}
-
-				if (numero.val() == "") {
-					numero.parent('div').parent('div').addClass('has-error');
-					numero.parent('div').append('<span class="help-block">Campo obrigatório.</span>');
-					numero.focus();
-				}
-
-				if (bairro.val() == "") {
-					bairro.parent('div').parent('div').addClass('has-error');
-					bairro.parent('div').append('<span class="help-block">Campo obrigatório.</span>');
-					bairro.focus();
-				}
-
-				if (cidade.val() == "") {
-					cidade.parent('div').parent('div').addClass('has-error');
-					cidade.parent('div').append('<span class="help-block">Campo obrigatório.</span>');
-					cidade.focus();
-				}
-
-				if (estado.val() == "") {
-					estado.parent('div').parent('div').addClass('has-error');
-					estado.parent('div').append('<span class="help-block">Campo obrigatório.</span>');
-					estado.focus();
-				}
-
-				if (cepent.val() == "") {
-					cepent.parent('div').parent('div').addClass('has-error');
-					cepent.parent('div').append('<span class="help-block">Campo obrigatório.</span>');
-					cepent.focus();
-				}
-
-				if (ruaent.val() == "") {
-					ruaent.parent('div').parent('div').addClass('has-error');
-					ruaent.parent('div').append('<span class="help-block">Campo obrigatório.</span>');
-					ruaent.focus();
-				}
-
-				if (numeroent.val() == "") {
-					numeroent.parent('div').parent('div').addClass('has-error');
-					numeroent.parent('div').append('<span class="help-block">Campo obrigatório.</span>');
-					numeroent.focus();
-				}
-
-				if (bairroent.val() == "") {
-					bairroent.parent('div').parent('div').addClass('has-error');
-					bairroent.parent('div').append('<span class="help-block">Campo obrigatório.</span>');
-					bairroent.focus();
-				}
-
-				if (cidadeent.val() == "") {
-					cidadeent.parent('div').parent('div').addClass('has-error');
-					cidadeent.parent('div').append('<span class="help-block">Campo obrigatório.</span>');
-					cidadeent.focus();
-				}
-
-				if (estadoent.val() == "") {
-					estadoent.parent('div').parent('div').addClass('has-error');
-					estadoent.parent('div').append('<span class="help-block">Campo obrigatório.</span>');
-					estadoent.focus();
-				}
-
-			});
-		});
-	</script>
+	<!-- INCLUIR ARQUIVOS JQUERY NECESSÁRIOS NO SITE -->
+	<script src="<?= base_url('includes/js/geral.js') ?>" defer></script>
+	<script src="<?= base_url('includes/js/mask.js') ?>" defer></script>
+	<script src="<?= base_url('includes/js/form.js') ?>" defer></script>
 </head>
 <body>
 	<!-- Modal Windows BootStrap - BoxSelect -->
@@ -254,10 +82,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			<div class="row menu-cliente">
 				<div class="col-xs-12 col-sm-12">
 					<ul id="menu-cliente-right">
-						<li><a href="#" target="_self">Meu Cadastro</a></li>
-						<li><a href="#" target="_self">Meus Pedidos</a></li>
-						<li><a href="#" target="_self">Contato</a></li>
-						<li><a href="#" target="_self">Duvidas</a></li>
+						<li><a href="<?= base_url('Cadastro') ?>" target="_self">Meu Cadastro</a></li>
+						<li><a href="<?= base_url('Pedidos') ?>" target="_self">Meus Pedidos</a></li>
+						<li><a href="<?= base_url('Contato') ?>" target="_self">Contato</a></li>
+						<li><a href="<?= base_url('Duvidas') ?>" target="_self">Duvidas</a></li>
 					</ul>
 				</div>
 			</div>
@@ -295,7 +123,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	</div>
 
 	<!-- MENUBAR PRINCIPAL DO SITE -->
-	<nav class="navbar navbar-default" data-spy="affix" data-offset-top="119" data-offset-bottom="200">
+	<nav class="navbar navbar-default" data-spy="affix" data-offset-top="105" data-offset-bottom="200">
 		<div class="container-fluid main-menubar">
 			<!-- Brand and toggle get grouped for better mobile display -->
 			<div class="navbar-header">
