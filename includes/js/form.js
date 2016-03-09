@@ -238,13 +238,13 @@ $(document).on("ready", function () {
 	$('[name=cep]').on('blur', function () {
 		var cep = trim($('[name=cep]').val());
 		if (cep != "")
-			buscaCep( cep ); 
+			buscaCep( $(this) , cep );
 	});
 
-	$('[name=cep]').on('keyup', function () {
-		var cep = trim($('[name=cep]').val());
-		if (cep.replace(/[^\d]+/g,'').length == 8)
-			buscaCep( cep ); 
+	$('[name=cepent]').on('blur', function () {
+		var cep = trim($('[name=cepent]').val());
+		if (cep != "")
+			buscaCep( $(this) , cep );
 	});
 
 });
@@ -315,7 +315,68 @@ function validaEmail (emailParam)
 	@return json - Endereço referente ao cep
 */
 
-function buscaCep (cep)
-{
-	alert(cep);
+function buscaCep (campo, cep)
+{	
+	var link = "/Correios/buscaCep/"+cep;
+	$.ajax({
+		url: link,
+		cache: false,
+		assync: false,
+		beforeSend: function () {
+			// Desativa os campos do formulario
+
+			if (campo.attr("name") == "cep") {
+
+				$('[name=rua]').attr('disabled','disabled');
+				$('[name=bairro]').attr('disabled','disabled');
+				$('[name=cidade]').attr('disabled','disabled');
+				$('[name=estado]').attr('disabled','disabled');
+
+			} else {
+
+				$('[name=ruaent]').attr('disabled','disabled');
+				$('[name=bairroent]').attr('disabled','disabled');
+				$('[name=cidadeent]').attr('disabled','disabled');
+				$('[name=estadoent]').attr('disabled','disabled');
+
+			}
+		},
+		success: function(data) {
+
+			if (data == "") {
+				alert("CEP não encontrado.");
+				return false;
+			}
+
+			var retorno = data.split(';');
+
+			if (retorno.length == 2) {
+				// Ativa os campos do formulario novamente
+				if (campo.attr("name") == "cep") {
+					$('[name=rua]').removeAttr('disabled').val("");
+					$('[name=bairro]').removeAttr('disabled').val("");
+					$('[name=cidade]').removeAttr('disabled').val(retorno[0]);
+					$('[name=estado]').removeAttr('disabled').val(retorno[1]);
+				} else {
+					$('[name=ruaent]').removeAttr('disabled').val("");
+					$('[name=bairroent]').removeAttr('disabled').val("");
+					$('[name=cidadeent]').removeAttr('disabled').val(retorno[0]);
+					$('[name=estadoent]').removeAttr('disabled').val(retorno[1]);
+				}
+			} else {
+				// Ativa os campos do formulario novamente
+				if (campo.attr("name") == "cep") {
+					$('[name=rua]').removeAttr('disabled').val(retorno[0]);
+					$('[name=bairro]').removeAttr('disabled').val(retorno[1]);
+					$('[name=cidade]').removeAttr('disabled').val(retorno[2]);
+					$('[name=estado]').removeAttr('disabled').val(retorno[3]);
+				} else {
+					$('[name=ruaent]').removeAttr('disabled').val(retorno[0]);
+					$('[name=bairroent]').removeAttr('disabled').val(retorno[1]);
+					$('[name=cidadeent]').removeAttr('disabled').val(retorno[2]);
+					$('[name=estadoent]').removeAttr('disabled').val(retorno[3]);
+				}
+			}
+		}
+	});
 }
