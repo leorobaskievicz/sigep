@@ -139,100 +139,41 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
 					<li><a href="#" target="_self">Home</a></li>
-					<li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Aparelhos <span class="caret"></span></a>
-						<ul class="dropdown-menu list-group">
-							<li  class="produto-destaque">
-								<div class="col-xs-12 col-sm-12">
-									<div class="thumbnail">
-										<img src="<?= base_url("includes/images/produtos/thumbnail/2") ?>" alt="Nome do Produto">
-										<div class="caption">
-											<h3>Produto # 1</h3>
-											<p><strike>De: R$ 15,99</strike> Por:  R$ 10,99</p>
-											<p><a href="#" class="btn btn-default" role="button">Detalhes</a> <a href="#" class="btn btn-success" role="button">Comprar</a> </p>
-										</div>
-									</div>
-								</div>	
-							</li>
-							<li class="list-group-item"><a href="#">Olhos</a></li>
-							<li class="list-group-item"><a href="#">Acessórios</a></li>
-							<li class="list-group-item"><a href="#">Digestor</a></li>
-            				<li class="list-group-item"><a href="#">Veja Mais...</a></li>
-            				
-						</ul>
-					</li>
-					<li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Medicamentos <span class="caret"></span></a>
-						<ul class="dropdown-menu">
-							<li><a href="#">Cabelo</a></li>
-							<li><a href="#">Higieno Bucal</a></li>
-							<li><a href="#">Corpo</a></li>
-							<li><a href="#">Rosto</a></li>
-							<li><a href="#">Pressã Alta</a></li>
-							<li role="separator" class="divider"></li>
-            				<li><a href="#">Veja Mais...</a></li>
-						</ul>
-					</li>
-					<li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Genéricos <span class="caret"></span></a>
-						<ul class="dropdown-menu">
-							<li><a href="#">Cabelo</a></li>
-							<li><a href="#">Higieno Bucal</a></li>
-							<li><a href="#">Corpo</a></li>
-							<li><a href="#">Rosto</a></li>
-							<li><a href="#">Pressã Alta</a></li>
-							<li role="separator" class="divider"></li>
-            				<li><a href="#">Veja Mais...</a></li>
-						</ul>
-					</li>
-					<li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dermocosméticos <span class="caret"></span></a>
-						<ul class="dropdown-menu">
-							<li><a href="#">Cabelo</a></li>
-							<li><a href="#">Higieno Bucal</a></li>
-							<li><a href="#">Corpo</a></li>
-							<li><a href="#">Rosto</a></li>
-							<li><a href="#">Pressã Alta</a></li>
-							<li role="separator" class="divider"></li>
-            				<li><a href="#">Veja Mais...</a></li>
-						</ul>
-					</li>
-					<li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Sua Beleza <span class="caret"></span></a>
-						<ul class="dropdown-menu">
-							<li><a href="#">Cabelo</a></li>
-							<li><a href="#">Higieno Bucal</a></li>
-							<li><a href="#">Corpo</a></li>
-							<li><a href="#">Rosto</a></li>
-							<li><a href="#">Pressã Alta</a></li>
-							<li role="separator" class="divider"></li>
-            				<li><a href="#">Veja Mais...</a></li>
-						</ul>
-					</li>
-					<li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Seu Dia a Dia <span class="caret"></span></a>
-						<ul class="dropdown-menu">
-							<li><a href="#">Cabelo</a></li>
-							<li><a href="#">Higieno Bucal</a></li>
-							<li><a href="#">Corpo</a></li>
-							<li><a href="#">Rosto</a></li>
-							<li><a href="#">Pressã Alta</a></li>
-							<li role="separator" class="divider"></li>
-            				<li><a href="#">Veja Mais...</a></li>
-						</ul>
-					</li>
-					<li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Outros <span class="caret"></span></a>
-						<ul class="dropdown-menu">
-							<li><a href="#">Cabelo</a></li>
-							<li><a href="#">Higieno Bucal</a></li>
-							<li><a href="#">Corpo</a></li>
-							<li><a href="#">Rosto</a></li>
-							<li><a href="#">Pressã Alta</a></li>
-							<li role="separator" class="divider"></li>
-            				<li><a href="#">Veja Mais...</a></li>
-						</ul>
-					</li>
+
+					<?php
+						// RECUPERA VALORES SALVOS EM SESSÃO
+						$menu1 = $this->session->userdata('menu1');
+						$menu2 = $this->session->userdata('menu2');
+
+						// MONTA MENU DINÂMICO CONFORME BANCO DE DADOS
+						for ($i = 0; $i < count($menu1); $i++) {
+							if (isset($menu2[$i+1]) > 0) {
+								echo ('<li class="dropdown">');
+									echo ('<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">'.$menu1[$i].' <span class="caret"></span></a>');
+									echo ('<ul class="dropdown-menu list-group">');
+										echo ('<li  class="produto-destaque">
+											<div class="col-xs-12 col-sm-12">
+												<div class="thumbnail">
+													<img src="'. base_url("includes/images/produtos/thumbnail/2") .'" alt="Nome do Produto">
+													<div class="caption">
+														<h3>Produto # 1</h3>
+														<p><strike>De: R$ 15,99</strike> Por:  R$ 10,99</p>
+														<p><a href="#" class="btn btn-default" role="button">Detalhes</a> <a href="#" class="btn btn-success" role="button">Comprar</a> </p>
+													</div>
+												</div>
+											</div>	
+										</li>');
+
+										for ($j = 0; $j < count($menu2[$i+1]); $j++)
+											echo('<li class="list-group-item"><a href="#">'.$menu2[$i+1][$j].'</a></li>');
+			            				
+									echo ('</ul>');
+								echo ('</li>');
+							} else
+								echo ('<li><a href="#" target="_self">'.$menu1[$i].'</a></li>');
+						}
+					?>
+
 					<li class="dropdown minha-cesta-menu">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">0 itens </a>
 						<ul class="dropdown-menu">
