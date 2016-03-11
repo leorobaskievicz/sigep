@@ -3,7 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Home extends CI_Controller {
 
-	public function index()
+	public function index($limitInf = 0)
 	{
 		// VERIFICA SE NÃO EXISTE VARIÁVEL MENU GRAVA EM SESSÃO
 		if ($this->session->userdata('menu') == null) {
@@ -26,8 +26,15 @@ class Home extends CI_Controller {
 			$this->session->set_userdata($menu);// SALVA OS DADOS DA BUSCA EM SESSÃO
 		}
 
+		// Carrega modelo de busca de produtos no banco de dados
+		$this->load->model("m_produtos");
+		$dados = array("produtos" => null, "limitInf" => $limitInf);
+		if ($produtos = $this->m_produtos->buscar("SELECT CODIGO,NOME,PVENDA,PREPRO,FOTO FROM admprodu LIMIT ".$limitInf))
+			if ($produtos->rowCount() > 0)
+				$dados = array("produtos" => $produtos, "limitInf" => $limitInf);
+
 		$this->load->view('estruturas/header');
-		$this->load->view('home');
+		$this->load->view('home', $dados);
 		$this->load->view('estruturas/footer');
 	}
 }

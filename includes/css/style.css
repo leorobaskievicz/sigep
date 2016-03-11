@@ -415,6 +415,17 @@
 	border: none !important;
 }
 
+.painel-produtos
+{
+	/**/
+}
+
+.box-produtos
+{
+	margin: 0px !important;
+	padding: 5px !important;
+}
+
 /*
 	DEFINIÇÕES PARA GRID DE PRODUTOS
 */
@@ -438,7 +449,9 @@
 
 .thumbnail h3
 {
-	color: #999;
+	font-size: 14px;
+	font-weight: bold;
+	color: #777;
 }
 
 .thumbnail p /* Preço do produto */

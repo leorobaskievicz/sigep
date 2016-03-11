@@ -15,14 +15,14 @@ if (isset($alterado)) {
 		echo ('<div class="alert alert-success" role="alert"> ');
 			echo ('<span class="glyphicon glyphicon-ok"> </span>');
 			echo (' Cadastro atualizado com sucesso. <a href="#" class="alert-link"></a> ');
-			echo ('<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>');
+			//echo ('<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>');
 		echo ('</div>');
 	} else {
 		echo ('<div class="alert alert-danger" role="alert">');
 			echo ('<span class="glyphicon glyphicon-remove"> </span>');
 			echo (' <strong>Ops</strong>, não foi possível atualizar seu cadastro, por favor tente novamente.');
 			echo ('<a href="'. base_url("Login") .'" class="alert-link"> Clique aqui para fazer login. </a>');
-			echo ('<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>');
+			//echo ('<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>');
 		echo ('</div>');
 	}
 } else {

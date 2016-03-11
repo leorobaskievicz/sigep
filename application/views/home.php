@@ -8,7 +8,7 @@ if (isset($login)) {
 	if ($login) {
 		echo ('<div class="alert alert-success" role="alert"> ');
 			echo ('<span class="glyphicon glyphicon-ok"> </span>');
-			echo (' Login efetuado com sucesso. <a href="#" class="alert-link"></a> ');
+			echo (' Seja bem-vindo <strong>'.$_SESSION['nome'].'</strong> <a href="#" class="alert-link"></a> ');
 			echo ('<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>');
 		echo ('</div>');
 	} else {
@@ -39,7 +39,7 @@ echo ('<div id="home-slider">
 						<h3>Banner 1 de exibição</h3>
 					</div>
 				</div>
-				<div class="item">
+					<div class="item">
 					<img src="'. base_url("includes/images/2.png") .'" alt="banner 2" class="slider-img">
 					<div class="carousel-caption">
 						<h3>Banner 2 de exibição no site</h3>
@@ -66,45 +66,56 @@ echo ('<div id="home-slider">
 
 // GRADE DE PRODUTO DO SITE
 echo ('<div class="row">');
-for ($i = 1; $i <= 20; $i++) {
+if ($produtos == null)
+	echo ('<h2>Nenhum produto encontrado.</h2>');
+else {
+	for ($i = 0; $reg = $produtos->fetch(); $i++) {
 
-	// Verifica qual laco esta para pular linha
-	if (($i % 5) == 0) {
-		echo ('</div>');
-		echo ('<div class="row">');
-	} else {
-		echo ('<div class="col-xs-6 col-sm-3">
-				<div class="thumbnail">
-					<img src="'. base_url("includes/images/produtos/thumbnail/".$i) .'" alt="Nome do Produto">
-					<div class="codigo">Codigo: '.$i.'</div>
-					<div class="caption">
-						<h3>Produto # '.$i.'</h3>
-						<p><strike>De: R$ 15,99</strike> Por:  R$ 10,99</p>
-						<p><a href="#" class="btn btn-default" role="button"><span class="glyphicon glyphicon-plus"> </span> Detalhes</a> <a href="#" class="btn btn-primary" role="button"><span class="glyphicon glyphicon-shopping-cart"> </span> Comprar</a> </p>
+		// Verifica qual laco esta para pular linha
+		if (($i % 5) == 0) {
+			echo ('</div>');
+			echo ('<div class="row">');
+		} else {
+			echo ('<div class="col-xs-6 col-sm-3">
+					<div class="thumbnail">');
+						//if (file_exists("includes/images/produtos/thumbnail/".$reg->codigo.".png"))
+							echo ('<img src="'. base_url("includes/images/produtos/thumbnail/".$reg->codigo.".png") .'" alt="'.$reg->nome.'">');
+						//else
+						//	echo ('<img src="'. base_url("includes/images/produtos/semimagem.png") .'" alt="'.$reg->nome.'">');
+						echo ('<div class="codigo">Codigo: '.$reg->codigo.'</div>
+						<div class="caption">
+							<h3>'.formataString($reg->nome).'</h3>');
+							if (($reg->prepro < $reg->pvenda) && ($reg->prepro > 0))
+								echo ('<p><strike>De: R$ '.$reg->prepro.'</strike> Por:  R$ '.$reg->pvenda.'</p>');
+							else
+								echo ('<p>Por:  R$ '.$reg->pvenda.'</p>');
+							echo ('<p><a href="#" class="btn btn-default" role="button"><span class="glyphicon glyphicon-plus"> </span> Detalhes</a> <a href="#" class="btn btn-primary" role="button"><span class="glyphicon glyphicon-shopping-cart"> </span> Comprar</a> </p>
+						</div>
 					</div>
-				</div>
-			</div>');
+				</div>');
+		}
+
 	}
 }
 echo ('</div>');
 
 // MOSTRA LINKS DE PROXIMA PAGINA E ANTERIOR
 echo ('<nav id="navPages">
-	<ul class="pagination">
-		<li>
-			<a href="#" aria-label="Previous">
-				<span aria-hidden="true">&laquo;</span>
-			</a>
-		</li>
-		<li><a href="#">1</a></li>
-		<li><a href="#">2</a></li>
-		<li><a href="#">3</a></li>
-		<li><a href="#">4</a></li>
-		<li><a href="#">5</a></li>
-		<li>
-			<a href="#" aria-label="Next">
+	<ul class="pagination">');
+		if ($limitInf > 0)
+			echo ('<li>
+				<a href="'. base_url("Home/index/".($limitInf - 20)) .'" aria-label="Previous">
+					<span aria-hidden="true">&laquo;</span>
+				</a>
+			</li>');
+
+		//echo ('<li><a href="'. base_url("Home/index/".($limitInf + 20)) .'">1</a></li>');
+		echo ('<li><a href="#">Página atual <strong>'. (ceil($limitInf/20) + 1) .'</strong></a></li>');
+
+		echo ('<li>
+			<a href="'. base_url("Home/index/".($limitInf + 20)) .'" aria-label="Next">
 				<span aria-hidden="true">&raquo;</span>
 			</a>
-		</li>
-	</ul>
+		</li>');
+echo ('</ul>
 	</nav>');
