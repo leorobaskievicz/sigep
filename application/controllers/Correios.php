@@ -5,7 +5,7 @@ class Correios extends CI_Controller {
 
 	public function index()
 	{
-		echo ("Especifique qual metodos voce deseja utilizar.");
+		echo ("Especifique qual métodos você deseja utilizar.");
 	}
 
 	/*

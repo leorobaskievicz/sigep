@@ -10,57 +10,66 @@
 	padding: 0px;
 	margin: 0px;
 	border: none;
-	height: 105px;
+	height: auto;
 	background-color: #7787A8;
 	color: #FFF;
 }
 
-.content-header
-{
-	padding: 20px 0px 20px 0px;
-	width: 90%;
-	margin: 0px auto;
-}
-
 .main-header .sup-header
 {
-	width: 101%;
+	width: 100%;
 	border: none;
 	text-align: center;
 	padding: 0px;
 	margin-top: 0px;
-	background-color: #5C6C82;	
+	margin: 0px;
+	background-color: #5C6C82;
 }
 
 .main-header .sup-header ul
 {
+	width: 80%; /* old browser */
+	width: calc(100% - 500px);
+	width: -moz-calc(100% - 500px);
+	width: -webkit-calc(100% - 500px);
+	min-width: 1100px;
 	list-style-type: none;
 	list-style-image: none;
 	display: inline-block;
-  	float: none;
   	vertical-align: top;
-  	padding: 0px;
-  	margin: 0px;
+  	padding: 0px !important;
+  	margin: 0px auto;
 }
 
 .main-header .sup-header ul li
 {
-	float: left;
+	float: right;
 	padding: 0px;
   	margin: 0px;
 }
 
 .main-header .sup-header ul li a
 {
-	padding-right: 15px;
+	padding-left: 15px;
 	color: #FFF;
 	font-size: 12px;
+}
+.content-header
+{
+	padding: 15px 0px 20px 0px;
+	width: 80%; /* old browser */
+	width: calc(100% - 500px);
+	width: -moz-calc(100% - 500px);
+	width: -webkit-calc(100% - 500px);
+	min-width: 1100px;
+	height: auto;
+	margin: 0px auto;
 }
 
 .main-header .menu-cliente
 {
 	text-align: right;
-	margin: -17px auto 0px auto;
+	margin: 0px auto 0px auto;
 }
 
 .menu-cliente ul, .menu-cliente ul#menu-cliente-right
@@ -86,6 +95,7 @@
 .menu-cliente li:last-child { padding-left: 0px !important; }
 .menu-cliente li:last-child a { border: none; }
 #menu-cliente-right li a { font-size: 12px; }
+#menu-cliente-right li a:hover,#menu-cliente li a:hover { text-decoration: underline; }
 
 .menu-cliente li a
 {
@@ -104,7 +114,7 @@
 	margin-top: -15px;
 }
 
-.main-search div { margin-top: 10px; }
+.main-search div { margin-top: 0px; }
 
 .sugestao-produtos
 {
@@ -152,6 +162,8 @@
 	font-weight: normal;
 }
 
+.login-header p a { color: #FFF; }
+
 .navbar
 {
 	border: solid 1px #3f4c6b !important;
@@ -180,14 +192,18 @@
 
 .affix /* CONFIGURACAO DO MENUBAR QUANDO USUARIO ROLA A PAGINA E MENU FICA SEMPRE NO TOPO */
 {
-	margin: -105px 0px 0px 0px !important;
+	margin: -125px 0px 0px 0px !important;
 	width: 100% !important;
 	z-index: 10;
 }
 
 .main-menubar 
 {
-	width: 90%;
+	width: 80%; /* old browser */
+	width: calc(100% - 500px);
+	width: -moz-calc(100% - 500px);
+	width: -webkit-calc(100% - 500px);
+	min-width: 1100px;
 	margin: 0px auto 0px auto;
 }
 
@@ -209,16 +225,17 @@
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#606c88', endColorstr='#3f4c6b',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
 }
 
+.produto-destaque .btn-primary { color: #FFF !important; }
 .produto-destaque
 {
-	width: 250px;
+	width: 265px;
 	height: auto;
 	float: right;
 }
 
 .list-group
 {
-	width: 510px;
+	width: 525px;
 	border: solid 3px #5C6C82 !important;
 	border-top: none !important;
 	margin-top: 1px !important;
@@ -270,7 +287,7 @@
 	padding: 5px;
 	height: 300px;
 	width: 445px;
-	overflow: scroll;
+	overflow: auto;
 }
 
 .minha-cesta-menu footer
@@ -286,7 +303,11 @@
 .main-painel
 {
 	border: none;
-	width: 90%;
+	width: 80%; /* old browser */
+	width: calc(100% - 500px);
+	width: -moz-calc(100% - 500px);
+	width: -webkit-calc(100% - 500px);
+	min-width: 1100px;
 	margin: 0px auto;
 	padding: 0px;
 	height: auto;
@@ -325,8 +346,12 @@
 
 .main-footer .table-footer
 {
-	width: 80%;
-	margin: 0px auto !important;
+	width: 80%; /* old browser */
+	width: calc(100% - 500px);
+	width: -moz-calc(100% - 500px);
+	width: -webkit-calc(100% - 500px);
+	min-width: 1100px;
+	margin: 50px auto !important;
 }
 
 .main-footer .table-footer header

@@ -92,14 +92,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			<div class="row">
 				<!-- MOSTRA LOGOTIPO DA EMPRESA -->
 				<div class="col-xs-2 col-sm-4 main-logo">
-					<a href="#" target="_self"><img src="<?= base_url("includes/images/logo.png") ?>" alt="Logo"/></a>
+					<a href="<?= base_url() ?>" target="_self"><img src="<?= base_url("includes/images/logo.png") ?>" alt="Logo"/></a>
 				</div>
 				<!-- BARRA DE PESQUISA DO SITE -->
 				<div class="col-xs-8 col-sm-4 main-search">
 					<div class="input-group">
-						<input type="text" class="form-control" name="search" placeholder="Pesquisar" autocomplete="off">
+						<input type="text" class="form-control input-lg" name="search" placeholder="Pesquisar" autocomplete="off">
 						<span class="input-group-btn">
-							<button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span></button>
+							<button class="btn btn-default input-lg" type="button"><span class="glyphicon glyphicon-search"></span></button>
 						</span>
 					</div><!-- /input-group -->
 					<ul class="list-group sugestao-produtos">
@@ -112,10 +112,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<!-- MOSTRA PAINEL COM MINHA CESTA -->
 				<div class="col-xs-2 col-sm-4">
 					<div class="login-header">
-						<header>Olá, visitante!</header>
-						<p>
-							Fazer login ou se cadastrar.
-						</p>
+						<?php
+							if (($this->session->userdata("codigo") != null) && ($this->session->userdata("nome") != null)) {
+								echo ('<header>Olá, '.$this->session->userdata("nome").'!</header>
+								<p>
+									<a href="'. base_url("Login/fazerLogout") .'" target="_self"><span class="glyphicon glyphicon-log-out"> </span> Sair</a>
+								</p>');
+							} else {
+								echo ('<header>Olá, visitante!</header>
+								<p>
+									<a href="'. base_url("Login") .'" target="_self">Fazer login</a> ou <a href="'. base_url("Cadastro") .'" target="_self">se cadastrar.</a>
+								</p>');
+							}
+						?>
 					</div>
 				</div>
 			</div>
@@ -123,7 +132,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	</div>
 
 	<!-- MENUBAR PRINCIPAL DO SITE -->
-	<nav class="navbar navbar-default" data-spy="affix" data-offset-top="105" data-offset-bottom="200">
+	<nav class="navbar navbar-default" data-spy="affix" data-offset-top="125" data-offset-bottom="200">
 		<div class="container-fluid main-menubar">
 			<!-- Brand and toggle get grouped for better mobile display -->
 			<div class="navbar-header">
@@ -138,7 +147,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			<!-- Collect the nav links, forms, and other content for toggling -->
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
-					<li><a href="#" target="_self">Home</a></li>
+					<li><a href="<?= base_url() ?>" target="_self">Home</a></li>
 
 					<?php
 						// RECUPERA VALORES SALVOS EM SESSÃO
@@ -147,7 +156,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 						// MONTA MENU DINÂMICO CONFORME BANCO DE DADOS
 						for ($i = 0; $i < count($menu1); $i++) {
-							if (isset($menu2[$i+1]) > 0) {
+							if (!empty($menu2[$i])) {
 								echo ('<li class="dropdown">');
 									echo ('<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">'.$menu1[$i].' <span class="caret"></span></a>');
 									echo ('<ul class="dropdown-menu list-group">');
@@ -158,19 +167,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 													<div class="caption">
 														<h3>Produto # 1</h3>
 														<p><strike>De: R$ 15,99</strike> Por:  R$ 10,99</p>
-														<p><a href="#" class="btn btn-default" role="button">Detalhes</a> <a href="#" class="btn btn-success" role="button">Comprar</a> </p>
+														<p><a href="#" class="btn btn-default" role="button"><span class="glyphicon glyphicon-plus"> </span> Detalhes</a> <a href="#" class="btn btn-primary" role="button"><span class="glyphicon glyphicon-shopping-cart"> </span> Comprar</a> </p>
 													</div>
 												</div>
 											</div>	
 										</li>');
-
-										for ($j = 0; $j < count($menu2[$i+1]); $j++)
-											echo('<li class="list-group-item"><a href="#">'.$menu2[$i+1][$j].'</a></li>');
+										for ($j = 0; $j < count($menu2[$i]); $j++)
+											echo('<li class="list-group-item"><a href="'. base_url("Departamentos/".$menu1[$i]."/".$menu2[$i][$j]) .'">'.$menu2[$i][$j].'</a></li>');
 			            				
+			            				echo('<li class="list-group-item"><a href="'. base_url("Departamentos/".$menu1[$i]) .'">Todos</a></li>');
 									echo ('</ul>');
 								echo ('</li>');
 							} else
-								echo ('<li><a href="#" target="_self">'.$menu1[$i].'</a></li>');
+								echo ('<li><a href="'. base_url("Departamentos/".$menu1[$i]) .'" target="_self">'.$menu1[$i].'</a></li>');
 						}
 					?>
 
@@ -179,7 +188,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<ul class="dropdown-menu">
 							<li>
 								<header>Meu Carrinho</header>
-								<article>Cesta Vazia</article>
+								<article><h3>Cesta Vazia</h3></article>
 								<footer>TOTAL R$ 0,00</footer>
 							</li>
 						</ul>

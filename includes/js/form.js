@@ -230,6 +230,125 @@ $(document).on("ready", function () {
 	});
 
 	/*
+		FUNÇÃO PARA TRATAR DOS CAMPOS DO FORMULÁRIO DE CADASTRO NA PÁGINA DE LOGIN
+	*/
+
+	$('[name=formulario-cadastro]').on('submit', function () {
+		var retorno = true;
+		var email = $('[name=email]');
+		var nome  = $('[name=nome]');
+
+		// VALIDA VALOR DO CAMPO E-MAIL, SE É UM ENDEREÇO DE E-MAIL VÁLIDO
+		if (!validaEmail(email.val())) {
+			email.parent('div').parent('div').addClass('has-error');
+			email.parent('div').append('<span class="help-block">E-mail inválido.</span>');
+			email.focus();
+			return false;
+		} else {
+			email.parent('div').parent('div').removeClass('has-error');
+			email.parent('div').find('.help-block').remove();
+		}
+
+		// VERIFICA SE CAMPO SENHA FOI PREENCHIDO CORRETAMENTE
+		if (trim(nome.val()) == "") {
+			nome.parent('div').parent('div').addClass('has-error');
+			nome.parent('div').append('<span class="help-block">Campo obrigatório.</span>');
+			nome.focus();
+			return false;
+		}
+
+		return retorno;
+	});
+
+	/*	
+		FUNÇÃO PARA TRATAR DO FORMULÁRIO DE TROCA DE SENHA
+	*/
+
+	$('[name=trocarsenha-cliente]').on('submit', function () {
+		var retorno = true;
+		var senha          = $('[name=senha]');
+		var senhanova      = $('[name=senhanova]');
+		var confsenhanova  = $('[name=confsenhanova]');
+
+		// VERIFICA SE CAMPO SENHA FOI PREENCHIDO CORRETAMENTE
+		if (trim(senha.val()) == "") {
+			senha.parent('div').parent('div').addClass('has-error');
+			senha.parent('div').append('<span class="help-block">Campo obrigatório.</span>');
+			senha.focus();
+			retorno = false;
+		}
+
+		// VERIFICA SE CAMPO SENHA NOVA FOI PREENCHIDO CORRETAMENTE
+		if (trim(senhanova.val()) == "") {
+			senhanova.parent('div').parent('div').addClass('has-error');
+			senhanova.parent('div').append('<span class="help-block">Campo obrigatório.</span>');
+			senhanova.focus();
+			retorno = false;
+		}
+
+		// VERIFICA SE CAMPO CONFIRMAÇÃO SENHA NOVA FOI PREENCHIDO CORRETAMENTE
+		if (trim(confsenhanova.val()) == "") {
+			confsenhanova.parent('div').parent('div').addClass('has-error');
+			confsenhanova.parent('div').append('<span class="help-block">Campo obrigatório.</span>');
+			confsenhanova.focus();
+			retorno = false;
+		}
+
+		// VERIFICA SE SENHA NOVA E CONFIRMAÇÃO SÃO IGUAIS
+		if (trim(confsenhanova.val()) != trim(senhanova.val())) {
+			confsenhanova.parent('div').parent('div').addClass('has-error');
+			confsenhanova.parent('div').append('<span class="help-block">Confirmação difere da senha.</span>');
+			confsenhanova.focus();
+			retorno = false;
+		}
+
+		return retorno;
+	});
+
+	/*
+		FUNÇÃO PARA TRATAR DOS CAMPOS DO FORMULÁRIO DE LOGIN DO SITE
+	*/
+
+	$('[name=formulario-login]').on('submit', function () {
+		var retorno = true;
+		var email = $('[name=email-login]');
+		var senha = $('[name=senha-login]');
+
+		// VALIDA VALOR DO CAMPO E-MAIL, SE É UM ENDEREÇO DE E-MAIL VÁLIDO
+		if (!validaEmail(email.val())) {
+			email.parent('div').parent('div').addClass('has-error');
+			email.parent('div').append('<span class="help-block">E-mail inválido.</span>');
+			email.focus();
+			return false;
+		} else {
+			email.parent('div').parent('div').removeClass('has-error');
+			email.parent('div').find('.help-block').remove();
+		}
+
+		// VERIFICA SE CAMPO SENHA FOI PREENCHIDO CORRETAMENTE
+		if (trim(senha.val()) == "") {
+			senha.parent('div').parent('div').addClass('has-error');
+			senha.parent('div').append('<span class="help-block">Campo obrigatório.</span>');
+			senha.focus();
+			return false;
+		}
+
+		return retorno;
+	});
+
+	/*
+		TRATA DE VARIÁVEL DE SELECT EM FORMULÁRIO DE CADASTRO
+		EX.: ESTADO DO CLIENTE É DEFINIDO EM SELECT, POR ISSO USAR UMA VARIÁVEL AUXILIAR QUE IRA AUTO-SELECIONAR O VALOR CORRETO
+	*/
+
+	if ($('[name=sexo-value]').length === 1)
+		$('[name=sexo] option[value='+ $('[name=sexo-value]').val() +']').attr('selected','selected');
+	if ($('[name=estado-value]').length === 1)
+		$('[name=estado] option[value='+ $('[name=estado-value]').val() +']').attr('selected','selected');
+	if ($('[name=estadoent-value]').length === 1)
+		$('[name=estadoent] option[value='+ $('[name=estadoent-value]').val() +']').attr('selected','selected');
+
+	/*
 		FUNÇÃO PARA BUSCA ENDEREÇO PELO CEP - FAZ REQUISIÇÃO AJAX
 		@param string CEP - Ex.: 81.030-001
 		@return json - Endereço referente ao cep

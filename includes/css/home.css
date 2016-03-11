@@ -17,6 +17,7 @@
 .slider-img
 {
 	margin: 0px auto;
+	width: 100%;
 }
 
 .carousel-control, .carousel-control:hover 
