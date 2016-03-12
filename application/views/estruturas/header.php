@@ -46,6 +46,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<script src="<?= base_url('includes/js/geral.js') ?>" defer></script>
 	<script src="<?= base_url('includes/js/mask.js') ?>" defer></script>
 	<script src="<?= base_url('includes/js/form.js') ?>" defer></script>
+	<script src="<?= base_url('includes/js/thumbnail.carousel.js') ?>" defer></script>
 </head>
 <body>
 	<!-- Modal Windows BootStrap - BoxSelect -->

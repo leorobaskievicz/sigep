@@ -39,7 +39,7 @@ echo ('<div id="home-slider">
 						<h3>Banner 1 de exibição</h3>
 					</div>
 				</div>
-					<div class="item">
+				<div class="item">
 					<img src="'. base_url("includes/images/2.png") .'" alt="banner 2" class="slider-img">
 					<div class="carousel-caption">
 						<h3>Banner 2 de exibição no site</h3>

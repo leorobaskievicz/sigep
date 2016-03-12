@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 echo ('<div class="row">');
 
 	// MENU LEFT DE LINKS NA PÁGINA DE PRODUTOS
-	echo ('<div class="col-xs-6 col-sm-2">');
+	echo ('<div class="col-xs-6 col-sm-2" >');
 		echo ('<div class="panel panel-default menuLeft">');
 
 			if (($menu2 == null) && ($menu3 == null)) {
@@ -64,7 +64,7 @@ echo ('<div class="row">');
 										echo ('<p><strike>De: R$ '.$reg->prepro.'</strike> Por:  R$ '.$reg->pvenda.'</p>');
 									else
 										echo ('<p>Por:  R$ '.$reg->pvenda.'</p>');
-									echo ('<p><a href="#" class="btn btn-default" role="button"><span class="glyphicon glyphicon-plus"> </span> Detalhes</a> <a href="#" class="btn btn-primary" role="button"><span class="glyphicon glyphicon-shopping-cart"> </span> Comprar</a> </p>
+									echo ('<p><a href="'. base_url("Produtos/detalhes/".formataStringToURL($reg->nome)."/".$reg->codigo) .'" class="btn btn-default" role="button"><span class="glyphicon glyphicon-plus"> </span> Detalhes</a> <a href="#" class="btn btn-primary" role="button"><span class="glyphicon glyphicon-shopping-cart"> </span> Comprar</a> </p>
 								</div>
 							</div>
 						</div>');

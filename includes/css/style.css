@@ -415,6 +415,11 @@
 	border: none !important;
 }
 
+.affix > .menuLeft
+{
+	border: solid red 1px;
+}
+
 .painel-produtos
 {
 	/**/
@@ -513,6 +518,10 @@
 	font-size: 12px;
 }
 
+/*	
+	DEFINIÇÕES PARA A PÁGINA DE EXPOSIÇÃO DO PRODUTOS
+*/
+
 .expoProdu
 {
 	border: none !important;
@@ -524,8 +533,9 @@
 	font-weight: bold;
 }
 
-.expoProdu h4
-{
+.expoProdu .preco-produto h4
+{ 
+	font-size: 20px !important;
 	font-weight: normal;
 	color: #333;
 }
@@ -548,4 +558,96 @@
 .painel-produtos .foto-produto
 {
 	text-align: center;
+}
+
+/*
+	DEFINIÇÕES PARA VISUALIZAÇÃO DE IMAGENS E THUBNAIL PAGINA DE EXIBIÇÃO DE PRODUTOS
+*/
+#carousel-example-generic {
+  display: inline-block !important;
+  text-align: center !important;
+}
+.carousel-inner
+{
+	width: 100%;
+	height: 250px;
+	border: none;
+	border-bottom: dotted 1px #E6E6E6;
+}
+ul.thumbnails-carousel 
+{
+	padding: 5px 0 0 0 !important;
+	margin: 0 !important;
+	list-style-type: none !important;
+	text-align: center !important;
+}
+
+ul.thumbnails-carousel .center { display: inline-block !important; }
+ul.thumbnails-carousel li 
+{
+	margin-right: 5px !important;
+	float: left !important;
+	cursor: pointer !important;
+}
+.controls-background-reset { background: none !important; }
+.active-thumbnail { opacity: 0.4 !important; }
+.indicators-fix { bottom: 70px !important; }
+.thumbnails-carousel li img
+{
+	width: 60px;
+	height: 60px;
+}
+
+/*
+	DEFINIÇÕES DE TABELA COM ABAS
+*/
+
+.nav-tabs li a
+{
+	text-decoration: none !important;
+	color: #5C6C82 !important;
+}
+
+.nav-tabs li.active a { font-weight: bold; }
+
+.tab-content div
+{
+	border-left: solid 1px #E6E6E6;
+	border-right: solid 1px #E6E6E6;
+	border-bottom: solid 1px #E6E6E6;
+	padding: 10px;
+	font-size: 12px;
+	color: #333;
+}
+
+/*
+	DEFINIÇÕES PARA BARRA DE PRODUTOS PARECIDOS NO SITE
+	USANDO O PLUGIN CAROUSEL
+*/
+
+.painel-produtos h2
+{
+	color: #666;
+	font-size: 20px;
+}
+
+.produtos-parecido
+{
+	height: auto !important;
+	width: 100%;
+}
+
+.produtos-parecido > div
+{
+	height: 340px !important;
+	width: 90% !important;
+	margin: 0px auto !important;
+}
+
+.produtos-parecido .carousel-control, .produtos-parecido .carousel-control:hover 
+{
+  opacity: 1 !important;
+  color: #CCC !important;
+  background-image: none !important;
+  width: 5% !important;
 }
