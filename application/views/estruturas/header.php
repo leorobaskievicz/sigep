@@ -173,13 +173,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 											</div>	
 										</li>');
 										for ($j = 0; $j < count($menu2[$i]); $j++)
-											echo('<li class="list-group-item"><a href="'. base_url("Departamentos/".$menu1[$i]."/".$menu2[$i][$j]) .'">'.$menu2[$i][$j].'</a></li>');
+											echo('<li class="list-group-item"><a href="'. base_url("Produtos/departamentos/".$menu1[$i]."/".$menu2[$i][$j]) .'">'.$menu2[$i][$j].'</a></li>');
 			            				
-			            				echo('<li class="list-group-item"><a href="'. base_url("Departamentos/".$menu1[$i]) .'">Todos</a></li>');
+			            				echo('<li class="list-group-item"><a href="'. base_url("Produtos/departamentos/".$menu1[$i]) .'">Todos</a></li>');
 									echo ('</ul>');
 								echo ('</li>');
 							} else
-								echo ('<li><a href="'. base_url("Departamentos/".$menu1[$i]) .'" target="_self">'.$menu1[$i].'</a></li>');
+								echo ('<li><a href="'. base_url("Produtos/departamentos/".$menu1[$i]) .'" target="_self">'.$menu1[$i].'</a></li>');
 						}
 					?>
 
@@ -200,3 +200,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 	<!-- PAINEL - ELEMENTO QUE CENTRALIZA TODA AS PAGINAS DO SITE -->
 	<div class="main-painel">
+		<?php
+			if ($this->uri->total_segments() >= 1) {
+				if (strtolower($this->uri->total_segments(1)) != "home") {
+					// MOSTRA A LOCALIZACAO QUE USUARIO ESTA NO SITE
+					echo ('<ol class="breadcrumb">
+						<li><span class="glyphicon glyphicon-record"> </span>  Você está aqui </li>
+						<li><a href="'. base_url() .'">Home</a></li>');
+						$link = "";
+						for ($i = 1; $i <= $this->uri->total_segments(); $i++) {
+							$link .= $this->uri->segment($i)."/";
+							echo ('<li><a href="'. base_url($link) .'">'.$this->uri->segment($i).'</a></li>');
+						}
+					echo ('</ol>');
+				}
+			}

@@ -1,14 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-// MOSTRA A LOCALIZACAO QUE USUARIO ESTA NO SITE
-echo ('<ol class="breadcrumb">
-			<li><span class="glyphicon glyphicon-record"> </span>  Você está aqui </li>
-			<li><a href="'. base_url() .'">Home</a></li>
-			<li><a href="'. base_url("Cadastro") .'">Cadastro</a></li>
-			<li><a href="'. base_url("Cadastro/salvo") .'">Salvar</a></li>
-		</ol>');
-
 // MOSTRA FORMULARIO DE CAMPOS
 echo ('<form action="#" method="POST" name="cadastro-cliente" class="form-horizontal"><fieldset>');
 	echo ('<div class="row">');

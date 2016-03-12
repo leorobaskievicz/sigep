@@ -512,3 +512,40 @@
 	color: #999;
 	font-size: 12px;
 }
+
+.expoProdu
+{
+	border: none !important;
+}
+
+.expoProdu h3, .expoProdu strong, .expoProdu legend
+{
+	color: #5C6C82;
+	font-weight: bold;
+}
+
+.expoProdu h4
+{
+	font-weight: normal;
+	color: #333;
+}
+
+.expoProdu span
+{
+	font-size: 14px;
+}
+
+.expoProdu legend { font-weight: normal; }
+
+.expoProdu .panel-body .list-group
+{	
+	border: none !important;
+	width: 100% !important;
+}
+
+.expoProdu .panel-body .list-group li { width: 100% !important; }
+
+.painel-produtos .foto-produto
+{
+	text-align: center;
+}

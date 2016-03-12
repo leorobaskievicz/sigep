@@ -60,3 +60,11 @@ if (! function_exists('formataString'))
 		}
 	}
 }
+
+/* formataStringToURL é uma função criada para transformar uma string em URL (sem caraceters especiais) */
+/* @param string $var                                                                                   */
+/* @return string $var - formatada                                                                      */
+
+function formataStringToURL ($strIn) {
+	return(strtolower(preg_replace("/[^a-zA-Z0-9_]/", "", strtr($strIn, "áàãâéêíóôõúüçÁÀÃÂÉÊÍÓÔÕÚÜÇ ", "aaaaeeiooouucAAAAEEIOOOUUC"))));
+}

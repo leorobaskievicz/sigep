@@ -1,31 +1,38 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-// MOSTRA A LOCALIZACAO QUE USUARIO ESTA NO SITE
-echo ('<ol class="breadcrumb">
-			<li><span class="glyphicon glyphicon-record"> </span>  Você está aqui </li>
-			<li><a href="'. base_url() .'">Home</a></li>
-			<li><a href="'. base_url("Produtos") .'">Produtos</a></li>
-		</ol>');
-
-
 echo ('<div class="row">');
 
 	// MENU LEFT DE LINKS NA PÁGINA DE PRODUTOS
 	echo ('<div class="col-xs-6 col-sm-2">');
 		echo ('<div class="panel panel-default menuLeft">');
-			
-			if ((!isset($menu1)) && (!isset($menu2))) {
+
+			if (($menu2 == null) && ($menu3 == null)) {
 				// Default panel contents --> CABEÇALHO DO MENU LEFT
  				echo ('<div class="panel-heading">Produtos</div>');
-
 				// List group -->
 				echo ('<ul class="list-group">');
-					echo ('<li class="list-group-item">Cras justo odio</li>');
-					echo ('<li class="list-group-item">Dapibus ac facilisis in</li>');
-					echo ('<li class="list-group-item">Morbi leo risus</li>');
-					echo ('<li class="list-group-item">Porta ac consectetur ac</li>');
-					echo ('<li class="list-group-item">Vestibulum at eros</li>');
+					while ($reg = $menu1->fetch())
+						echo ('<li class="list-group-item"><a href="'. base_url("Produtos/departamentos/".$reg->descricao) .'" target="_self">'.$reg->descricao.'</a></li>');
+				echo ('</ul>');
+			} else if ($menu3 == null) {
+				// Default panel contents --> CABEÇALHO DO MENU LEFT
+				$reg1 = $menu1->fetch(); 
+ 				echo ('<div class="panel-heading">'.$reg1->descricao.'</div>');
+				// List group -->
+				echo ('<ul class="list-group">');
+					while ($reg2 = $menu2->fetch())
+						echo ('<li class="list-group-item"><a href="'. base_url("Produtos/departamentos/".$reg1->descricao."/".$reg2->descricao) .'" target="_self">'.$reg2->descricao.'</a></li>');
+				echo ('</ul>');
+			} else {
+				// Default panel contents --> CABEÇALHO DO MENU LEFT
+				$reg1 = $menu1->fetch(); 
+				$reg2 = $menu2->fetch(); 
+ 				echo ('<div class="panel-heading">'.$reg2->descricao.'</div>');
+				// List group -->
+				echo ('<ul class="list-group">');
+					while ($reg3 = $menu3->fetch())
+						echo ('<li class="list-group-item"><a href="'. base_url("Produtos/departamentos/".$reg1->descricao."/".$reg2->descricao."/".$reg3->descricao) .'" target="_self">'.$reg3->descricao.'</a></li>');
 				echo ('</ul>');
 			}
 			
@@ -34,7 +41,7 @@ echo ('<div class="row">');
 
 	// GRADE DE PRODUTO DO SITE
 	echo ('<div class="col-xs-6 col-sm-10 painel-produtos"><div class="row">');
-		if ($produtos == null)
+		if (($produtos == null) || ($produtos->rowCount() == 0))
 			echo ('<h2>Nenhum produto encontrado.</h2>');
 		else {
 			for ($i = 0; $reg = $produtos->fetch(); $i++) {
