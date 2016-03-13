@@ -12,6 +12,7 @@ echo ('<div class="row">');
  				echo ('<div class="panel-heading">Produtos</div>');
 				// List group -->
 				echo ('<ul class="list-group">');
+					var_dump($menu1);
 					while ($reg = $menu1->fetch())
 						echo ('<li class="list-group-item"><a href="'. base_url("Produtos/departamentos/".$reg->descricao) .'" target="_self">'.$reg->descricao.'</a></li>');
 				echo ('</ul>');
@@ -61,10 +62,10 @@ echo ('<div class="row">');
 								echo ('<div class="codigo">Codigo: '.$reg->codigo.'</div>
 								<div class="caption">
 									<h3>'.formataString($reg->nome).'</h3>');
-									if (($reg->prepro < $reg->pvenda) && ($reg->prepro > 0))
-										echo ('<p><strike>De: R$ '.$reg->prepro.'</strike> Por:  R$ '.$reg->pvenda.'</p>');
+									if (($reg->prepro < $reg->preco) && ($reg->prepro > 0))
+										echo ('<p><strike>De: R$ '.$reg->preco.'</strike> Por:  R$ '.$reg->prepro.'</p>');
 									else
-										echo ('<p>Por:  R$ '.$reg->pvenda.'</p>');
+										echo ('<p>Por:  R$ '.$reg->preco.'</p>');
 									echo ('<p><a href="'. base_url("Produtos/detalhes/".formataStringToURL($reg->nome)."/".$reg->codigo) .'" class="btn btn-default" role="button"><span class="glyphicon glyphicon-plus"> </span> Detalhes</a> <a href="#" class="btn btn-primary" role="button"><span class="glyphicon glyphicon-shopping-cart"> </span> Comprar</a> </p>
 								</div>
 							</div>

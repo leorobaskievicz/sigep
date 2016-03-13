@@ -13,7 +13,7 @@ class Produtos extends CI_Controller
 		$this->load->model("m_produtos");
 
 		$dados = array("produtos" => null, "limitInf" => $limitInf);
-		if ($produtos = $this->m_produtos->buscar("SELECT CODIGO,NOME,PVENDA,PREPRO,FOTO FROM admprodu LIMIT ".$limitInf))
+		if ($produtos = $this->m_produtos->buscar("SELECT CODIGO,NOME,PRECO,PREPRO FROM pdvprodu LIMIT ".$limitInf))
 			if ($produtos->rowCount() > 0)
 				$dados = array("produtos" => $produtos, "limitInf" => $limitInf);
 
@@ -46,24 +46,24 @@ class Produtos extends CI_Controller
 		$dados = array("produtos" => null, "limitInf" => $limitInf);
 		if ( $menu3 != null ) { // BUSCA DADOS FILTRADOS POR MENU3
 			
-			$colunas = "a.CODIGO,a.NOME,a.PVENDA,a.PREPRO,a.FOTO";
-			$tabelas = "admprodu a, admproducompl b, webmenu1 c, webmenu2 d, webmenu3 e";
+			$colunas = "a.CODIGO,a.NOME,a.PRECO,a.PREPRO";
+			$tabelas = "pdvprodu a, pdvproducompl b, webmenu1 c, webmenu2 d, webmenu3 e";
 			if ($produtos = $this->m_produtos->buscar("SELECT ".$colunas." FROM ".$tabelas." WHERE a.CODIGO = b.CDPRODU AND b.MENU1 = c.CDMENU AND c.descricao = '".str_replace("%20"," ",$menu1)."' AND b.MENU2 = d.CDMENU AND d.descricao LIKE '".str_replace("%20"," ",$menu2)."' AND b.MENU3 = e.CDMENU AND e.descricao LIKE '".str_replace("%20"," ",$menu3)."' LIMIT ".$limitInf))
 				if ($produtos->rowCount() > 0)
 					$dados = array("produtos" => $produtos, "limitInf" => $limitInf);
 
 		} elseif ($menu2 != null) {// BUSCA DADOS FILTRADOS POR MENU2
 			
-			$colunas = "a.CODIGO,a.NOME,a.PVENDA,a.PREPRO,a.FOTO";
-			$tabelas = "admprodu a, admproducompl b, webmenu1 c, webmenu2 d";
+			$colunas = "a.CODIGO,a.NOME,a.PRECO,a.PREPRO";
+			$tabelas = "pdvprodu a, pdvproducompl b, webmenu1 c, webmenu2 d";
 			if ($produtos = $this->m_produtos->buscar("SELECT ".$colunas." FROM ".$tabelas." WHERE a.CODIGO = b.CDPRODU AND b.MENU1 = c.CDMENU AND c.descricao = '".str_replace("%20"," ",$menu1)."' AND b.MENU2 = d.CDMENU AND d.descricao LIKE '".str_replace("%20"," ",$menu2)."' LIMIT ".$limitInf))
 				if ($produtos->rowCount() > 0)
 					$dados = array("produtos" => $produtos, "limitInf" => $limitInf);
 		
 		}else { // BUSCA DADOS FILTRADOS POR MENU1
 			
-			$colunas = "a.CODIGO,a.NOME,a.PVENDA,a.PREPRO,a.FOTO";
-			$tabelas = "admprodu a, admproducompl b, webmenu1 c";
+			$colunas = "a.CODIGO,a.NOME,a.PRECO,a.PREPRO";
+			$tabelas = "pdvprodu a, pdvproducompl b, webmenu1 c";
 			if ($produtos = $this->m_produtos->buscar("SELECT ".$colunas." FROM ".$tabelas." WHERE a.CODIGO = b.CDPRODU AND b.MENU1 = c.CDMENU AND c.DESCRICAO = '".str_replace("%20"," ",$menu1)."' LIMIT ".$limitInf))
 				if ($produtos->rowCount() > 0)
 					$dados = array("produtos" => $produtos, "limitInf" => $limitInf);
@@ -118,20 +118,20 @@ class Produtos extends CI_Controller
 			// BUSCA DADOS DO PRODUTO NO BANCO DE DADOS PELO CÓDIGO OU PELO NOME
 			$this->load->model('m_produtos');
 
-			// BUSCA DADOS DO PRODUTO DA TABELA ADMPRODU
+			// BUSCA DADOS DO PRODUTO DA TABELA pdvprodu
 			$dados = array("produto" => null);
 			if ($codigo != null)
-				$buscaProdu = $this->m_produtos->buscarDetalhes("SELECT * FROM admprodu WHERE CODIGO = '".$codigo."' LIMIT 0,1");
+				$buscaProdu = $this->m_produtos->buscarDetalhes("SELECT * FROM pdvprodu WHERE CODIGO = '".$codigo."' LIMIT 0,1");
 			else
-				$buscaProdu = $this->m_produtos->buscarDetalhes("SELECT * FROM admprodu WHERE NOME LIKE '".$nome."' LIMIT 0,1");
+				$buscaProdu = $this->m_produtos->buscarDetalhes("SELECT * FROM pdvprodu WHERE NOME LIKE '".$nome."' LIMIT 0,1");
 
 			if (($buscaProdu) && ($buscaProdu->rowCount() == 1))
 				$dados["produto"] = $buscaProdu->fetch();
 
-			// BUSCA DADOS DO COMPLEMENTO PRODUTO DA TABELA ADMPRODUCOMPL
+			// BUSCA DADOS DO COMPLEMENTO PRODUTO DA TABELA pdvproduCOMPL
 			$complemento = array("produtoCompl" => null);
 			if ($codigo != null)
-				$buscaProduCompl = $this->m_produtos->buscarDetalhes("SELECT * FROM admproducompl WHERE CDPRODU = '".$codigo."' LIMIT 0,1");
+				$buscaProduCompl = $this->m_produtos->buscarDetalhes("SELECT * FROM pdvproducompl WHERE CDPRODU = '".$codigo."' LIMIT 0,1");
 
 			if (($buscaProduCompl) && ($buscaProduCompl->rowCount() == 1))
 				$complemento["produtoCompl"] = $buscaProduCompl->fetch();
@@ -145,8 +145,8 @@ class Produtos extends CI_Controller
 					$menu["menu1"] = $buscaMenu1;
 
 			// BUSCA PRODUTOS PARECIDOS
-			$colunas = "a.CODIGO,a.NOME,a.PVENDA,a.PREPRO,a.FOTO";
-			$tabelas = "admprodu a, admproducompl b, webmenu1 c";
+			$colunas = "a.CODIGO,a.NOME,a.PRECO,a.PREPRO";
+			$tabelas = "pdvprodu a, pdvproducompl b, webmenu1 c";
 			$prodParecidos = array("parecidos" => null);
 			if ($buscaParecidos = $this->m_produtos->buscar("SELECT ".$colunas." FROM ".$tabelas." WHERE a.CODIGO = b.CDPRODU AND b.MENU1 = '".$complemento['produtoCompl']->menu1."' GROUP BY b.CDPRODU LIMIT 0"))
 				if ($buscaParecidos->rowCount() > 0)

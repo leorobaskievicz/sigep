@@ -10,7 +10,7 @@
 class M_Produtos extends CI_Model
 {
 	private $limitSup = 20;
-	private $table = "admprodu";
+	private $table = "pdvprodu";
 
 	/* 
 		FUNÇÃO PARA SETAR TODOS OS DADOS DA CONEXÃO PASSADAS POR PARAMETRO
