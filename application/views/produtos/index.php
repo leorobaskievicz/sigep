@@ -6,13 +6,13 @@ echo ('<div class="row">');
 	// MENU LEFT DE LINKS NA PÁGINA DE PRODUTOS
 	echo ('<div class="col-xs-6 col-sm-2" >');
 		echo ('<div class="panel panel-default menuLeft">');
-
+			
 			if (($menu2 == null) && ($menu3 == null)) {
 				// Default panel contents --> CABEÇALHO DO MENU LEFT
  				echo ('<div class="panel-heading">Produtos</div>');
 				// List group -->
 				echo ('<ul class="list-group">');
-					var_dump($menu1);
+
 					while ($reg = $menu1->fetch())
 						echo ('<li class="list-group-item"><a href="'. base_url("Produtos/departamentos/".$reg->descricao) .'" target="_self">'.$reg->descricao.'</a></li>');
 				echo ('</ul>');
@@ -54,11 +54,14 @@ echo ('<div class="row">');
 				} else {
 					echo ('<div class="col-xs-6 col-sm-4 box-produtos">
 							<div class="thumbnail">');
-								list($width, $height, $type, $attr) = getimagesize(base_url("includes/images/produtos/thumbnail/".$reg->codigo.".png"));
-								if ($height > $width)
-									echo ('<img src="'. base_url("includes/images/produtos/thumbnail/".$reg->codigo.".png") .'" style="height: 170px !important;" alt="'.$reg->nome.'">');
-								else
-									echo ('<img src="'. base_url("includes/images/produtos/thumbnail/".$reg->codigo.".png") .'" style="width: 170px !important;" alt="'.$reg->nome.'">');
+								if (file_exists(base_url("includes/images/produtos/thumbnail/".$reg->codigo.".png"))) {
+									list($width, $height, $type, $attr) = getimagesize(base_url("includes/images/produtos/thumbnail/".$reg->codigo.".png"));
+									if ($height > $width)
+										echo ('<img src="'. base_url("includes/images/produtos/thumbnail/".$reg->codigo.".png") .'" style="height: 170px !important;" alt="'.$reg->nome.'">');
+									else
+										echo ('<img src="'. base_url("includes/images/produtos/thumbnail/".$reg->codigo.".png") .'" style="width: 170px !important;" alt="'.$reg->nome.'">');
+								} else
+									echo ('<img src="'. base_url("includes/images/produtos/semimagem.png") .'" style="width: 170px !important;" alt="'.$reg->nome.'">');
 								echo ('<div class="codigo">Codigo: '.$reg->codigo.'</div>
 								<div class="caption">
 									<h3>'.formataString($reg->nome).'</h3>');

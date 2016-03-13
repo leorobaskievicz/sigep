@@ -28,7 +28,6 @@ class Produtos extends CI_Controller
 		$retorno = array_merge($dados, $menu);
 
 		$this->load->view('estruturas/header');
-		//$this->load->view('estruturas/menuLeft');
 		$this->load->view('produtos/index', $retorno);
 		$this->load->view('estruturas/footer');
 	}
@@ -39,6 +38,11 @@ class Produtos extends CI_Controller
 
 	public function departamentos ($menu1 = null, $menu2 = null, $menu3 = null, $limitInf = 0)
 	{
+		if ($menu1 == null) {
+			$this->index();
+			return 0;
+		}
+
 		// Carrega modelo de busca de produtos no banco de dados
 		$this->load->model("m_produtos");
 
@@ -140,7 +144,7 @@ class Produtos extends CI_Controller
 			$this->load->model('menu');// CARREGA MODELO DE BUSCA MENU
 			$menu = array("menu1" => null, "menu2" => null, "menu3" => null);
 
-			if ($buscaMenu1 = $this->menu->buscar('menu1', null, $complemento['produtoCompl']->menu1))
+			if ($buscaMenu1 = $this->menu->buscar('menu1', $complemento['produtoCompl']->menu1, null))
 				if ($buscaMenu1->rowCount() > 0)
 					$menu["menu1"] = $buscaMenu1;
 

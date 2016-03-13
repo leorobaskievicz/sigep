@@ -164,7 +164,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 										echo ('<li  class="produto-destaque">
 											<div class="col-xs-12 col-sm-12">
 												<div class="thumbnail">
-													<img src="'. base_url("includes/images/produtos/thumbnail/2") .'" alt="Nome do Produto">
+													<img src="'. base_url("includes/images/produtos/thumbnail/2.png") .'" alt="Nome do Produto">
 													<div class="caption">
 														<h3>Produto # 1</h3>
 														<p><strike>De: R$ 15,99</strike> Por:  R$ 10,99</p>

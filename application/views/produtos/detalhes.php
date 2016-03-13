@@ -45,25 +45,28 @@ echo ('<div class="row">');
 		// FOTO DO PRODUTO
 		echo ('<div class="row">');
 			echo ('<div class="col-xs-6 col-sm-4 foto-produto">');
-				echo ('<div id="carousel-example-generic" class="carousel slide" data-ride="carousel" data-interval="false">');
-					// Wrapper for slides -->
-				  	echo ('<div class="carousel-inner">');
-				  		for ($i = 0; $i <= 5; $i++) {
-				  			if ($i == 0)
-				  				echo ('<div class="item active srle">');
-				  			else
-								echo ('<div class="item">');
-								echo ('<img src="'. base_url("includes/images/produtos/thumbnail/".($produto->codigo + $i).".png") .'" alt="0.jpg" class="img-responsive">');
-							echo ('</div>');
-				  		}
-				  	echo ('</div>');
+				if (file_exists(base_url("includes/images/produtos/thumbnail/".$produto->codigo.".png"))) {
+					echo ('<div id="carousel-example-generic" class="carousel slide" data-ride="carousel" data-interval="false">');
+						// Wrapper for slides -->
+					  	echo ('<div class="carousel-inner">');
+					  		for ($i = 0; $i <= 5; $i++) {
+					  			if ($i == 0)
+					  				echo ('<div class="item active srle">');
+					  			else
+									echo ('<div class="item">');
+									echo ('<img src="'. base_url("includes/images/produtos/thumbnail/".($produto->codigo + $i).".png") .'" alt="0.jpg" class="img-responsive">');
+								echo ('</div>');
+					  		}
+					  	echo ('</div>');
 
-				  	// Thumbnails --> 
-					echo ('<ul class="thumbnails-carousel clearfix">');
-						for ($i = 0; $i <= 3; $i++)
-							echo ('<li><img src="'. base_url("includes/images/produtos/thumbnail/".($produto->codigo + $i) .".png") .'" alt="1_tn.jpg"></li>');
-					echo ('</ul>');
-				echo ('</div>');
+					  	// Thumbnails --> 
+						echo ('<ul class="thumbnails-carousel clearfix">');
+							for ($i = 0; $i <= 3; $i++)
+								echo ('<li><img src="'. base_url("includes/images/produtos/thumbnail/".($produto->codigo + $i) .".png") .'" alt="1_tn.jpg"></li>');
+						echo ('</ul>');
+					echo ('</div>');
+				} else
+					echo ('<img src="'. base_url("includes/images/produtos/semimagem.png") .'" alt="Foto de '.$produto->nome.'" title="'.$produto->nome.'"/>');
 
 			echo ('</div>');
 
@@ -92,7 +95,10 @@ echo ('<div class="row">');
 
 						// MOSTRA PREÇO DO PRODUTO
 						echo ('<div class="row"><div class="col-xs-6 col-sm-12 preco-produto">');
-							echo ('<h4><span><strong><strike>De:</strong> R$ '.number_format($produto->pvenda,2,","," ").'</strike></span> <strong>Por: </strong> R$ '.number_format($produto->prepro,2,","," ").'</h4>');
+							if (($produto->prepro < $produto->preco) && ($produto->prepro > 0))
+								echo ('<h4><span><strong><strike>De:</strong> R$ '.number_format($produto->preco,2,","," ").'</strike></span> <strong>Por: </strong> R$ '.number_format($produto->prepro,2,","," ").'</h4>');
+							else
+								echo ('<h4><strong>Por: </strong> R$ '.number_format($produto->preco,2,","," ").'</h4>');
 						echo ('</div></div>');
 						echo ('<br/>');
 
@@ -189,17 +195,24 @@ echo ('<div class="row">');
 								echo ('<div class="item active row">');
 							else
 								echo ('<div class="item row">');
-							for ($j = $i; ($j <= $i+3 && ($reg = $parecidos->fetch())) ; $j++) {
+							for ($j = $i; ($j <= $i+2 && ($reg = $parecidos->fetch())) ; $j++) {
 								
 								echo ('<div class="col-xs-6 col-sm-4"><div class="thumbnail">');
-									echo ('<img src="'. base_url("includes/images/produtos/thumbnail/".$reg->codigo.".png") .'" alt="'.$reg->nome.'">');
+									if (file_exists(base_url("includes/images/produtos/thumbnail/".$reg->codigo.".png"))) {
+										list($width, $height, $type, $attr) = getimagesize(base_url("includes/images/produtos/thumbnail/".$reg->codigo.".png"));
+										if ($height > $width)
+											echo ('<img src="'. base_url("includes/images/produtos/thumbnail/".$reg->codigo.".png") .'" style="height: 170px !important;" alt="'.$reg->nome.'">');
+										else
+											echo ('<img src="'. base_url("includes/images/produtos/thumbnail/".$reg->codigo.".png") .'" style="width: 170px !important;" alt="'.$reg->nome.'">');
+									}else
+										echo ('<img src="'. base_url("includes/images/produtos/semimagem.png") .'" alt="'.$reg->nome.'">');
 									echo ('<div class="codigo">Codigo: '.$reg->codigo.'</div>');
 									echo ('<div class="caption">');
 										echo ('<h3>'.formataString($reg->nome).'</h3>');
-										if (($reg->prepro < $reg->pvenda) && ($reg->prepro > 0))
-											echo ('<p><strike>De: R$ '.number_format($reg->pvenda,2,","," ").'</strike> Por:  R$ '.number_format($reg->prepro,2,","," ").'</p>');
+										if (($reg->prepro < $reg->preco) && ($reg->prepro > 0))
+											echo ('<p><strike>De: R$ '.number_format($reg->preco,2,","," ").'</strike> Por:  R$ '.number_format($reg->prepro,2,","," ").'</p>');
 										else
-											echo ('<p>Por:  R$ '.number_format($reg->pvenda,2,","," ").'</p>');
+											echo ('<p>Por:  R$ '.number_format($reg->preco,2,","," ").'</p>');
 										echo ('<p><a href="'. base_url("Produtos/detalhes/".formataStringToURL($reg->nome)."/".$reg->codigo) .'" class="btn btn-default" role="button"><span class="glyphicon glyphicon-plus"> </span> Detalhes</a> <a href="#" class="btn btn-primary" role="button"><span class="glyphicon glyphicon-shopping-cart"> </span> Comprar</a> </p>');
 									echo ('</div>');
 								echo ('</div></div>');

@@ -199,11 +199,7 @@
 
 .main-menubar 
 {
-	width: 80%; /* old browser */
-	width: calc(100% - 500px);
-	width: -moz-calc(100% - 500px);
-	width: -webkit-calc(100% - 500px);
-	min-width: 1100px;
+	width: 100%;
 	margin: 0px auto 0px auto;
 }
 
@@ -212,6 +208,7 @@
   display: inline-block;
   float: none;
   vertical-align: top;
+  border: none;
 }
 
 .navbar .navbar-collapse { text-align: center; }
@@ -236,6 +233,7 @@
 .list-group
 {
 	width: 525px;
+	height: auto;
 	border: solid 3px #5C6C82 !important;
 	border-top: none !important;
 	margin-top: 1px !important;
@@ -640,7 +638,7 @@ ul.thumbnails-carousel li
 
 .produtos-parecido > div
 {
-	height: 340px !important;
+	height: 400px !important;
 	width: 90% !important;
 	margin: 0px auto !important;
 }
