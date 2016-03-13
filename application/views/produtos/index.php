@@ -53,10 +53,11 @@ echo ('<div class="row">');
 				} else {
 					echo ('<div class="col-xs-6 col-sm-4 box-produtos">
 							<div class="thumbnail">');
-								//if (file_exists("includes/images/produtos/thumbnail/".$reg->codigo.".png"))
-									echo ('<img src="'. base_url("includes/images/produtos/thumbnail/".$reg->codigo.".png") .'" alt="'.$reg->nome.'">');
-								//else
-								//	echo ('<img src="'. base_url("includes/images/produtos/semimagem.png") .'" alt="'.$reg->nome.'">');
+								list($width, $height, $type, $attr) = getimagesize(base_url("includes/images/produtos/thumbnail/".$reg->codigo.".png"));
+								if ($height > $width)
+									echo ('<img src="'. base_url("includes/images/produtos/thumbnail/".$reg->codigo.".png") .'" style="height: 170px !important;" alt="'.$reg->nome.'">');
+								else
+									echo ('<img src="'. base_url("includes/images/produtos/thumbnail/".$reg->codigo.".png") .'" style="width: 170px !important;" alt="'.$reg->nome.'">');
 								echo ('<div class="codigo">Codigo: '.$reg->codigo.'</div>
 								<div class="caption">
 									<h3>'.formataString($reg->nome).'</h3>');

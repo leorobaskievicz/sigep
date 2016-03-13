@@ -5,22 +5,31 @@
 	PAGINA INICIAL DO SITE
 */
 
-#home-slider
+#slide-home
 {
 	margin: 0px auto 30px auto;
 	border: none ;
 	height: auto;
 	width: 100%;
 	background-color: #FFF;
+	border: none;
 }
 
-.slider-img
+#slide-home > .carousel-inner
 {
-	margin: 0px auto;
-	width: 100%;
+	height: auto !important;
+	width: 100% !important; 
 }
 
-.carousel-control, .carousel-control:hover 
+#slide-home > .carousel-inner > .item > .slider-img
+{
+	margin: 0px auto !important;
+	width: 100% !important;
+	height: auto;
+	border: none;
+}
+
+#slide-home > .carousel-control, #slide-home > .carousel-control:hover 
 {
   opacity: 0 !important;
 }

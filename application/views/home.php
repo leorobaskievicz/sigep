@@ -23,12 +23,12 @@ if (isset($login)) {
 
 // SLIDE DE IMAGENS PARA OS BANNERS DO SITE
 echo ('<div id="home-slider">
-		<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+		<div id="slide-home" class="carousel slide" data-ride="carousel">
 			<!-- Indicators -->
 			<ol class="carousel-indicators">
-				<li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-				<li data-target="#carousel-example-generic" data-slide-to="1"></li>
-				<li data-target="#carousel-example-generic" data-slide-to="2"></li>
+				<li data-target="#slide-home" data-slide-to="0" class="active"></li>
+				<li data-target="#slide-home" data-slide-to="1"></li>
+				<li data-target="#slide-home" data-slide-to="2"></li>
 			</ol>
 
 			<!-- Wrapper for slides -->
@@ -48,11 +48,11 @@ echo ('<div id="home-slider">
 			</div>
 
 			<!-- Controls -->
-			<a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+			<a class="left carousel-control" href="#slide-home" role="button" data-slide="prev">
 				<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
 				<span class="sr-only">Previous</span>
 			</a>
-			<a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+			<a class="right carousel-control" href="#slide-home" role="button" data-slide="next">
 				<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
 				<span class="sr-only">Next</span>
 			</a>
@@ -78,17 +78,19 @@ else {
 		} else {
 			echo ('<div class="col-xs-6 col-sm-3">
 					<div class="thumbnail">');
-						//if (file_exists("includes/images/produtos/thumbnail/".$reg->codigo.".png"))
-							echo ('<img src="'. base_url("includes/images/produtos/thumbnail/".$reg->codigo.".png") .'" alt="'.$reg->nome.'">');
-						//else
-						//	echo ('<img src="'. base_url("includes/images/produtos/semimagem.png") .'" alt="'.$reg->nome.'">');
+						list($width, $height, $type, $attr) = getimagesize(base_url("includes/images/produtos/thumbnail/".$reg->codigo.".png"));
+						if ($height > $width)
+							echo ('<img src="'. base_url("includes/images/produtos/thumbnail/".$reg->codigo.".png") .'" style="height: 170px !important;" alt="'.$reg->nome.'">');
+						else
+							echo ('<img src="'. base_url("includes/images/produtos/thumbnail/".$reg->codigo.".png") .'" style="width: 170px !important;" alt="'.$reg->nome.'">');
+						
 						echo ('<div class="codigo">Codigo: '.$reg->codigo.'</div>
 						<div class="caption">
 							<h3>'.formataString($reg->nome).'</h3>');
 							if (($reg->prepro < $reg->pvenda) && ($reg->prepro > 0))
-								echo ('<p><strike>De: R$ '.$reg->prepro.'</strike> Por:  R$ '.$reg->pvenda.'</p>');
+								echo ('<p><strike>De: R$ '.number_format($reg->prepro,2,","," ").'</strike> Por:  R$ '.number_format($reg->pvenda,2,","," ").'</p>');
 							else
-								echo ('<p>Por:  R$ '.$reg->pvenda.'</p>');
+								echo ('<p>Por:  R$ '.number_format($reg->pvenda,2,","," ").'</p>');
 							echo ('<p><a href="'. base_url("Produtos/detalhes/".formataStringToURL($reg->nome)."/".$reg->codigo) .'" class="btn btn-default" role="button"><span class="glyphicon glyphicon-plus"> </span> Detalhes</a> <a href="#" class="btn btn-primary" role="button"><span class="glyphicon glyphicon-shopping-cart"> </span> Comprar</a> </p>
 						</div>
 					</div>

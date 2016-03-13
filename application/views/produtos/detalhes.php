@@ -183,22 +183,24 @@ echo ('<div class="row">');
 				echo ('<div id="produtos-parecidos" class="carousel slide produtos-parecido" data-ride="carousel">');
 					// Wrapper for slides -->
 					echo ('<div class="carousel-inner" role="listbox">');
-						for ($i = 1; $i <= 9; $i+=3) {
+
+						for ($i = 1; $i <= $parecidos->rowCount(); $i+=3) {
 							if ($i == 1)
 								echo ('<div class="item active row">');
 							else
 								echo ('<div class="item row">');
-							for ($j = $i; $j <= $i+3 ; $j++) {
+							for ($j = $i; ($j <= $i+3 && ($reg = $parecidos->fetch())) ; $j++) {
+								
 								echo ('<div class="col-xs-6 col-sm-4"><div class="thumbnail">');
-									echo ('<img src="'. base_url("includes/images/produtos/thumbnail/".$j.".png") .'" alt="'.$j.'">');
-									echo ('<div class="codigo">Codigo: '.$j.'</div>');
+									echo ('<img src="'. base_url("includes/images/produtos/thumbnail/".$reg->codigo.".png") .'" alt="'.$reg->nome.'">');
+									echo ('<div class="codigo">Codigo: '.$reg->codigo.'</div>');
 									echo ('<div class="caption">');
-										echo ('<h3>'.formataString($j).'</h3>');
-										if (($j < $j) && ($j > 0))
-											echo ('<p><strike>De: R$ '.$j.'</strike> Por:  R$ '.$j.'</p>');
+										echo ('<h3>'.formataString($reg->nome).'</h3>');
+										if (($reg->prepro < $reg->pvenda) && ($reg->prepro > 0))
+											echo ('<p><strike>De: R$ '.number_format($reg->pvenda,2,","," ").'</strike> Por:  R$ '.number_format($reg->prepro,2,","," ").'</p>');
 										else
-											echo ('<p>Por:  R$ '.$j.'</p>');
-										echo ('<p><a href="'. base_url("Produtos/detalhes/".formataStringToURL($j)."/".$j) .'" class="btn btn-default" role="button"><span class="glyphicon glyphicon-plus"> </span> Detalhes</a> <a href="#" class="btn btn-primary" role="button"><span class="glyphicon glyphicon-shopping-cart"> </span> Comprar</a> </p>');
+											echo ('<p>Por:  R$ '.number_format($reg->pvenda,2,","," ").'</p>');
+										echo ('<p><a href="'. base_url("Produtos/detalhes/".formataStringToURL($reg->nome)."/".$reg->codigo) .'" class="btn btn-default" role="button"><span class="glyphicon glyphicon-plus"> </span> Detalhes</a> <a href="#" class="btn btn-primary" role="button"><span class="glyphicon glyphicon-shopping-cart"> </span> Comprar</a> </p>');
 									echo ('</div>');
 								echo ('</div></div>');
 							}

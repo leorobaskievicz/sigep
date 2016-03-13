@@ -14,7 +14,7 @@ class Home extends CI_Controller {
 				while ($reg = $busca->fetch()) {
 					array_push($menu['menu1'], $reg->descricao);// SALVA BUSCA EM VETOR ASSOCIATIVO PARA SALVAR EM SESSÃO DEPOIS
 					
-					if ($buscaMenu2 = $this->menu->buscar('menu2', $reg->id)) {
+					if ($buscaMenu2 = $this->menu->buscar('menu2', $reg->cdmenu)) {
 						$menu['menu2'][$i] = array();
 						while ($reg2 = $buscaMenu2->fetch()) 
 							array_push($menu['menu2'][$i], $reg2->descricao);
