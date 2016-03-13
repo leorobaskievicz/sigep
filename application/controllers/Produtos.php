@@ -164,4 +164,25 @@ class Produtos extends CI_Controller
 		$this->load->view('estruturas/footer');
 	}
 
+	/*
+		PÁGINA PARA SALVAR AVISA-ME QUANDO CHEGAR - VINDA DE UMA AQUISICAO AJAX
+	*/
+
+	public function avisamequandochegar ()
+	{
+		$nome   = $this->input->post("nome-avisamequandochegar");
+		$email  = $this->input->post("email-avisamequandochegar");
+		$tel    = $this->input->post("tel-avisamequandochegar");
+		$codigo = $this->input->post("codigo-avisamequandochegar");
+		$preco  = $this->input->post("preco-avisamequandochegar");
+		$obs    = $this->input->post("obs-avisamequandochegar");
+
+		$this->load->model("m_avisamequandochegar");
+		$param = array("nomeCliente" => $nome, "emailCliente" => $email, "telefoneCliente" => $tel, "produto" => $codigo, "preco" => $preco, "obs" => $obs, "data" => date("Y-m-d"));
+		if ($insere = $this->m_avisamequandochegar->salvar($param))
+			echo ("true");
+		else
+			echo ("false");
+	}
+
 }

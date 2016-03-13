@@ -9,7 +9,7 @@ echo ('<div class="row">');
 			
 			if (($menu2 == null) && ($menu3 == null)) {
 				// Default panel contents --> CABEÇALHO DO MENU LEFT
- 				echo ('<div class="panel-heading">Produtos</div>');
+ 				echo ('<div class="panel-heading"><a href="'. base_url("Produtos") .'" target="_self">Produtos</a></div>');
 				// List group -->
 				echo ('<ul class="list-group">');
 
@@ -19,21 +19,23 @@ echo ('<div class="row">');
 			} else if ($menu3 == null) {
 				// Default panel contents --> CABEÇALHO DO MENU LEFT
 				$reg1 = $menu1->fetch(); 
- 				echo ('<div class="panel-heading">'.$reg1->descricao.'</div>');
+ 				echo ('<div class="panel-heading"><a href="'. base_url("Produtos/departamentos/".$reg1->descricao) .'" target="_self">'.$reg1->descricao.'</a></div>');
 				// List group -->
 				echo ('<ul class="list-group">');
 					while ($reg2 = $menu2->fetch())
 						echo ('<li class="list-group-item"><a href="'. base_url("Produtos/departamentos/".$reg1->descricao."/".$reg2->descricao) .'" target="_self">'.$reg2->descricao.'</a></li>');
+					echo ('<li class="list-group-item"><a href="'. base_url("Produtos/departamentos/") .'" target="_self"><span class="glyphicon glyphicon-chevron-left"></span> Voltar</a></li>');
 				echo ('</ul>');
 			} else {
 				// Default panel contents --> CABEÇALHO DO MENU LEFT
 				$reg1 = $menu1->fetch(); 
 				$reg2 = $menu2->fetch(); 
- 				echo ('<div class="panel-heading">'.$reg2->descricao.'</div>');
+ 				echo ('<div class="panel-heading"><a href="'. base_url("Produtos/departamentos/".$reg1->descricao."/".$reg2->descricao) .'" target="_self">'.$reg2->descricao.'</a></div>');
 				// List group -->
 				echo ('<ul class="list-group">');
 					while ($reg3 = $menu3->fetch())
 						echo ('<li class="list-group-item"><a href="'. base_url("Produtos/departamentos/".$reg1->descricao."/".$reg2->descricao."/".$reg3->descricao) .'" target="_self">'.$reg3->descricao.'</a></li>');
+					echo ('<li class="list-group-item"><a href="'. base_url("Produtos/departamentos/".$reg1->descricao) .'" target="_self"><span class="glyphicon glyphicon-chevron-left"></span> Voltar</a></li>');
 				echo ('</ul>');
 			}
 			

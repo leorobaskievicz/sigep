@@ -32,6 +32,26 @@ $(document).on("ready", function () {
 	});
 
 	NProgress.done();// Encerre barra de progresso
+
+	/*
+		CHAMA FUNCAO PARA BOTAO AVISA-ME QUANDO CHEGAR
+		EXIBE FORMULARIO NA JANELA MODAL
+	*/
+
+	$("#avisaMeQuandoChegar").on("click", function (event) {
+		event.preventDefault();
+
+		var codigo = $(this).attr("data-codigo");
+		var produto = $(this).attr("data-produto");
+		var preco = $(this).attr("data-preco");
+
+		$("[name=codigo-avisamequandochegar]").val(codigo);
+		$("[name=produto-avisamequandochegar]").val(produto);
+		$("[name=preco-avisamequandochegar]").val(preco);
+
+		$("#myModal").modal();
+	});
+
 });
 
 /*

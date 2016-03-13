@@ -104,22 +104,29 @@ echo ('<div class="row">');
 
 						// DADOS PARA ADICIONAR O PRODUTO NO CARRINHO
 						echo ('<div class="row">');
+
 							echo ('<div class="col-xs-6 col-sm-7">');
 								echo ('<form action="'. base_url("Cadastro/salvar") .'" method="POST" name="cadastro-cliente" class="form-horizontal"><fieldset>');
 									echo ('<legend><span class="glyphicon glyphicon-shopping-cart"></span> Adicionar ao carrinho</legend>');
 									echo ('<div class="form-group">');
-										echo ('<label class="col-xs-3 col-sm-3 control-label" for="selectbasic">Quantidade</label>
-											<div class="col-xs-2 col-sm-4">
-												<select id="selectbasic" name="qtd" class="form-control">');
+										if ($produto->estoque > 0) {
+											echo ('<label class="col-xs-3 col-sm-3 control-label" for="selectbasic">Quantidade</label>
+												<div class="col-xs-2 col-sm-4">
+													<select id="selectbasic" name="qtd" class="form-control">');
 
-												for ($i = 1; $i <= $produto->estoque; $i++)
-													echo ('<option value="'.$i.'">'.$i.'</option>');
+													for ($i = 1; $i <= $produto->estoque; $i++)
+														echo ('<option value="'.$i.'">'.$i.'</option>');
 
-												echo ('</select>
-											</div>');
-											echo ('<div class="col-xs-12 col-sm-5">');
-												echo ('<button type="submit" class="btn btn-primary btn-md">Comprar</button>');
+													echo ('</select>
+												</div>');
+												echo ('<div class="col-xs-12 col-sm-5">');
+													echo ('<button type="submit" class="btn btn-primary btn-md">Comprar</button>');
+												echo ('</div>');
+										} else {
+											echo ('<div class="col-xs-12 col-sm-12">');
+												echo ('<button type="submit" class="btn btn-success btn-md" id="avisaMeQuandoChegar" data-codigo="'.$produto->codigo.'" data-produto="'.$produto->nome.'" data-preco="'.$produto->preco.'">Avisa-me quando chegar</button>');
 											echo ('</div>');
+										}
 									echo ('</div>');
 								echo ('</fieldset></form>');
 							echo ('</div>');

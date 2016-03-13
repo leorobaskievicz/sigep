@@ -499,3 +499,71 @@ function buscaCep (campo, cep)
 		}
 	});
 }
+
+/*
+	FUNÇAO PARA FAZER REQUISICAO AJAX NO FORMULARIO DE AVISA-ME QUANDO CHEGAR
+*/
+
+function submitAvisaMeQuandoChegar(btn) 
+{
+	$(btn).attr("disabled","disabled");// DESABILITA BOTAO DE SUBMIT PARA ESPERAR RETORNO DO AJAX
+	//var form = $(".modal-body").html();// SALVA DADOS PARA USAR DEPOIS
+	var nome = $("[name=nome-avisamequandochegar]");
+	var email = $("[name=email-avisamequandochegar]");
+	var tel = $("[name=tel-avisamequandochegar]");
+
+	if (nome.val().trim() == "") {
+		nome.parent('div').parent('div').addClass('has-error');
+		nome.parent('div').append('<span class="help-block">Campo obrigatório.</span>');
+		nome.focus();
+		$(btn).removeAttr("disabled");
+		return false;
+	}
+
+	if (email.val().trim() == "") {
+		email.parent('div').parent('div').addClass('has-error');
+		email.parent('div').append('<span class="help-block">Campo obrigatório.</span>');
+		email.focus();
+		$(btn).removeAttr("disabled");
+		return false;
+	}
+
+	if (tel.val().trim() == "") {
+		tel.parent('div').parent('div').addClass('has-error');
+		tel.parent('div').append('<span class="help-block">Campo obrigatório.</span>');
+		tel.focus();
+		$(btn).removeAttr("disabled");
+		return false;
+	}
+
+	$.ajax({
+		url: $("form[name=aviasmequandochegar]").attr("action"),
+		dataType: 'html',
+		cache: false,
+		type: $("form[name=aviasmequandochegar]").attr("method"),
+		data: $("form[name=aviasmequandochegar]").serialize(),
+		beforeSend: function()
+		{
+			$(".modal-body").html('<img src="/includes/images/loader.gif" style="margin: 25px auto;" id="loader" />');
+		},
+		complete: function (data)
+		{
+			$('#loader').remove();
+			$(btn).removeAttr("disabled");
+		},
+		success: function(data)
+		{
+			if (data.toLowerCase() == "true")
+				$(".modal-body").html('<div class="alert alert-success"><span class="glyphicon glyphicon-ok"></span> Aviso salvo com sucesso, em breve você será avisado.</div>');
+			else
+				$(".modal-body").html('<div class="alert alert-danger"><span class="glyphicon glyphicon-remove"></span> Não foi possível salvar se aviso, por favor tente novamente.</div>');
+			//$(".modal-body").append(form);
+		},
+		error: function (xhr,er)
+		{
+			$(".modal-body").html('Erro '+xhr.status+' - '+xhr.statusText+' Tipo do erro : '+er);
+		}
+	});
+
+	return false;
+}

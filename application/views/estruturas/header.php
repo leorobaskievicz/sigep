@@ -49,20 +49,55 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<script src="<?= base_url('includes/js/thumbnail.carousel.js') ?>" defer></script>
 </head>
 <body>
-	<!-- Modal Windows BootStrap - BoxSelect -->
+	<!-- FORMULARIO DE AVISA-ME QUANDO CHEGAR USANDO MODAL JS BOOTSTRAP -->
 	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 	  <div class="modal-dialog" role="document">
 	    <div class="modal-content">
 	      <div class="modal-header">
 	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-	        <h4 class="modal-title" id="myModalLabel"></h4>
+	        <h4 class="modal-title" id="myModalLabel"><span class="glyphicon glyphicon-transfer"></span> Avisa-me quando chegar</h4>
 	      </div>
 	      <div class="modal-body" style="height: auto; overflow-y: auto;">
-	        
+	       <form action="<?= base_url("Produtos/avisamequandochegar") ?>" method="POST" name="aviasmequandochegar" class="form-horizontal"><fieldset>
+				<div class="form-group">
+					<label class="col-xs-3 col-sm-2 control-label" for="textinput">* Nome</label>
+					<div class="col-xs-9 col-sm-10">
+						<input id="textinput nome-avisamequandochegar" name="nome-avisamequandochegar" type="text" placeholder="Nome" class="form-control input-md">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-xs-3 col-sm-2 control-label" for="textinput">* E-mail</label>
+					<div class="col-xs-9 col-sm-10">
+						<input id="textinput" name="email-avisamequandochegar" type="email" placeholder="exemplo@exemplo.com.br" class="form-control input-md">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-xs-3 col-sm-2 control-label" for="textinput">* Telefone</label>
+					<div class="col-xs-9 col-sm-10">
+						<input id="textinput" name="tel-avisamequandochegar" type="text" placeholder="(XX) XXXX-XXXXX" class="form-control input-md">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-xs-3 col-sm-2 control-label" for="textinput">* Produto</label>
+					<div class="col-xs-9 col-sm-10">
+						<input name="codigo-avisamequandochegar" type="hidden">
+						<input name="preco-avisamequandochegar" type="hidden">
+						<input id="textinput" name="produto-avisamequandochegar" type="text" disabled="disabled" class="form-control input-md">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-xs-3 col-sm-2 control-label" for="textinput">Observação</label>
+				</div>
+				<div class="form-group">
+					<div class="col-xs-9 col-sm-12">
+						<textarea name="obs-avisamequandochegar" class="form-control" style="height: 150px !important;"></textarea>
+					</div>
+				</div>
+			</fieldset></form>
 	      </div>
 	      <div class="modal-footer">
-	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-	        <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+	        <button type="button" class="btn btn-primary" onClick=" submitAvisaMeQuandoChegar(this); ">Enviar</button>
 	      </div>
 	    </div>
 	  </div>

@@ -6,4 +6,5 @@ $(document).on("ready", function () {
 	$("[name=cel]").mask("(99) 9999-9999?9");
 	$("[name=cep]").mask("99.999-999");
 	$("[name=cepent]").mask("99.999-999");
+	$("[name=tel-avisamequandochegar]").mask("(99) 9999-9999?9");
 });
