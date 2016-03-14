@@ -366,6 +366,37 @@ $(document).on("ready", function () {
 			buscaCep( $(this) , cep );
 	});
 
+	/*
+		TRATA SIMULAÇÃO DO MODO DE ENTREGA
+	*/ 
+
+	$('[name=cep-entrega]').on("keyup", function () {
+		var valor = $(this).val().trim().replace(/[^\d]+/g,'');
+		// VERIFICA SE FOI DIGITADO O CEP TOTALMENTE
+		if (valor.length == 8) {
+			$('.resultado-frete').slideDown("fast");
+
+			$.ajax({
+				url: "/Correios/calcFrete",
+				dataType: 'json',
+				cache: false,
+				type: "GET",
+				data: { cep: valor },
+				beforeSend: function () {
+					//
+				},
+				success: function(data) {
+					alert($.parseJSON(data));
+
+				},
+				error: function (xhr,er) {
+					alert('Erro '+xhr.status+' - '+xhr.statusText+' Tipo do erro : '+er);
+				}
+			});
+		} else
+			$('.resultado-frete').slideUp("fast");
+	});
+
 });
 
 

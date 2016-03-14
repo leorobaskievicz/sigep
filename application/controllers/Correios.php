@@ -45,5 +45,64 @@ class Correios extends CI_Controller {
 			echo "";
 	}
 
+	/*
+		FUNCAO PARA CALCULAR PRAZO E PREÇO DE ENTREGA
+		@param int cep 
+		@return array(array(serviço, prazo, preco))
+	*/
+
+	public function calcFrete ($cep = null)
+	{
+		$retorno = array();
+
+		if ($this->input->get("cep") != null)
+			$cep = $this->input->get("cep");
+
+		if ( $cep != null ) {
+
+			/* ===== Calcula a valor total e prazo de entrega do frete ===== */
+	        $data['nCdEmpresa'] = '';
+	        $data['sDsSenha'] = '';
+	        $data['sCepOrigem'] = '81020010';
+	        $data['sCepDestino'] = $cep;
+	        $data['nVlPeso'] = '0.5';
+	        $data['nCdFormato'] = '1';
+	        $data['nVlComprimento'] = '16';
+	        $data['nVlAltura'] = '2';
+	        $data['nVlLargura'] = '11';
+	        $data['nVlDiametro'] = '1';
+	        $data['sCdMaoPropria'] = 'n';
+	        $data['nVlValorDeclarado'] = '0';
+	        $data['sCdAvisoRecebimento'] = 'n';
+	        $data['StrRetorno'] = 'xml';
+	        //$data['nCdServico'] = "81019,40096,41068";
+	        $data['nCdServico'] = "40010,41106";
+	        $data = http_build_query($data);
+	        $url = 'http://ws.correios.com.br/calculador/CalcPrecoPrazo.aspx';
+	        $curl = curl_init($url . '?' . $data);
+	        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+	        $result = curl_exec($curl);
+	        $result = simplexml_load_string($result);
+	        $naoTemESEDEX = true;
+	        foreach($result -> cServico as $row)  {
+	            //Os dados de cada serviço estará aqui
+	            if ($row->Erro == 0) {
+	            	array_push($retorno, array(
+	            		"codigo" => $row->Codigo,
+	            		"servico" => $row->Codigo,
+	            		"prazo" => $row->PrazoEntrega,
+	            		"preco" => $row->Valor
+	            	));
+	            } else
+	            	echo ($row->MsgErro);
+	        }
+	    }
+
+	    $retorno = json_encode($retorno);
+
+	    echo ($retorno);
+	}
+
+
 	
 }

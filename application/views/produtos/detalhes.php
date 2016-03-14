@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 echo ('<div class="row">');
 
 	// MENU LEFT DE LINKS NA PÁGINA DE PRODUTOS
-	echo ('<div class="col-xs-6 col-sm-2">');
+	echo ('<div class="col-xs-6 col-sm-2">'); 
 		echo ('<div class="panel panel-default menuLeft">');
 
 			if (($menu2 == null) && ($menu3 == null)) {
@@ -138,10 +138,34 @@ echo ('<div class="row">');
 									echo ('<div class="form-group">');
 										echo ('<label class="col-xs-3 col-sm-3 control-label" for="selectbasic">CEP</label>
 											<div class="col-xs-2 col-sm-7">
-												<input id="textinput" name="cep" type="text" placeholder="00.000-000" class="form-control input-md">
+												<input id="textinput" name="cep-entrega" type="text" placeholder="00.000-000" class="form-control input-md">
 											</div>');
 									echo ('</div>');
 								echo ('</fieldset></form>');
+							echo ('</div>');
+						echo ('</div>');
+
+						// DADOS PARA MOSTRAR SIMULAÇÃO DO FRETE
+						echo ('<div class="col-xs-6 col-sm-12 resultado-frete">');
+							echo ('<div class="panel panel-default">');
+								echo ('<div class="panel-heading">Simulação de entrega</div>');
+								echo ('<div class="panel-body">');
+									echo ('<p>Prazos e preços de entrega sujeito a alteração conforme tabela dos Correios.</p>');
+								echo ('</div>');
+								echo ('<table class="table table-condensed">');
+									echo ('<thead><tr>');
+										echo ('<th>Modo de entrega</th>');
+										echo ('<th>Prazo</th>');
+										echo ('<th>Preço</th>');
+									echo ('</tr></thead>');
+									echo ('<tbody>');
+										echo ('<tr>');
+											echo ('<td>E-SEDEX</td>');
+											echo ('<td>1 a 2 dia(s)</td>');
+											echo ('<td>R$ 10,00</td>');
+										echo ('</tr>');
+									echo ('</tbody>');
+								echo ('</table>');
 							echo ('</div>');
 						echo ('</div>');
 

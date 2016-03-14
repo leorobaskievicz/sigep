@@ -570,6 +570,15 @@
 }
 
 /*
+	TABELA DE RESULDADO DA SIMULAÇÃO DO FRETE
+*/
+
+.resultado-frete
+{
+	display: none;
+}
+
+/*
 	DEFINIÇÕES PARA VISUALIZAÇÃO DE IMAGENS E THUBNAIL PAGINA DE EXIBIÇÃO DE PRODUTOS
 */
 #carousel-example-generic {
