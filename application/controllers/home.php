@@ -3,8 +3,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Home extends CI_Controller {
 
-	public function index($limitInf = 0)
+	public function index()
 	{
+		// TRATA DOS LIMITES DA PAGINAS
+		if ($this->input->get("per_page"))
+			$limitInf = $this->input->get("per_page");
+		else
+			$limitInf = 0;
+
 		// VERIFICA SE NÃO EXISTE VARIÁVEL MENU GRAVA EM SESSÃO
 		if ($this->session->userdata('menu') == null) {
 			$menu = array( "menu1" => array(), "menu2" => array() );
@@ -28,10 +34,22 @@ class Home extends CI_Controller {
 
 		// Carrega modelo de busca de produtos no banco de dados
 		$this->load->model("m_produtos");
-		$dados = array("produtos" => null, "limitInf" => $limitInf);
+		$dados = array("produtos" => null);
 		if ($produtos = $this->m_produtos->buscar("SELECT CODIGO,NOME,PRECO,PREPRO FROM pdvprodu LIMIT ".$limitInf))
 			if ($produtos->rowCount() > 0)
-				$dados = array("produtos" => $produtos, "limitInf" => $limitInf);
+				$dados = array("produtos" => $produtos);
+
+		$totalregs = 0;
+		if ($buscaTotalRegs = $this->m_produtos->buscaNumRegs('SELECT count(*) as totalRegs FROM pdvproducompl '))
+			if($buscaTotalRegs->rowCount() == 1) {
+				$reg = $buscaTotalRegs->fetch();
+				$totalregs = $reg->totalregs;
+			}
+
+		// CONFIGURACOES PARA PAGINACAO
+		$config["base_url"] = base_url("Home");
+        $config["total_rows"] = $totalregs;
+        $this->pagination->initialize($config);
 
 		$this->load->view('estruturas/header');
 		$this->load->view('home', $dados);

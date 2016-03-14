@@ -520,7 +520,7 @@ function submitAvisaMeQuandoChegar(btn)
 		return false;
 	}
 
-	if (email.val().trim() == "") {
+	if ((email.val().trim() == "") || (!validaEmail(email.val().trim()))) {
 		email.parent('div').parent('div').addClass('has-error');
 		email.parent('div').append('<span class="help-block">Campo obrigatório.</span>');
 		email.focus();

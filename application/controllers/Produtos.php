@@ -7,22 +7,41 @@ class Produtos extends CI_Controller
 		PÁGINA INICIAL DE PRODUTOS - SEM FILTRO DE MENU OU PESQUISA
 	*/
 
-	public function index($limitInf = 0)
+	public function index()
 	{
+		// TRATA DOS LIMITES DA PAGINAS
+		if ($this->input->get("per_page"))
+			$limitInf = $this->input->get("per_page");
+		else
+			$limitInf = 0;
+
 		// BUSCA DADOS DOS PRODUTOS NO BANCO DE DADOS
 		$this->load->model("m_produtos");
 
-		$dados = array("produtos" => null, "limitInf" => $limitInf);
+		$dados = array("produtos" => null);
 		if ($produtos = $this->m_produtos->buscar("SELECT CODIGO,NOME,PRECO,PREPRO FROM pdvprodu LIMIT ".$limitInf))
 			if ($produtos->rowCount() > 0)
-				$dados = array("produtos" => $produtos, "limitInf" => $limitInf);
+				$dados = array("produtos" => $produtos);
 
 		// BUSCA DADOS DO MENU NO BANCO DE DADOS
 		$this->load->model('menu');// CARREGA MODELO DE BUSCA MENU
 		$menu = array("menu1" => null,"menu2" => null,"menu3" => null);
+
 		if ($busca = $this->menu->buscar('menu1'))
 			if ($busca->rowCount() > 0)
 				$menu["menu1"] = $busca;
+
+		$totalregs = 0;
+		if ($buscaTotalRegs = $this->m_produtos->buscaNumRegs('SELECT count(*) as totalRegs FROM pdvproducompl'))
+			if($buscaTotalRegs->rowCount() == 1) {
+				$reg = $buscaTotalRegs->fetch();
+				$totalregs = $reg->totalregs;
+			}
+
+		// Configuracoes para paginacao
+		$config["base_url"] = base_url("Produtos/index");
+        $config["total_rows"] = $totalregs;
+        $this->pagination->initialize($config);
 
 		// AGRUPA OS DOIS VETORES DE BUSCAS PARA RETORNAR SOMENTE UM Á VIEW
 		$retorno = array_merge($dados, $menu);
@@ -36,46 +55,48 @@ class Produtos extends CI_Controller
 		PÁGINA DE PRODUTOS - PARA MENU 1 , MENU2, MENU3
 	*/
 
-	public function departamentos ($menu1 = null, $menu2 = null, $menu3 = null, $limitInf = 0)
+	public function departamentos ($menu1 = null, $menu2 = 0, $menu3 = 0)
 	{
 		if ($menu1 == null) {
 			$this->index();
 			return 0;
 		}
 
+		// TRATA DOS LIMITES DA PAGINAS
+		if ($this->input->get("per_page"))
+			$limitInf = $this->input->get("per_page");
+		else
+			$limitInf = 0;
+
 		// Carrega modelo de busca de produtos no banco de dados
 		$this->load->model("m_produtos");
+		$this->load->model('menu');
 
 		// BUSCA DADOS DOS PRODUTOS NO BANCO DE DADOS DE ACORDO COM FILTROS
-		$dados = array("produtos" => null, "limitInf" => $limitInf);
-		if ( $menu3 != null ) { // BUSCA DADOS FILTRADOS POR MENU3
+		$dados = array("produtos" => null);
+
+		if ( $menu3 != 0 ) { // BUSCA DADOS FILTRADOS POR MENU3
 			
+			// BUSCA DOS PRODUTOS
 			$colunas = "a.CODIGO,a.NOME,a.PRECO,a.PREPRO";
 			$tabelas = "pdvprodu a, pdvproducompl b, webmenu1 c, webmenu2 d, webmenu3 e";
 			if ($produtos = $this->m_produtos->buscar("SELECT ".$colunas." FROM ".$tabelas." WHERE a.CODIGO = b.CDPRODU AND b.MENU1 = c.CDMENU AND c.descricao = '".str_replace("%20"," ",$menu1)."' AND b.MENU2 = d.CDMENU AND d.descricao LIKE '".str_replace("%20"," ",$menu2)."' AND b.MENU3 = e.CDMENU AND e.descricao LIKE '".str_replace("%20"," ",$menu3)."' LIMIT ".$limitInf))
 				if ($produtos->rowCount() > 0)
-					$dados = array("produtos" => $produtos, "limitInf" => $limitInf);
+					$dados = array("produtos" => $produtos);
 
-		} elseif ($menu2 != null) {// BUSCA DADOS FILTRADOS POR MENU2
+			// BUSCA DOS MENUS
+
+
+		} elseif ( $menu2 != 0 ) {// BUSCA DADOS FILTRADOS POR MENU2
 			
+			// BUSCA DOS PRODUTOS
 			$colunas = "a.CODIGO,a.NOME,a.PRECO,a.PREPRO";
 			$tabelas = "pdvprodu a, pdvproducompl b, webmenu1 c, webmenu2 d";
 			if ($produtos = $this->m_produtos->buscar("SELECT ".$colunas." FROM ".$tabelas." WHERE a.CODIGO = b.CDPRODU AND b.MENU1 = c.CDMENU AND c.descricao = '".str_replace("%20"," ",$menu1)."' AND b.MENU2 = d.CDMENU AND d.descricao LIKE '".str_replace("%20"," ",$menu2)."' LIMIT ".$limitInf))
 				if ($produtos->rowCount() > 0)
-					$dados = array("produtos" => $produtos, "limitInf" => $limitInf);
-		
-		}else { // BUSCA DADOS FILTRADOS POR MENU1
-			
-			$colunas = "a.CODIGO,a.NOME,a.PRECO,a.PREPRO";
-			$tabelas = "pdvprodu a, pdvproducompl b, webmenu1 c";
-			if ($produtos = $this->m_produtos->buscar("SELECT ".$colunas." FROM ".$tabelas." WHERE a.CODIGO = b.CDPRODU AND b.MENU1 = c.CDMENU AND c.DESCRICAO = '".str_replace("%20"," ",$menu1)."' LIMIT ".$limitInf))
-				if ($produtos->rowCount() > 0)
-					$dados = array("produtos" => $produtos, "limitInf" => $limitInf);
-		}
+					$dados = array("produtos" => $produtos);
 
-		// BUSCA MENUS NO BANCO DE DADOS DE ACORDO COM LOCALIZAÇÃO DO CLIENTE NO SITE
-		if ( $menu2 !=  null ) {
-			$this->load->model('menu');// CARREGA MODELO DE BUSCA MENU
+			// BUSCA DOS MENUS
 			$menu = array("menu1" => null, "menu2" => null, "menu3" => null);
 			
 			if ($buscaMenu1 = $this->menu->buscarPorDesc("webmenu1",$menu1))
@@ -90,8 +111,23 @@ class Produtos extends CI_Controller
 				if ($buscaMenu3->rowCount() > 0)
 					$menu["menu3"] = $buscaMenu3;
 
-		} else {// BUSCA MENUS DE NÍVEL DOIS NO BANCO DE DADOS - POIS CLIENTE JÁ ENTROU EM MENU NÍVEL 1
-			$this->load->model('menu');// CARREGA MODELO DE BUSCA MENU
+			$totalregs = 0;
+			if ($buscaTotalRegs = $this->m_produtos->buscaNumRegs('SELECT count(*) as totalRegs FROM pdvproducompl a, webmenu1 b, webmenu2 c WHERE a.MENU1 = b.CDMENU AND a.MENU2 = b.CDMENU AND b.DESCRICAO = "'.$menu1.'" AND c.DESCRICAO = "'.$menu2.'"'))
+				if($buscaTotalRegs->rowCount() == 1) {
+					$reg = $buscaTotalRegs->fetch();
+					$totalregs = $reg->totalregs;
+				}
+		
+		}else { // BUSCA DADOS FILTRADOS POR MENU1
+			
+			// BUSCA DOS PRODUTOS NO BANCO DE DADOS
+			$colunas = "a.CODIGO,a.NOME,a.PRECO,a.PREPRO";
+			$tabelas = "pdvprodu a, pdvproducompl b, webmenu1 c";
+			if ($produtos = $this->m_produtos->buscar("SELECT ".$colunas." FROM ".$tabelas." WHERE a.CODIGO = b.CDPRODU AND b.MENU1 = c.CDMENU AND c.DESCRICAO = '".str_replace("%20"," ",$menu1)."' LIMIT ".$limitInf))
+				if ($produtos->rowCount() > 0)
+					$dados = array("produtos" => $produtos);
+
+			// BUSCA DOS MENUS
 			$menu = array("menu1" => null, "menu2" => null, "menu3" => null);
 			
 			if ($buscaMenu1 = $this->menu->buscarPorDesc("webmenu1",$menu1))
@@ -101,7 +137,19 @@ class Produtos extends CI_Controller
 			if ($buscaMenu2 = $this->menu->buscar('menu2', null, $menu1))
 				if ($buscaMenu2->rowCount() > 0)
 					$menu["menu2"] = $buscaMenu2;
+
+			$totalregs = 0;
+			if ($buscaTotalRegs = $this->m_produtos->buscaNumRegs('SELECT count(*) as totalRegs FROM pdvproducompl a, webmenu1 b WHERE a.MENU1 = b.CDMENU AND b.DESCRICAO = "'.$menu1.'"'))
+				if($buscaTotalRegs->rowCount() == 1) {
+					$reg = $buscaTotalRegs->fetch();
+					$totalregs = $reg->totalregs;
+				}
 		}
+
+		// CONFIGURACOES PARA PAGINACAO
+		$config["base_url"] = base_url("Produtos/departamentos/".$menu1."/".$menu2."/".$menu3);
+        $config["total_rows"] = $totalregs;
+        $this->pagination->initialize($config);
 
 		$retorno = array_merge($menu, $dados);
 

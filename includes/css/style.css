@@ -499,6 +499,11 @@
 	color: #3f4c6b !important;
 }
 
+#navPages .active a
+{
+	color: #FFF !important;
+}
+
 /*
 	DEFINICOES PARA BARRA DE LOCALIZACAO DO SITE
 */

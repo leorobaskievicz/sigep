@@ -37,6 +37,18 @@ class M_Produtos extends CI_Model
 	}
 
 	/*
+		FUNÇÃO PARA BUSCAR O NUMERO TOTAL DE PRODUTO PARA MOSTRA TOTAL DE PAGINAS
+		@param query string com select dos produtos
+		@return bool - true em caso de sucesso ou false em caso de falha
+	*/
+	public function buscaNumRegs ($query)
+	{
+		$this->load->database();// Cria conexao de banco de dados
+		$busca = $this->db->simple_query($query);
+		return $busca;
+	}
+
+	/*
 		FUNÇÃO PARA BUSCAR OS DADOS DO PRODUTO NO BANCO DE DADOS
 		@param string dado a busca do produto
 		@return bool - true em caso de sucesso ou false em caso de falha

@@ -104,23 +104,5 @@ else {
 }
 echo ('</div>');
 
-// MOSTRA LINKS DE PROXIMA PAGINA E ANTERIOR
-echo ('<nav id="navPages">
-	<ul class="pagination">');
-		if ($limitInf > 0)
-			echo ('<li>
-				<a href="'. base_url("Home/index/".($limitInf - 20)) .'" aria-label="Previous">
-					<span aria-hidden="true">&laquo;</span>
-				</a>
-			</li>');
-
-		//echo ('<li><a href="'. base_url("Home/index/".($limitInf + 20)) .'">1</a></li>');
-		echo ('<li><a href="#">Página atual <strong>'. (ceil($limitInf/20) + 1) .'</strong></a></li>');
-
-		echo ('<li>
-			<a href="'. base_url("Home/index/".($limitInf + 20)) .'" aria-label="Next">
-				<span aria-hidden="true">&raquo;</span>
-			</a>
-		</li>');
-echo ('</ul>
-	</nav>');
+// MOSTRA BARRA DE LINKS DE PAGINACAO
+echo $this->pagination->create_links();
