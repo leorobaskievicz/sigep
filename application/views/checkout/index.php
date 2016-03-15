@@ -248,7 +248,7 @@ echo ('<div class="row checkout-content">');
 			echo ('<div class="panel panel-default">');
 				echo ('<div class="panel-heading" role="tab" id="headingFour">
 					<h1 class="panel-title">
-						<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+						<a class="collapsed forma-pagamento" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
 							<span class="glyphicon glyphicon-credit-card"></span> Forma de pagamento
 						</a>
 					</h1>

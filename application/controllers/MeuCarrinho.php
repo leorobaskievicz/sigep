@@ -29,4 +29,5 @@ class MeuCarrinho extends CI_Controller {
 
 		$this->load->view("estruturas/minhacesta", $dados);
 	}
+
 }

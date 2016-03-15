@@ -27,12 +27,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<meta name="msapplication-TileImage" content="<?= base_url('includes/css/logo.png') ?>">
 	<meta name="msapplication-TileColor" content="#E6E6E6">
 	<meta name="msapplication-badge" content="frequency=1440; polling-uri=http://tecworks.com.br">
-	<!-- Biblioteca JQuery e funções do site 
-	<script type="text/javascript" src="<?= base_url() ?>includes/js/functions.js"></script>
-	<script type="text/javascript" src="<?= base_url() ?>includes/js/main.js"></script>
-	<script type="text/javascript" src="<?= base_url() ?>includes/js/botoes.js"></script>
-	<script type="text/javascript" src="<?= base_url() ?>includes/js/table.js"></script>
-	<script type="text/javascript" src="<?= base_url() ?>includes/js/buscas.js"></script> -->
 	<!-- Include Bootstrap -->
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 	<link rel="stylesheet" href="<?= base_url('includes/bootstrap/css/bootstrap.min.css') ?>">
@@ -47,6 +41,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<script src="<?= base_url('includes/js/mask.js') ?>" defer></script>
 	<script src="<?= base_url('includes/js/form.js') ?>" defer></script>
 	<script src="<?= base_url('includes/js/thumbnail.carousel.js') ?>" defer></script>
+
 </head>
 <body>
 	<!-- FORMULARIO DE AVISA-ME QUANDO CHEGAR USANDO MODAL JS BOOTSTRAP -->
