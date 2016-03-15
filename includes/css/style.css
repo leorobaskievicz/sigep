@@ -263,9 +263,9 @@
 
 .minha-cesta-menu ul
 {
-	width: 450px;
-	height: 400px;
-	margin-left: -200px;
+	width: 500px;
+	height: auto;
+	margin-left: -380px;
 	border: solid 3px #5C6C82;
 	border-top: solid 1px #5C6C82;
 }
@@ -282,20 +282,37 @@
 
 .minha-cesta-menu article
 {
-	padding: 5px;
+	padding: 0px;
 	height: 300px;
-	width: 445px;
-	overflow: auto;
+	width: 490px;
+	overflow: hidden;
+}
+
+.minha-cesta-menu article iframe
+{
+	width: 100%;
+	height: 300px;
+	overflow-x: hidden !important;
+	margin: 0px;
+	padding: 0px;
+	border: none;
 }
 
 .minha-cesta-menu footer
 {
+	height: auto;
 	border-top: dotted 1px #555;
 	padding: 10px;
-	text-align: right;
+	text-align: left;
 	font-size: 16px;
 	font-weight: bold;
 	color: #3f4c6b;
+}
+
+.minha-cesta-menu footer a
+{
+	float: right;
+	margin: -4px;
 }
 
 .main-painel
@@ -668,4 +685,32 @@ ul.thumbnails-carousel li
   color: #CCC !important;
   background-image: none !important;
   width: 5% !important;
+}
+
+/*
+	DEFINIÇÕES PARA A PÁGINA DE CHECKOUT
+*/
+
+table.checkout tr td
+{
+	font-size: 14px;
+	vertical-align: middle !important;
+}
+
+.checkout-page .panel-heading
+{
+	background-color: #7787A8 !important;
+	color: #FFF !important;
+	border: none !important;
+	padding: 15px !important;
+}
+
+.checkout-page .panel-heading h1
+{
+	font-size: 18px !important;
+}
+
+.checkout-page .panel-collapse, .checkout-page .panel-group, .checkout-page .panel
+{
+	border: none !important;
 }

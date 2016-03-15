@@ -90,12 +90,14 @@ else {
 						echo ('<div class="codigo">Codigo: '.$reg->codigo.'</div>
 						<div class="caption">
 							<h3>'.formataString($reg->nome).'</h3>');
-							if (($reg->prepro < $reg->preco) && ($reg->prepro > 0))
+							if (($reg->prepro < $reg->preco) && ($reg->prepro > 0)) {
 								echo ('<p><strike>De: R$ '.number_format($reg->preco,2,","," ").'</strike> Por:  R$ '.number_format($reg->prepro,2,","," ").'</p>');
-							else
+								echo ('<p><a href="'. base_url("Produtos/detalhes/".formataStringToURL($reg->nome)."/".$reg->codigo) .'" class="btn btn-default" role="button"><span class="glyphicon glyphicon-plus"> </span> Detalhes</a> <a href="#" class="btn btn-primary addCarrinho" data-codigo="'.$reg->codigo.'" data-nome="'.formataStringToURL($reg->nome).'" data-qtd="1" data-preco="'.$reg->prepro.'" role="button"><span class="glyphicon glyphicon-shopping-cart"> </span> Comprar</a> </p>');
+							}else{
 								echo ('<p>Por:  R$ '.number_format($reg->preco,2,","," ").'</p>');
-							echo ('<p><a href="'. base_url("Produtos/detalhes/".formataStringToURL($reg->nome)."/".$reg->codigo) .'" class="btn btn-default" role="button"><span class="glyphicon glyphicon-plus"> </span> Detalhes</a> <a href="#" class="btn btn-primary" role="button"><span class="glyphicon glyphicon-shopping-cart"> </span> Comprar</a> </p>
-						</div>
+								echo ('<p><a href="'. base_url("Produtos/detalhes/".formataStringToURL($reg->nome)."/".$reg->codigo) .'" class="btn btn-default" role="button"><span class="glyphicon glyphicon-plus"> </span> Detalhes</a> <a href="#" class="btn btn-primary addCarrinho" data-codigo="'.$reg->codigo.'" data-nome="'.formataStringToURL($reg->nome).'" data-qtd="1" data-preco="'.$reg->preco.'" role="button"><span class="glyphicon glyphicon-shopping-cart"> </span> Comprar</a> </p>');
+							}
+						echo ('</div>
 					</div>
 				</div>');
 		}

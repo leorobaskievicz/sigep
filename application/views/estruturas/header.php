@@ -220,12 +220,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					?>
 
 					<li class="dropdown minha-cesta-menu">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">0 itens </a>
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?= $totalItens ?> itens </a>
 						<ul class="dropdown-menu">
 							<li>
-								<header>Meu Carrinho</header>
-								<article><h3>Cesta Vazia</h3></article>
-								<footer>TOTAL R$ 0,00</footer>
+								<header><span class="glyphicon glyphicon-shopping-cart"></span> Meu Carrinho</header>
+								<article><iframe src="<?= base_url('MeuCarrinho/minhaCesta') ?>" border="0"></iframe></article>
+								<footer><a href="<?= base_url('MeuCarrinho') ?>" class="btn btn-primary" role="button" style="color: #FFF !important;"><span class="glyphicon glyphicon-shopping-cart"> </span> Finalizar Compra</a> TOTAL R$ <?= number_format($totalCarrinho,2,","," ") ?></footer>
 							</li>
 						</ul>
 					</li>

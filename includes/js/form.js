@@ -370,7 +370,8 @@ $(document).on("ready", function () {
 		TRATA SIMULAÇÃO DO MODO DE ENTREGA
 	*/ 
 
-	$('[name=cep-entrega]').on("keyup", function () {
+	$('[name=cep-entrega]').on("keyup", function (event) {
+		event.preventDefault();
 		var valor = $(this).val().trim().replace(/[^\d]+/g,'');
 		// VERIFICA SE FOI DIGITADO O CEP TOTALMENTE
 		if (valor.length == 8) {
@@ -383,11 +384,15 @@ $(document).on("ready", function () {
 				type: "GET",
 				data: { cep: valor },
 				beforeSend: function () {
-					//
+					$('.resultado-frete tbody').html('<tr><td colspan="3" style="text-align: center;""><img src="/includes/images/loader.gif" style="margin: 25px auto;" id="loader" /></td></tr>');
+				},
+				complete: function () {
+					$('#loader').parent("td").parent("tr").remove();
 				},
 				success: function(data) {
-					alert($.parseJSON(data));
-
+						$.each(data, function(index, element) {
+				           	$('.resultado-frete tbody').append('<tr><td>'+element.servico+'</td><td>Até '+element.prazo+' dia(s) após confirmação do pagamento</td><td>R$ '+number_format(element.preco,2,","," ")+'</td></tr>');
+				        });
 				},
 				error: function (xhr,er) {
 					alert('Erro '+xhr.status+' - '+xhr.statusText+' Tipo do erro : '+er);
@@ -395,6 +400,84 @@ $(document).on("ready", function () {
 			});
 		} else
 			$('.resultado-frete').slideUp("fast");
+	});
+
+	/*
+		FUNÇÃO PARA FAZER REQUISIÇÃO AJAX PARA SALVAR PRODUTO NO CARRINHO
+	*/
+
+	$('[name=add-carrinho]').on('submit', function (event) {
+		event.preventDefault();
+		
+		$.ajax({
+			url: "/Carrinho/salvar",
+			dataType: 'html',
+			type: "GET",
+			data: $(this).serialize(),
+			beforeSend: function () {
+				$('#addCarrinho').text('Salvando').attr("disabled","disabled");
+			},
+			complete: function () {
+				$('#addCarrinho').text('Comprar').removeAttr('disabled');
+			},
+			success: function(data) {
+				if (data != "false") {
+					// FAZ ANIMAÇÃO DA FOTO DO PRODUTO PARA ENVIAR PARA A CESTA
+					var boxProduto = $(".foto-produto");// Busca boxProduto do produto em questao
+					var classImg = boxProduto.find("img").clone().prependTo(boxProduto);// Produra pela tag img
+			        // Abaixo seleciona a imagem dentro do div.foto2 duplicado
+					var img  = classImg;// Seleciona a foto dentro da classe encontrada acima
+			        var imgWidth = img.width();// Pega tamanho da foto original para copiar
+			        var imgHeight = img.height();// Pega tamanho da foto origanl para copiar
+			        var yCarrinho = $(".minha-cesta-menu").last().offset().left + 23;
+			        var xCarrinho = $(".minha-cesta-menu").last().offset().top + 17;
+					var y = img.offset().left;
+					var x = img.offset().top;
+					// Faz animação da imagem como se estivesse colocando produto na cesta
+			        $("body").prepend(img);
+			        img.css({
+			            width: imgWidth,
+			            height: imgHeight,
+			            position: "absolute",
+			            zIndex: 50,
+			            left: y,
+			            top: x
+			        });
+					img.animate({
+						left: yCarrinho,
+						top: xCarrinho
+					}, 300, function() {
+						img.animate({
+							height: "10px",
+							width: "10px"
+						}, 300, function () {
+							img.fadeOut("fast");
+						});
+					}); 
+
+					// CORRIGE QTD MINHA CESTA MENU
+					$.ajax({
+						url: "/Carrinho/totalItens",
+						dataType: 'html',
+						success: function(data) { 
+							$('.minha-cesta-menu > a').text(data+" itens");
+						}
+					});
+
+					// CORRIGE VALOR TOTAL MINHA CESTA MENU
+					$.ajax({
+						url: "/Carrinho/total",
+						dataType: 'html',
+						success: function(data) { 
+							$('.minha-cesta-menu > ul > li > footer').text("R$ "+number_format(data,2,",",""));
+						}
+					});
+				}
+			},
+			error: function (xhr,er) {
+				//alert('Erro '+xhr.status+' - '+xhr.statusText+' Tipo do erro : '+er);
+			}
+		});
 	});
 
 });

@@ -87,14 +87,38 @@ class Correios extends CI_Controller {
 	        foreach($result -> cServico as $row)  {
 	            //Os dados de cada serviço estará aqui
 	            if ($row->Erro == 0) {
+	            	// Recebe as variaveis
+	            	$codigoServico = intval($row->Codigo);
+	            	$prazoEntrega  = (intval($row->PrazoEntrega) + 2);
+	            	$precoEntrega  = floatval(str_replace(",",".",$row->Valor));
+
+	            	switch($row->Codigo) {
+	            		case 40010:
+	            			$nomeServico = "SEDEX";
+	            			break;
+	            		case 41106:
+	            			$nomeServico = "PAC";
+	            			break;
+	            		default:
+	            			$nomeServico = "INDEFINIDO";
+	            			break;
+	            	}
+
 	            	array_push($retorno, array(
-	            		"codigo" => $row->Codigo,
-	            		"servico" => $row->Codigo,
-	            		"prazo" => $row->PrazoEntrega,
-	            		"preco" => $row->Valor
+	            		"codigo" => $codigoServico,
+	            		"servico" => $nomeServico,
+	            		"prazo" => $prazoEntrega,
+	            		"preco" => $precoEntrega
 	            	));
-	            } else
-	            	echo ($row->MsgErro);
+	            } else {
+	            	$msgErro = $row->MsgErro;
+	            	array_push($retorno, array(
+	            		"codigo" => "999",
+	            		"servico" => $msgErro,
+	            		"prazo" => "0",
+	            		"preco" => "0.00"
+	            	));
+	            }
 	        }
 	    }
 

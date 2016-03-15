@@ -51,7 +51,10 @@ class Home extends CI_Controller {
         $config["total_rows"] = $totalregs;
         $this->pagination->initialize($config);
 
-		$this->load->view('estruturas/header');
+        // Retorna total de itens do carrinho para a pagina
+		$carrinho = array("totalItens" => $this->cart->total_items(), "totalCarrinho" => $this->cart->total());
+
+		$this->load->view('estruturas/header', $carrinho);
 		$this->load->view('home', $dados);
 		$this->load->view('estruturas/footer');
 	}

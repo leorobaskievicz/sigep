@@ -54,7 +54,7 @@ echo ('<div class="row">');
 					  				echo ('<div class="item active srle">');
 					  			else
 									echo ('<div class="item">');
-									echo ('<img src="'. base_url("includes/images/produtos/thumbnail/".($produto->codigo + $i).".png") .'" alt="0.jpg" class="img-responsive">');
+									echo ('<img src="'. base_url("includes/images/produtos/thumbnail/".($produto->codigo + $i).".png") .'" alt="0.jpg" class="img-responsive" id="foto-produto">');
 								echo ('</div>');
 					  		}
 					  	echo ('</div>');
@@ -62,11 +62,11 @@ echo ('<div class="row">');
 					  	// Thumbnails --> 
 						echo ('<ul class="thumbnails-carousel clearfix">');
 							for ($i = 0; $i <= 3; $i++)
-								echo ('<li><img src="'. base_url("includes/images/produtos/thumbnail/".($produto->codigo + $i) .".png") .'" alt="1_tn.jpg"></li>');
+								echo ('<li><img src="'. base_url("includes/images/produtos/thumbnail/".($produto->codigo + $i) .".png") .'" alt="1_tn.jpg" id="foto-produto"></li>');
 						echo ('</ul>');
 					echo ('</div>');
 				} else
-					echo ('<img src="'. base_url("includes/images/produtos/semimagem.png") .'" alt="Foto de '.$produto->nome.'" title="'.$produto->nome.'"/>');
+					echo ('<img src="'. base_url("includes/images/produtos/semimagem.png") .'" alt="Foto de '.$produto->nome.'" title="'.$produto->nome.'" id="foto-produto"/>');
 
 			echo ('</div>');
 
@@ -106,8 +106,10 @@ echo ('<div class="row">');
 						echo ('<div class="row">');
 
 							echo ('<div class="col-xs-6 col-sm-7">');
-								echo ('<form action="'. base_url("Cadastro/salvar") .'" method="POST" name="cadastro-cliente" class="form-horizontal"><fieldset>');
+								echo ('<form action="'. base_url("Carrinho/salvar") .'" method="GET" name="add-carrinho" class="form-horizontal"><fieldset>');
 									echo ('<legend><span class="glyphicon glyphicon-shopping-cart"></span> Adicionar ao carrinho</legend>');
+									echo ('<input type="hidden" name="codigo" value="'.$produto->codigo.'" />');
+									echo ('<input type="hidden" name="nome" value="'.formataStringToURL($produto->nome).'" />');
 									echo ('<div class="form-group">');
 										if ($produto->estoque > 0) {
 											echo ('<label class="col-xs-3 col-sm-3 control-label" for="selectbasic">Quantidade</label>
@@ -120,7 +122,7 @@ echo ('<div class="row">');
 													echo ('</select>
 												</div>');
 												echo ('<div class="col-xs-12 col-sm-5">');
-													echo ('<button type="submit" class="btn btn-primary btn-md">Comprar</button>');
+													echo ('<button type="submit" class="btn btn-primary btn-md" id="addCarrinho">Comprar</button>');
 												echo ('</div>');
 										} else {
 											echo ('<div class="col-xs-12 col-sm-12">');
@@ -128,12 +130,16 @@ echo ('<div class="row">');
 											echo ('</div>');
 										}
 									echo ('</div>');
+									if (($produto->prepro < $produto->preco) && ($produto->prepro > 0))
+										echo ('<input type="hidden" name="preco" value="'.$produto->prepro.'" />');
+									else
+										echo ('<input type="hidden" name="preco" value="'.$produto->preco.'" />');
 								echo ('</fieldset></form>');
 							echo ('</div>');
 
 							// DADOS PARA MOSTRAR MODO DE ENTREGA
 							echo ('<div class="col-xs-6 col-sm-5">');
-								echo ('<form action="'. base_url("Cadastro/salvar") .'" method="POST" name="cadastro-cliente" class="form-horizontal"><fieldset>');
+								echo ('<fieldset>');
 									echo ('<legend><span class="glyphicon glyphicon-road"></span> Modo de entrega</legend>');
 									echo ('<div class="form-group">');
 										echo ('<label class="col-xs-3 col-sm-3 control-label" for="selectbasic">CEP</label>
@@ -141,7 +147,7 @@ echo ('<div class="row">');
 												<input id="textinput" name="cep-entrega" type="text" placeholder="00.000-000" class="form-control input-md">
 											</div>');
 									echo ('</div>');
-								echo ('</fieldset></form>');
+								echo ('</fieldset>');
 							echo ('</div>');
 						echo ('</div>');
 
@@ -158,13 +164,7 @@ echo ('<div class="row">');
 										echo ('<th>Prazo</th>');
 										echo ('<th>Preço</th>');
 									echo ('</tr></thead>');
-									echo ('<tbody>');
-										echo ('<tr>');
-											echo ('<td>E-SEDEX</td>');
-											echo ('<td>1 a 2 dia(s)</td>');
-											echo ('<td>R$ 10,00</td>');
-										echo ('</tr>');
-									echo ('</tbody>');
+									echo ('<tbody></tbody>');
 								echo ('</table>');
 							echo ('</div>');
 						echo ('</div>');

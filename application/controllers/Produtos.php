@@ -43,10 +43,13 @@ class Produtos extends CI_Controller
         $config["total_rows"] = $totalregs;
         $this->pagination->initialize($config);
 
+        // Retorna total de itens do carrinho para a pagina
+		$carrinho = array("totalItens" => $this->cart->total_items(), "totalCarrinho" => $this->cart->total());
+
 		// AGRUPA OS DOIS VETORES DE BUSCAS PARA RETORNAR SOMENTE UM Á VIEW
 		$retorno = array_merge($dados, $menu);
 
-		$this->load->view('estruturas/header');
+		$this->load->view('estruturas/header', $carrinho);
 		$this->load->view('produtos/index', $retorno);
 		$this->load->view('estruturas/footer');
 	}
@@ -151,9 +154,12 @@ class Produtos extends CI_Controller
         $config["total_rows"] = $totalregs;
         $this->pagination->initialize($config);
 
+        // Retorna total de itens do carrinho para a pagina
+		$carrinho = array("totalItens" => $this->cart->total_items(), "totalCarrinho" => $this->cart->total());
+
 		$retorno = array_merge($menu, $dados);
 
-		$this->load->view('estruturas/header');
+		$this->load->view('estruturas/header', $carrinho);
 		$this->load->view('produtos/index', $retorno);
 		$this->load->view('estruturas/footer');
 	}
@@ -205,9 +211,12 @@ class Produtos extends CI_Controller
 					$prodParecidos["parecidos"] = $buscaParecidos;
 		}
 
+		// Retorna total de itens do carrinho para a pagina
+		$carrinho = array("totalItens" => $this->cart->total_items(), "totalCarrinho" => $this->cart->total());
+
 		$retorno = array_merge($dados, $complemento, $menu, $prodParecidos);
 
-		$this->load->view('estruturas/header');
+		$this->load->view('estruturas/header', $carrinho);
 		$this->load->view('produtos/detalhes', $retorno);
 		$this->load->view('estruturas/footer');
 	}
