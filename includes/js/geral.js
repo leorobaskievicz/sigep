@@ -130,7 +130,7 @@ $(document).on("ready", function () {
 						url: "/Carrinho/total",
 						dataType: 'html',
 						success: function(data) { 
-							$('.minha-cesta-menu > ul > li > footer').text("R$ "+number_format(data,2,",",""));
+							$('.minha-cesta-menu > ul > li > footer').html('<a href="/MeuCarrinho" class="btn btn-primary" role="button" style="color: #FFF !important;"><span class="glyphicon glyphicon-shopping-cart"> </span> Finalizar Compra</a> TOTAL R$ '+number_format(data,2,",",""))
 						}
 					});
 
@@ -169,12 +169,41 @@ $(document).on("ready", function () {
 				$(this).html('<span class="glyphicon glyphicon-trash"> </span> Apagar').removeAttr('disabled');
 			},
 			success: function(data) { 
-				location.href = link;
+				//
 			},
 			error: function (xhr,er) {
 				//alert('Erro '+xhr.status+' - '+xhr.statusText+' Tipo do erro : '+er);
 			}
 		});
+
+		// VERIFICA SE USUÁRIO CLICOU NO BOTÃO APAGAR DO IFRAME MINHA CESTA MENU
+
+		if (link.toLowerCase().indexOf("meucarrinho/minhacesta") > -1) {
+
+			// CORRIGE QTD MINHA CESTA MENU
+			$.ajax({
+				url: "/Carrinho/totalItens",
+				dataType: 'html',
+				assync: false,
+				success: function(data) {
+					$('.minha-cesta-menu > a', window.parent.document).html(data+" itens");
+				}
+			});
+
+			// CORRIGE VALOR TOTAL MINHA CESTA MENU
+			$.ajax({
+				url: "/Carrinho/total",
+				dataType: 'html',
+				assync: false,
+				success: function(data) { 
+					$('.minha-cesta-menu > ul > li > footer', window.parent.document).html('<a href="/MeuCarrinho" class="btn btn-primary" role="button" style="color: #FFF !important;"><span class="glyphicon glyphicon-shopping-cart"> </span> Finalizar Compra</a> TOTAL R$ '+number_format(data,2,",",""))
+				}
+			});
+
+		}
+
+		// Refresh no iframe minha cesta
+		location.href = link;
 	});
 
 });

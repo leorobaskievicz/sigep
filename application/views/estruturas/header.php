@@ -152,12 +152,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							if (($this->session->userdata("codigo") != null) && ($this->session->userdata("nome") != null)) {
 								echo ('<header>Olá, '.$this->session->userdata("nome").'!</header>
 								<p>
-									<a href="'. base_url("Login/fazerLogout") .'" target="_self"><span class="glyphicon glyphicon-log-out"> </span> Sair</a>
+									<a href="'. base_url("Login/fazerLogout?volta=".base64_encode(current_url())) .'" target="_self"><span class="glyphicon glyphicon-log-out"> </span> Sair</a>
 								</p>');
 							} else {
 								echo ('<header>Olá, visitante!</header>
 								<p>
-									<a href="'. base_url("Login") .'" target="_self">Fazer login</a> ou <a href="'. base_url("Cadastro") .'" target="_self">se cadastrar.</a>
+									<a href="'. base_url("Login?volta=".base64_encode(current_url())) .'" target="_self">Fazer login</a> ou <a href="'. base_url("Cadastro") .'" target="_self">se cadastrar.</a>
 								</p>');
 							}
 						?>
@@ -237,6 +237,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<!-- PAINEL - ELEMENTO QUE CENTRALIZA TODA AS PAGINAS DO SITE -->
 	<div class="main-painel">
 		<?php
+
+			/*
+				BARRA DE LOCALIZAÇÃO DO SITE
+			*/
+
 			if ($this->uri->total_segments() >= 1) {
 				if (strtolower($this->uri->total_segments(1)) != "home") {
 					// MOSTRA A LOCALIZACAO QUE USUARIO ESTA NO SITE
@@ -249,5 +254,25 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							echo ('<li><a href="'. base_url($link) .'">'.$this->uri->segment($i).'</a></li>');
 						}
 					echo ('</ol>');
+				}
+			}
+
+			/*
+				VERIFICA SE EXISTE VARIÁVEL DE LOGIN PARA MOSTRAR MENSAGEM NA TELA DE BEM-SUCEDIDO OU NÃO
+			*/
+			if ($this->session->flashdata('login') != null) {
+				if (strtolower($_SESSION['login']) != "erro") {
+					echo ('<div class="alert alert-success" role="alert"> ');
+						echo ('<span class="glyphicon glyphicon-ok"> </span>');
+						echo (' Seja bem-vindo <strong>'.$_SESSION['nome'].'</strong> <a href="#" class="alert-link"></a> ');
+						echo ('<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>');
+					echo ('</div>');
+				} else {
+					echo ('<div class="alert alert-danger" role="alert">');
+						echo ('<span class="glyphicon glyphicon-remove"> </span>');
+						echo (' <strong>Login incorreto</strong>, por favor tente novamente.');
+						echo ('<a href="'. base_url("Login?volta=".base64_encode(current_url())) .'" class="alert-link"> Clique aqui para fazer login. </a>');
+						echo ('<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>');
+					echo ('</div>');
 				}
 			}

@@ -691,10 +691,37 @@ ul.thumbnails-carousel li
 	DEFINIÇÕES PARA A PÁGINA DE CHECKOUT
 */
 
+.checkout-content .affix
+{
+	width: 14% !important;
+	top: 190px !important;
+}
+
+.atalhoMinhaCesta .panel-body
+{
+	padding: 1px !important;
+}
+
+.atalhoMinhaCesta .panel-body td
+{
+	vertical-align: middle;
+	font-size: 12px;
+}
+
+.atalhoMinhaCesta .panel-body td:nth-child(2)
+{
+	text-align: center;
+}
+
 table.checkout tr td
 {
 	font-size: 14px;
 	vertical-align: middle !important;
+}
+
+.checkout-page
+{
+	float: right !important;
 }
 
 .checkout-page .panel-heading
@@ -713,4 +740,9 @@ table.checkout tr td
 .checkout-page .panel-collapse, .checkout-page .panel-group, .checkout-page .panel
 {
 	border: none !important;
+}
+
+.checkout-page .valor-frete table
+{
+	display: none;
 }

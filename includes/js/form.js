@@ -469,9 +469,12 @@ $(document).on("ready", function () {
 						url: "/Carrinho/total",
 						dataType: 'html',
 						success: function(data) { 
-							$('.minha-cesta-menu > ul > li > footer').text("R$ "+number_format(data,2,",",""));
+							$('.minha-cesta-menu > ul > li > footer').html('<a href="/MeuCarrinho" class="btn btn-primary" role="button" style="color: #FFF !important;"><span class="glyphicon glyphicon-shopping-cart"> </span> Finalizar Compra</a> TOTAL R$ '+number_format(data,2,",",""));
 						}
 					});
+
+					// Recarrega minha cesta menu iframe para atualiza listagem de produtos
+					$('.minha-cesta-menu > ul > li > article > iframe').attr("src","/MeuCarrinho/minhaCesta");
 				}
 			},
 			error: function (xhr,er) {
@@ -680,4 +683,10 @@ function submitAvisaMeQuandoChegar(btn)
 	});
 
 	return false;
+}
+
+function selecionaFrete (servico)
+{
+	$('.valor-frete table').css("display","none");
+	$('#'+servico.value).fadeIn("fast");
 }

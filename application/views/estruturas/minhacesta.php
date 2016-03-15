@@ -58,27 +58,31 @@ echo ('<table class="table">');
 			echo ('<th style="font-size: 14px; padding: 3px;">Preço</th>');
 			echo ('<th style="font-size: 14px; padding: 3px;">Qtd</th>');
 			echo ('<th style="font-size: 14px; padding: 3px;">Subtotal</th>');
+			echo ('<th style="font-size: 14px; padding: 3px;">Apagar</th>');
 		echo ('</tr>');
 	echo ('</thead>');
 	echo ('<tbody>');
 
 		if ( empty($produtos) )
-			echo ('<tr><td colspan="5"><h4> Carrinho vazia </h4></td></tr>');
+			echo ('<tr><td colspan="6"><div class="alert alert-warning">
+			  Carrinho vazio.
+			</div></td></tr>');
 		else {
 			$i = 1;
 			foreach($produtos as $item) {
 				echo ('<tr>');
-					echo ('<td style="font-size: 12px; padding: 4px 5px;">'.$i.'</td>');
-					echo ('<td style="font-size: 12px; padding: 4px 5px;">');
+					echo ('<td style="font-size: 12px; padding: 4px 5px; vertical-align: middle;">'.$i.'</td>');
+					echo ('<td style="font-size: 12px; padding: 4px 5px; vertical-align: middle;">');
 						if (file_exists(base_url("includes/images/produtos/thumbnail/".$item['id'].".png")))
-							echo ('<img src="'. base_url("includes/images/produtos/thumbnail/".$item['id'].".png") .'" alt="Foto do produto '.$item['name'].'" width="40" height="40" style="float: left;"/>');
+							echo ('<img src="'. base_url("includes/images/produtos/thumbnail/".$item['id'].".png") .'" alt="Foto do produto '.$item['name'].'" width="40" height="40" style="margin-right: 10px;"/>');
 						else
-							echo ('<img src="'. base_url("includes/images/produtos/semimagem.png") .'" alt="Foto do produto '.$item['name'].'" width="40" height="40" style="float: left;"/>');
+							echo ('<img src="'. base_url("includes/images/produtos/semimagem.png") .'" alt="Foto do produto '.$item['name'].'" width="40" height="40" style="margin-right: 10px;"/>');
 						echo ($item['name']);
 					echo ('</td>');
-					echo ('<td style="font-size: 12px; padding: 4px 5px;">R$ '.number_format($item['price'],2,","," ").'</td>');
-					echo ('<td style="font-size: 12px; padding: 4px 5px;">'.$item['qty'].'</td>');
-					echo ('<td style="font-size: 12px; padding: 4px 5px;">R$ '.number_format(($item['qty'] * $item['price']),2,","," ").'</td>');
+					echo ('<td style="font-size: 12px; padding: 4px 5px; vertical-align: middle;">R$ '.number_format($item['price'],2,","," ").'</td>');
+					echo ('<td style="font-size: 12px; padding: 4px 5px; vertical-align: middle;">'.$item['qty'].'</td>');
+					echo ('<td style="font-size: 12px; padding: 4px 5px; vertical-align: middle;">R$ '.number_format(($item['qty'] * $item['price']),2,","," ").'</td>');
+					echo ('<td style="vertical-align: middle; text-align: right;"><a href="#" target="_self" class="btn-sm btn-danger removeCarrinho" data-rowid="'.$item['rowid'].'" data-page="'. current_url() .'"><span class="glyphicon glyphicon-trash"></span></a></td>');
 				echo ('</tr>');
 				$i++;
 			}

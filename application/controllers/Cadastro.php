@@ -19,7 +19,9 @@ class Cadastro extends CI_Controller
 
 	public function novo()
 	{
-		$this->load->view('estruturas/header');
+		// Retorna total de itens do carrinho para a pagina
+		$carrinho = array("totalItens" => $this->cart->total_items(), "totalCarrinho" => $this->cart->total());
+		$this->load->view('estruturas/header',$carrinho);
 		$dados = array("email" => $this->input->post('email'), "nome" => $this->input->post('nome'));
 		$this->load->view('cadastro/novo', $dados);
 		$this->load->view('estruturas/footer');
@@ -41,7 +43,9 @@ class Cadastro extends CI_Controller
 		else
 			$dados = array("dados" => null);
 
-		$this->load->view('estruturas/header');
+		// Retorna total de itens do carrinho para a pagina
+		$carrinho = array("totalItens" => $this->cart->total_items(), "totalCarrinho" => $this->cart->total());
+		$this->load->view('estruturas/header',$carrinho);
 		$this->load->view('cadastro/editar', $dados);
 		$this->load->view('estruturas/footer');
 	}
@@ -53,7 +57,9 @@ class Cadastro extends CI_Controller
 	public function trocarsenha()
 	{
 		if ($this->input->post('senhanova') == null) {
-			$this->load->view('estruturas/header');
+			// Retorna total de itens do carrinho para a pagina
+			$carrinho = array("totalItens" => $this->cart->total_items(), "totalCarrinho" => $this->cart->total());
+			$this->load->view('estruturas/header',$carrinho);
 			$this->load->view('cadastro/trocarsenha');
 			$this->load->view('estruturas/footer');
 		} else {
@@ -74,7 +80,9 @@ class Cadastro extends CI_Controller
 					$retorno = array("alterado" => false);
 			} else
 				$retorno = array("alterado" => false);
-			$this->load->view('estruturas/header');
+			// Retorna total de itens do carrinho para a pagina
+			$carrinho = array("totalItens" => $this->cart->total_items(), "totalCarrinho" => $this->cart->total());
+			$this->load->view('estruturas/header',$carrinho);
 			$this->load->view('cadastro/trocarsenha', $retorno);
 			$this->load->view('estruturas/footer');
 		}
@@ -122,7 +130,9 @@ class Cadastro extends CI_Controller
 			$retorno = array("status" => false, "msg" => "Cliente já cadastro em nosso site.");
 			$retornoFinal = array_merge($retorno, $param);// Unifica os dois vetores
 
-			$this->load->view('estruturas/header');
+			// Retorna total de itens do carrinho para a pagina
+			$carrinho = array("totalItens" => $this->cart->total_items(), "totalCarrinho" => $this->cart->total());
+			$this->load->view('estruturas/header',$carrinho);
 			$this->load->view('cadastro/salvo', $retornoFinal);
 			$this->load->view('estruturas/footer');
 		} else {
@@ -131,14 +141,18 @@ class Cadastro extends CI_Controller
 				$retorno = array("status" => true, "msg" => "Cliente cadastrado com sucesso.");
 				$retornoFinal = array_merge($retorno, $param);// Unifica os dois vetores
 
-				$this->load->view('estruturas/header');
+				// Retorna total de itens do carrinho para a pagina
+				$carrinho = array("totalItens" => $this->cart->total_items(), "totalCarrinho" => $this->cart->total());
+				$this->load->view('estruturas/header',$carrinho);
 				$this->load->view('cadastro/salvo', $retornoFinal);
 				$this->load->view('estruturas/footer');
 			}else {
 				$retorno = array("status" => false, "msg" => "Ops, ocorreu um problema ao salvar os dados. Por favor, tente novamente.");
 				$retornoFinal = array_merge($retorno, $param);// Unifica os dois vetores
 				
-				$this->load->view('estruturas/header');
+				// Retorna total de itens do carrinho para a pagina
+				$carrinho = array("totalItens" => $this->cart->total_items(), "totalCarrinho" => $this->cart->total());
+				$this->load->view('estruturas/header',$carrinho);
 				$this->load->view('cadastro/salvo', $retornoFinal);
 				$this->load->view('estruturas/footer');
 			}
@@ -184,7 +198,9 @@ class Cadastro extends CI_Controller
 		$altera = $this->clientes->editar($param, "codigo = ".$this->session->userdata('codigo')." ");
 		$retorno = array("alterado" => $altera);
 		
-		$this->load->view('estruturas/header');
+		// Retorna total de itens do carrinho para a pagina
+		$carrinho = array("totalItens" => $this->cart->total_items(), "totalCarrinho" => $this->cart->total());
+		$this->load->view('estruturas/header',$carrinho);
 		$this->load->view('cadastro/editar', $retorno);
 		$this->load->view('estruturas/footer');
 		

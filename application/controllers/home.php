@@ -35,7 +35,7 @@ class Home extends CI_Controller {
 		// Carrega modelo de busca de produtos no banco de dados
 		$this->load->model("m_produtos");
 		$dados = array("produtos" => null);
-		if ($produtos = $this->m_produtos->buscar("SELECT CODIGO,NOME,PRECO,PREPRO FROM pdvprodu LIMIT ".$limitInf))
+		if ($produtos = $this->m_produtos->buscar("SELECT CODIGO,NOME,PRECO,PREPRO,ESTOQUE FROM pdvprodu LIMIT ".$limitInf))
 			if ($produtos->rowCount() > 0)
 				$dados = array("produtos" => $produtos);
 

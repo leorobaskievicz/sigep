@@ -1,26 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-/*
-	VERIFICA SE EXISTE VARIÁVEL DE LOGIN PARA MOSTRAR MENSAGEM NA TELA DE BEM-SUCEDIDO OU NÃO
-*/
-if (isset($login)) {
-	if ($login) {
-		echo ('<div class="alert alert-success" role="alert"> ');
-			echo ('<span class="glyphicon glyphicon-ok"> </span>');
-			echo (' Seja bem-vindo <strong>'.$_SESSION['nome'].'</strong> <a href="#" class="alert-link"></a> ');
-			echo ('<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>');
-		echo ('</div>');
-	} else {
-		echo ('<div class="alert alert-danger" role="alert">');
-			echo ('<span class="glyphicon glyphicon-remove"> </span>');
-			echo (' <strong>Login incorreto</strong>, por favor tente novamente.');
-			echo ('<a href="'. base_url("Login") .'" class="alert-link"> Clique aqui para fazer login. </a>');
-			echo ('<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>');
-		echo ('</div>');
-	}
-}
-
 // SLIDE DE IMAGENS PARA OS BANNERS DO SITE
 echo ('<div id="home-slider">
 		<div id="slide-home" class="carousel slide" data-ride="carousel">
@@ -92,10 +72,16 @@ else {
 							<h3>'.formataString($reg->nome).'</h3>');
 							if (($reg->prepro < $reg->preco) && ($reg->prepro > 0)) {
 								echo ('<p><strike>De: R$ '.number_format($reg->preco,2,","," ").'</strike> Por:  R$ '.number_format($reg->prepro,2,","," ").'</p>');
-								echo ('<p><a href="'. base_url("Produtos/detalhes/".formataStringToURL($reg->nome)."/".$reg->codigo) .'" class="btn btn-default" role="button"><span class="glyphicon glyphicon-plus"> </span> Detalhes</a> <a href="#" class="btn btn-primary addCarrinho" data-codigo="'.$reg->codigo.'" data-nome="'.formataStringToURL($reg->nome).'" data-qtd="1" data-preco="'.$reg->prepro.'" role="button"><span class="glyphicon glyphicon-shopping-cart"> </span> Comprar</a> </p>');
+								if ($reg->estoque > 0)
+									echo ('<p><a href="'. base_url("Produtos/detalhes/".formataStringToURL($reg->nome)."/".$reg->codigo) .'" class="btn btn-default" role="button"><span class="glyphicon glyphicon-plus"> </span> Detalhes</a> <a href="#" class="btn btn-primary addCarrinho" data-codigo="'.$reg->codigo.'" data-nome="'.formataStringToURL($reg->nome).'" data-qtd="1" data-preco="'.$reg->prepro.'" role="button"><span class="glyphicon glyphicon-shopping-cart"> </span> Comprar</a> </p>');
+								else
+									echo ('<p><a href="'. base_url("Produtos/detalhes/".formataStringToURL($reg->nome)."/".$reg->codigo) .'" class="btn btn-default" role="button"><span class="glyphicon glyphicon-plus"> </span> Detalhes</a> </p>');
 							}else{
 								echo ('<p>Por:  R$ '.number_format($reg->preco,2,","," ").'</p>');
-								echo ('<p><a href="'. base_url("Produtos/detalhes/".formataStringToURL($reg->nome)."/".$reg->codigo) .'" class="btn btn-default" role="button"><span class="glyphicon glyphicon-plus"> </span> Detalhes</a> <a href="#" class="btn btn-primary addCarrinho" data-codigo="'.$reg->codigo.'" data-nome="'.formataStringToURL($reg->nome).'" data-qtd="1" data-preco="'.$reg->preco.'" role="button"><span class="glyphicon glyphicon-shopping-cart"> </span> Comprar</a> </p>');
+								if ($reg->estoque > 0)
+									echo ('<p><a href="'. base_url("Produtos/detalhes/".formataStringToURL($reg->nome)."/".$reg->codigo) .'" class="btn btn-default" role="button"><span class="glyphicon glyphicon-plus"> </span> Detalhes</a> <a href="#" class="btn btn-primary addCarrinho" data-codigo="'.$reg->codigo.'" data-nome="'.formataStringToURL($reg->nome).'" data-qtd="1" data-preco="'.$reg->preco.'" role="button"><span class="glyphicon glyphicon-shopping-cart"> </span> Comprar</a> </p>');
+								else
+									echo ('<p><a href="'. base_url("Produtos/detalhes/".formataStringToURL($reg->nome)."/".$reg->codigo) .'" class="btn btn-default" role="button"><span class="glyphicon glyphicon-plus"> </span> Detalhes</a> </p>');
 							}
 						echo ('</div>
 					</div>

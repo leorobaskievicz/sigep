@@ -19,7 +19,7 @@ class Produtos extends CI_Controller
 		$this->load->model("m_produtos");
 
 		$dados = array("produtos" => null);
-		if ($produtos = $this->m_produtos->buscar("SELECT CODIGO,NOME,PRECO,PREPRO FROM pdvprodu LIMIT ".$limitInf))
+		if ($produtos = $this->m_produtos->buscar("SELECT CODIGO,NOME,PRECO,PREPRO,ESTOQUE FROM pdvprodu LIMIT ".$limitInf))
 			if ($produtos->rowCount() > 0)
 				$dados = array("produtos" => $produtos);
 
@@ -81,7 +81,7 @@ class Produtos extends CI_Controller
 		if ( $menu3 != 0 ) { // BUSCA DADOS FILTRADOS POR MENU3
 			
 			// BUSCA DOS PRODUTOS
-			$colunas = "a.CODIGO,a.NOME,a.PRECO,a.PREPRO";
+			$colunas = "a.CODIGO,a.NOME,a.PRECO,a.PREPRO,a.ESTOQUE";
 			$tabelas = "pdvprodu a, pdvproducompl b, webmenu1 c, webmenu2 d, webmenu3 e";
 			if ($produtos = $this->m_produtos->buscar("SELECT ".$colunas." FROM ".$tabelas." WHERE a.CODIGO = b.CDPRODU AND b.MENU1 = c.CDMENU AND c.descricao = '".str_replace("%20"," ",$menu1)."' AND b.MENU2 = d.CDMENU AND d.descricao LIKE '".str_replace("%20"," ",$menu2)."' AND b.MENU3 = e.CDMENU AND e.descricao LIKE '".str_replace("%20"," ",$menu3)."' LIMIT ".$limitInf))
 				if ($produtos->rowCount() > 0)
@@ -93,7 +93,7 @@ class Produtos extends CI_Controller
 		} elseif ( $menu2 != 0 ) {// BUSCA DADOS FILTRADOS POR MENU2
 			
 			// BUSCA DOS PRODUTOS
-			$colunas = "a.CODIGO,a.NOME,a.PRECO,a.PREPRO";
+			$colunas = "a.CODIGO,a.NOME,a.PRECO,a.PREPRO,a.ESTOQUE";
 			$tabelas = "pdvprodu a, pdvproducompl b, webmenu1 c, webmenu2 d";
 			if ($produtos = $this->m_produtos->buscar("SELECT ".$colunas." FROM ".$tabelas." WHERE a.CODIGO = b.CDPRODU AND b.MENU1 = c.CDMENU AND c.descricao = '".str_replace("%20"," ",$menu1)."' AND b.MENU2 = d.CDMENU AND d.descricao LIKE '".str_replace("%20"," ",$menu2)."' LIMIT ".$limitInf))
 				if ($produtos->rowCount() > 0)
@@ -124,7 +124,7 @@ class Produtos extends CI_Controller
 		}else { // BUSCA DADOS FILTRADOS POR MENU1
 			
 			// BUSCA DOS PRODUTOS NO BANCO DE DADOS
-			$colunas = "a.CODIGO,a.NOME,a.PRECO,a.PREPRO";
+			$colunas = "a.CODIGO,a.NOME,a.PRECO,a.PREPRO,a.ESTOQUE";
 			$tabelas = "pdvprodu a, pdvproducompl b, webmenu1 c";
 			if ($produtos = $this->m_produtos->buscar("SELECT ".$colunas." FROM ".$tabelas." WHERE a.CODIGO = b.CDPRODU AND b.MENU1 = c.CDMENU AND c.DESCRICAO = '".str_replace("%20"," ",$menu1)."' LIMIT ".$limitInf))
 				if ($produtos->rowCount() > 0)

@@ -1,8 +1,43 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-echo ('<div class="row">');
-	echo ('<div class="col-xs-16 col-sm-12 checkout-page">'); 
+echo ('<div class="row checkout-content">');
+
+	/*
+		Barra lateral com resumo do pedido
+	*/
+
+	echo ('<div class="col-xs-16 col-sm-2" data-spy="affix" data-offset-top="125" data-offset-bottom="550">');
+		echo ('<div class="panel panel-default atalhoMinhaCesta">');
+			echo ('<div class="panel-heading"><span class="glyphicon glyphicon-shopping-cart"></span> Meu Carrinho</div>');
+			echo ('<div class="panel-body"><table class="table table-condensed">');
+				echo ('<thead><tr>');
+					echo ('<th>#</th>');
+					echo ('<th>Qtd</th>');
+					echo ('<th>Preço</th>');
+				echo ('</tr></thead>');
+
+				echo ('<tbody>');
+				$i = 1;
+				foreach($produtos as $item) {
+					echo ('<tr>');
+						echo ('<td>'.$i.'</td>');
+						echo ('<td>'.$item['qty'].'</td>');
+						echo ('<td>R$ '.number_format($item['price'],2,","," ").'</td>');
+						echo ('</tr>');
+					$i++;
+				}
+				echo ('</tbody>');
+			echo ('</table></div>');
+			echo ('<div class="panel-footer"><strong>TOTAL R$ '.number_format($totalCarrinho,2,","," ").'</strong></div>');
+		echo ('</div>');
+	echo ('</div>');
+
+	/*
+		Área de checkout do site
+	*/
+
+	echo ('<div class="col-xs-16 col-sm-10 checkout-page">'); 
 
 		echo ('<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">');
 
@@ -29,13 +64,13 @@ echo ('<div class="row">');
 									echo ('<th>Preço</th>');
 									echo ('<th>Qtd</th>');
 									echo ('<th>Subtotal</th>');
-									echo ('<th>Apagar</th>');
+									echo ('<th>Apagar</th>'); 
 								echo ('</tr>');
 							echo ('</thead>');
 							echo ('<tbody>');
 
 								if ( empty($produtos) )
-									echo ('<tr><td colspan="5"><h4> Carrinho vazia </h4></td></tr>');
+									echo ('<tr><td colspan="5"><h4> Carrinho vazio </h4></td></tr>');
 								else {
 									$i = 1;
 									foreach($produtos as $item) {
@@ -71,78 +106,82 @@ echo ('<div class="row">');
 			/*
 				PAINEL PARA FAZER LOGIN
 			*/
-			echo ('<div class="panel panel-default">');
-				echo ('<div class="panel-heading" role="tab" id="headingTwo">
-					<h1 class="panel-title">
-						<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-							<span class="glyphicon glyphicon-log-in"></span> Fazer login
-						</a>
-					</h1>
-				</div>');
-				echo (' <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">');
-					echo ('<div class="panel-body">');
-						echo ('<p>Faça seu login para poder continuar a compra');
-							// DADOS PESSOAIS DO CADASTRO
-							echo ('<form action="'. base_url("Login") .'" method="POST" name="formulario-login" class="form-horizontal">');
-								echo ('<div class="col-xs-12 col-sm-6">');		
+			if (($this->session->userdata("codigo") == null) && ($this->session->userdata("nome") == null)) {
+				
+				echo ('<div class="panel panel-default">');
+					echo ('<div class="panel-heading" role="tab" id="headingTwo">
+						<h1 class="panel-title">
+							<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+								<span class="glyphicon glyphicon-log-in"></span> Fazer login
+							</a>
+						</h1>
+					</div>');
+					echo (' <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">');
+						echo ('<div class="panel-body">');
+							echo ('<p>Faça seu login para poder continuar a compra');
+								// DADOS PESSOAIS DO CADASTRO
+								echo ('<form action="'. base_url("Login?volta=".base64_encode(current_url())) .'" method="POST" name="formulario-login" class="form-horizontal">');
+									echo ('<div class="col-xs-12 col-sm-6">');		
 
-										echo ('<legend>Já sou cadastrado</legend>');
-						 
-										echo ('<div class="form-group">');
-											echo ('<label class="col-xs-3 col-sm-2 control-label" for="textinput">Login*</label>');
-											echo ('<div class="col-xs-9 col-sm-10">
-												<input id="textinput" name="email-login" type="email" placeholder="E-mail" class="form-control input-md">
-											</div>');
-										echo ('</div>');
-
-										echo ('<div class="form-group">');
-											echo ('<label class="col-xs-3 col-sm-2 control-label" for="textinput">Senha*</label>');
-											echo ('<div class="col-xs-9 col-sm-10">
-												<input id="textinput" name="senha-login" type="password" placeholder="*****" class="form-control input-md">
-											</div>');
-										echo ('</div>');
-
-										echo ('<div class="form-group">');
-											echo ('<div class="col-xs-12 col-sm-12" style="text-align: right;">');
-												echo ('<button type="submit" class="btn btn-primary btn-md">Entrar</button>');
+											echo ('<legend>Já sou cadastrado</legend>');
+							 
+											echo ('<div class="form-group">');
+												echo ('<label class="col-xs-3 col-sm-2 control-label" for="textinput">Login*</label>');
+												echo ('<div class="col-xs-9 col-sm-10">
+													<input id="textinput" name="email-login" type="email" placeholder="E-mail" class="form-control input-md">
+												</div>');
 											echo ('</div>');
-										echo ('</div>');
 
-								echo ('</div>');
-							echo ('</form>');
-
-							// MOSTRA FORMULARIO DE CAMPOS PARA CADASTRAR-SE
-							echo ('<form action="'. base_url("Cadastro") .'" method="POST" name="formulario-cadastro" class="form-horizontal">');
-								echo ('<div class="col-xs-12 col-sm-6">');		
-
-										echo ('<legend>Não sou cadastrado</legend>');
-						 
-										echo ('<div class="form-group">');
-											echo ('<label class="col-xs-3 col-sm-2 control-label" for="textinput">Nome*</label>');
-											echo ('<div class="col-xs-9 col-sm-10">
-												<input id="textinput" name="nome" type="text" placeholder="Nome" class="form-control input-md">
-											</div>');
-										echo ('</div>');
-
-										echo ('<div class="form-group">');
-											echo ('<label class="col-xs-3 col-sm-2 control-label" for="textinput">E-mail*</label>');
-											echo ('<div class="col-xs-9 col-sm-10">
-												<input id="textinput" name="email" type="email" placeholder="E-mail" class="form-control input-md">
-											</div>');
-										echo ('</div>');
-
-										echo ('<div class="form-group">');
-											echo ('<div class="col-xs-12 col-sm-12" style="text-align: right;">');
-												echo ('<button type="submit" class="btn btn-primary btn-md">Cadastrar</button>');
+											echo ('<div class="form-group">');
+												echo ('<label class="col-xs-3 col-sm-2 control-label" for="textinput">Senha*</label>');
+												echo ('<div class="col-xs-9 col-sm-10">
+													<input id="textinput" name="senha-login" type="password" placeholder="*****" class="form-control input-md">
+												</div>');
 											echo ('</div>');
-										echo ('</div>');
 
-								echo ('</div>');
-							echo ('</form>');
-						echo ('</p>');
+											echo ('<div class="form-group">');
+												echo ('<div class="col-xs-12 col-sm-12" style="text-align: right;">');
+													echo ('<button type="submit" class="btn btn-primary btn-md">Entrar</button>');
+												echo ('</div>');
+											echo ('</div>');
+
+									echo ('</div>');
+								echo ('</form>');
+
+								// MOSTRA FORMULARIO DE CAMPOS PARA CADASTRAR-SE
+								echo ('<form action="'. base_url("Cadastro") .'" method="POST" name="formulario-cadastro" class="form-horizontal">');
+									echo ('<div class="col-xs-12 col-sm-6">');		
+
+											echo ('<legend>Não sou cadastrado</legend>');
+							 
+											echo ('<div class="form-group">');
+												echo ('<label class="col-xs-3 col-sm-3 control-label" for="textinput">Nome*</label>');
+												echo ('<div class="col-xs-9 col-sm-9">
+													<input id="textinput" name="nome" type="text" placeholder="Nome" class="form-control input-md">
+												</div>');
+											echo ('</div>');
+
+											echo ('<div class="form-group">');
+												echo ('<label class="col-xs-3 col-sm-3 control-label" for="textinput">E-mail*</label>');
+												echo ('<div class="col-xs-9 col-sm-9">
+													<input id="textinput" name="email" type="email" placeholder="E-mail" class="form-control input-md">
+												</div>');
+											echo ('</div>');
+
+											echo ('<div class="form-group">');
+												echo ('<div class="col-xs-12 col-sm-12" style="text-align: right;">');
+													echo ('<button type="submit" class="btn btn-primary btn-md">Cadastrar</button>');
+												echo ('</div>');
+											echo ('</div>');
+
+									echo ('</div>');
+								echo ('</form>');
+							echo ('</p>');
+						echo ('</div>');
 					echo ('</div>');
 				echo ('</div>');
-			echo ('</div>');
+
+			}
 
 			/*
 				PAINEL PARA FORMA DE ENTREGA
@@ -167,14 +206,34 @@ echo ('<div class="row">');
 										echo ('<div class="form-group">');
 											echo ('<label class="col-xs-3 col-sm-2 control-label" for="servico">Serviço</label>
 												<div class="col-xs-4 col-sm-4">
-													<select id="servico" name="servico" class="form-control">
+													<select id="servico" name="servico" class="form-control" onChange="selecionaFrete(this);">
 														<option value="0">-- </option>
-														<option value="f">SEDEX</option>
-														<option value="m">PAC</option>
+														<option value="40010">SEDEX</option>
+														<option value="41106">PAC</option>
 													</select>
 												</div>');
 										echo ('</div>');
 
+								echo ('</div>');
+
+								echo ('<div class="col-xs-12 col-sm-6 valor-frete">');
+									for ($i = 0; $i < count($entrega); $i++) {	
+										echo ('<table class="table table-bordered" id="'.$entrega[$i]->codigo.'">');	
+											echo ('<caption>'.$entrega[$i]->servico.'</caption>');
+											echo ('<thead>');
+												echo ('<tr>');
+													echo ('<th>Prazo</th>');
+													echo ('<th>Valor</th>');
+												echo ('</tr>');
+											echo ('</thead>');
+											echo ('<tbody>');
+												echo ('<tr>');
+													echo ('<td>Até <strong>'.$entrega[$i]->prazo.'</strong> dias úteis após confirmação do pagamento</td>');
+													echo ('<td>R$ '.number_format($entrega[$i]->preco,2,","," ").'</td>');
+												echo ('</tr>');
+											echo ('</tbody>');
+										echo ('</table>');
+									}
 								echo ('</div>');
 
 							echo ('</form>');
