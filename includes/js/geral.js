@@ -14,24 +14,56 @@ $(document).on("ready", function () {
 	});
 	
 	// TRATA DO VALOR DO CAMPO DE PESQUISA DO SITE
-	$('[name=search]').on("keyup", function () {
+	$('.search-sugestao-produto').on('click', function () {
+		var valor = $(this).parent('span').parent('div').find('input').val().trim();
+		location.href = "/Produtos/buscar/"+valor;
+	});
+
+	$('[name=search]').on("keyup", function (event) {
 		var valor = $(this).val();
-		if (valor != "")
+
+		if ((valor != "") && (valor.length >= 4)) {
 			$('.sugestao-produtos').collapse("show");
-		else
+
+			$.ajax({
+				url: "/Produtos/sugestaoPesquisa",
+				dataType: 'json',
+				type: "GET",
+				data: {
+					termo: valor
+				},
+				beforeSend: function () {
+					$('.sugestao-produtos').html('<li class="list-group-item loader"><img src="/includes/images/loader.gif"/></li>');
+				},
+				complete: function () {
+					$('.loader').remove();
+				},
+				success: function(data) {
+					$.each(data, function(index, element) {
+						$('.sugestao-produtos').prepend('<li class="list-group-item"><a href="/Produtos/detalhes/'+element.nome+'/'+element.codigo+'">'+element.nome+'</a></li>');
+					});
+				},
+				error: function (xhr,er) {
+					//alert('Erro '+xhr.status+' - '+xhr.statusText+' Tipo do erro : '+er);
+				}
+			});
+
+			// Caso clique em enter vai para pagina de busca
+			if (event.keyCode === 13)
+				location.href = "/Produtos/buscar/"+valor.trim();
+		}else
 			$('.sugestao-produtos').collapse("hide");
 	});
 
 	$('[name=search]').on("blur", function () {
-		$('.sugestao-produtos').collapse("hide");
+		if ($(this).val().trim() == "")
+			$('.sugestao-produtos').collapse("hide");
 	});
 
 	$('[name=search]').on("focus", function () {
-		if ($(this).val() != "")
+		if ($(this).val().trim() != "")
 			$('.sugestao-produtos').collapse("show");
 	});
-
-	NProgress.done();// Encerre barra de progresso
 
 	/*
 		CHAMA FUNCAO PARA BOTAO AVISA-ME QUANDO CHEGAR
@@ -205,6 +237,8 @@ $(document).on("ready", function () {
 		// Refresh no iframe minha cesta
 		location.href = link;
 	});
+
+	NProgress.done();// Encerre barra de progresso
 
 });
 

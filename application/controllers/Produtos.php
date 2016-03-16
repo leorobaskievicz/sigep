@@ -242,4 +242,85 @@ class Produtos extends CI_Controller
 			echo ("false");
 	}
 
+	/*
+		FUNÇÃO PARA BUSCAR DADO DOS PRODUTOS NO BANCO DE DADOS
+	*/
+
+	public function sugestaoPesquisa ($termo = null, $limitInf = 0)
+	{
+		$retorno = array();
+
+		// TRATA DOS LIMITES DA PAGINAS
+		if ($this->input->get("termo"))
+			$termo = $this->input->get("termo");
+
+		if ($termo != null) {
+
+			$this->load->model("m_produtos");
+
+			$query = "SELECT NOME,PRECO,PREPRO,CODIGO,ESTOQUE FROM pdvprodu WHERE NOME LIKE '%".$termo."%' OR CODIGO = '".$termo."' LIMIT ".$limitInf;
+
+			if ($busca = $this->m_produtos->buscar($query)) {
+				while ($reg = $busca->fetch())
+					array_push($retorno, array("codigo" => $reg->codigo,"nome" => $reg->nome, "", "preco" => $reg->preco, "prepro" => $reg->prepro, "estoque" => $reg->estoque));
+			}
+		}
+
+		echo (json_encode($retorno));
+	}
+
+	/*
+		FUNÇÃO PARA BUSCAR DADO DOS PRODUTOS NO BANCO DE DADOS
+	*/
+
+	public function buscar ($termo = null, $limitInf = 0)
+	{
+		$dados = array();
+
+		// TRATA DOS LIMITES DA PAGINAS
+		if ($this->input->get("per_page"))
+			$limitInf = $this->input->get("per_page");
+		else
+			$limitInf = 0;
+
+		if ($termo != null) {
+
+			$this->load->model("m_produtos");
+			$this->load->model("menu");
+
+			$query = "SELECT NOME,PRECO,PREPRO,CODIGO,ESTOQUE FROM pdvprodu WHERE NOME LIKE '%".$termo."%' OR CODIGO = '".$termo."' LIMIT ".$limitInf;
+
+			if ($busca = $this->m_produtos->buscar($query))
+				$dados = array("produtos" => $busca);
+
+			// BUSCA DOS MENUS
+			$menu = array("menu1" => null, "menu2" => null, "menu3" => null);
+			
+			if ($buscaMenu1 = $this->menu->buscar("menu1"))
+				if ($buscaMenu1->rowCount() > 0)
+					$menu["menu1"] = $buscaMenu1;
+
+			$totalregs = 0;
+			if ($buscaTotalRegs = $this->m_produtos->buscaNumRegs("SELECT count(*) as totalRegs FROM pdvprodu WHERE NOME LIKE '%".$termo."%' OR CODIGO = '".$termo."'"))
+				if($buscaTotalRegs->rowCount() == 1) {
+					$reg = $buscaTotalRegs->fetch();
+					$totalregs = $reg->totalregs;
+				}
+		}
+
+		// CONFIGURACOES PARA PAGINACAO
+		$config["base_url"] = base_url("Produtos/buscar/".$termo);
+        $config["total_rows"] = $totalregs;
+        $this->pagination->initialize($config);
+
+		// Retorna total de itens do carrinho para a pagina
+		$carrinho = array("totalItens" => $this->cart->total_items(), "totalCarrinho" => $this->cart->total());
+
+		$retorno = array_merge($menu, $dados);
+
+		$this->load->view('estruturas/header', $carrinho);
+		$this->load->view('produtos/index', $retorno);
+		$this->load->view('estruturas/footer');
+	}
+
 }

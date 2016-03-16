@@ -46,7 +46,7 @@ class MeuCarrinho extends CI_Controller
 	public function checkout ()
 	{
 		// Inclui classe de pagamento do pagseguro
-		require "/includes/php/PagSeguroLibrary/PagSeguroLibrary.php";
+		require "includes/php/PagSeguroLibrary/PagSeguroLibrary.php";
 		// Instancia novo objeto Pagseguro
 		$paymentRequest = new PagSeguroPaymentRequest();
 		// Adiciona todos os itens da cesta

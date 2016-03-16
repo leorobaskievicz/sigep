@@ -130,14 +130,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					<div class="input-group">
 						<input type="text" class="form-control input-lg" name="search" placeholder="Pesquisar" autocomplete="off">
 						<span class="input-group-btn">
-							<button class="btn btn-default input-lg" type="button"><span class="glyphicon glyphicon-search"></span></button>
+							<button class="btn btn-default input-lg search-sugestao-produto" type="button"><span class="glyphicon glyphicon-search"></span></button>
 						</span>
 					</div><!-- /input-group -->
 					<ul class="list-group sugestao-produtos">
-						<li class="list-group-item"><a href="#">Olhos</a></li>
-						<li class="list-group-item"><a href="#">Acessórios</a></li>
-						<li class="list-group-item"><a href="#">Digestor</a></li>
-	    				<li class="list-group-item"><a href="#">Veja Mais...</a></li>
 					</ul>
 				</div>
 				<!-- MOSTRA PAINEL COM MINHA CESTA -->

@@ -130,6 +130,8 @@
 	width: 100%;
 	float: inherit;
 	padding: 10px !important;
+	border: none !important;
+	border-top: solid 1px #CCC !important;
 }
 
 .login-header
@@ -247,8 +249,6 @@
 	border-left: none !important;
 	border-right: none !important;
 }
-
-.list-group li:nth-child(2) { border: none !important; }
 
 .minha-cesta-menu
 {
