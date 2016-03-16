@@ -74,9 +74,9 @@ $active_group = 'default';
 $query_builder = TRUE;
 
 $db['default'] = array(
-	'dsn'	=> 'mysql:host=localhost;dbname=ecommerce;charset=utf8',
+	'dsn'	=> 'mysql:host=localhost;dbname=tecworks;charset=utf8',
 	'hostname' => 'localhost',
-	'username' => 'root',
+	'username' => 'tecworks',
 	'password' => 'auj267',
 	'database' => 'ecommerce',
 	'dbdriver' => 'PDO',

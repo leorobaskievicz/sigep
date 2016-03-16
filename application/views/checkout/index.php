@@ -255,7 +255,9 @@ echo ('<div class="row checkout-content">');
 				</div>');
 				echo (' <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">');
 					echo ('<div class="panel-body">');
-						echo ('<p>Você será redirecionado para o ambiente 100% seguro do Pagseguro para efetuar o pagamento de sua compra.</p>');
+						echo ('<p>Você será redirecionado para o ambiente 100% seguro do Pagseguro para efetuar o pagamento de sua compra.<p>&nbsp;</p>
+							<a href="'. base_url("/MeuCarrinho/checkout") .'" target="_self" class="btn btn-lg btn-success"><span class="glyphicon glyphicon glyphicon-credit-card"></span> Efetuar Pagamento</a>
+						</p>');
 					echo ('</div>');
 				echo ('</div>');
 			echo ('</div>');
