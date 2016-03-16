@@ -99,7 +99,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	</div>
 
 	<!-- CABECALHO GERAL DO SITE -->
-	<div class="main-header">
+	<div class="main-header" id="top">
 		<div class="row sup-header">
 			<div class="col-xs-12 col-sm-12">
 				<ul>
@@ -224,6 +224,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			</div><!-- /.navbar-collapse -->
 		</div><!-- /.container-fluid -->
 	</nav>
+
+	<div id="backtotop">
+		<a href="#top">
+			<span class="glyphicon glyphicon-chevron-up"></span><br/>
+			Topo
+		</a>
+	</div>
 
 	<!-- PAINEL - ELEMENTO QUE CENTRALIZA TODA AS PAGINAS DO SITE -->
 	<div class="main-painel">
