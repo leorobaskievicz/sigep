@@ -373,6 +373,8 @@ $(document).on("ready", function () {
 	$('[name=cep-entrega]').on("keyup", function (event) {
 		event.preventDefault();
 		var valor = $(this).val().trim().replace(/[^\d]+/g,'');
+		var peso  = $(this).attr('data-peso');
+		var qtd   = $("[name=qtd]").val();
 		// VERIFICA SE FOI DIGITADO O CEP TOTALMENTE
 		if (valor.length == 8) {
 			$('.resultado-frete').slideDown("fast");
@@ -382,7 +384,11 @@ $(document).on("ready", function () {
 				dataType: 'json',
 				cache: false,
 				type: "GET",
-				data: { cep: valor },
+				data: { 
+					cep: valor,
+					peso: peso,
+					qtd: qtd
+				},
 				beforeSend: function () {
 					$('.resultado-frete tbody').html('<tr><td colspan="3" style="text-align: center;""><img src="/includes/images/loader.gif" style="margin: 25px auto;" id="loader" /></td></tr>');
 				},
@@ -390,9 +396,9 @@ $(document).on("ready", function () {
 					$('#loader').parent("td").parent("tr").remove();
 				},
 				success: function(data) {
-						$.each(data, function(index, element) {
-				           	$('.resultado-frete tbody').append('<tr><td>'+element.servico+'</td><td>Até '+element.prazo+' dia(s) após confirmação do pagamento</td><td>R$ '+number_format(element.preco,2,","," ")+'</td></tr>');
-				        });
+					$.each(data, function(index, element) {
+			           	$('.resultado-frete tbody').append('<tr><td>'+element.servico+'</td><td>Até '+element.prazo+' dia(s) após confirmação do pagamento</td><td>R$ '+number_format(element.preco,2,","," ")+'</td></tr>');
+			        });
 				},
 				error: function (xhr,er) {
 					alert('Erro '+xhr.status+' - '+xhr.statusText+' Tipo do erro : '+er);

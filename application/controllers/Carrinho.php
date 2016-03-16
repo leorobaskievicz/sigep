@@ -28,14 +28,18 @@ class Carrinho extends CI_Controller {
 			$preco  = $this->input->get("preco");
 		}
 
-		if (($codigo != null) && ($nome != null) && ($qtd != null) && ($preco != null)) {
+		$peso = 0.1;
+		if ($this->input->get("peso") != null)
+			$peso = $this->input->get("peso");
+
+		if (($codigo != null) && ($nome != null) && ($qtd != null) && ($preco != null) && ($peso != null)) {
 
 			$data = array(
                'id'      => $codigo,
                'qty'     => $qtd,
                'price'   => $preco,
                'name'    => $nome,
-               //'options' => array('Size' => 'L', 'Color' => 'Red')
+               'options' => array('Peso' => $peso)
             );
 
 			echo ($this->cart->insert($data));

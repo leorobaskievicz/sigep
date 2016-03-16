@@ -191,24 +191,31 @@ class Produtos extends CI_Controller
 			if ($codigo != null)
 				$buscaProduCompl = $this->m_produtos->buscarDetalhes("SELECT * FROM pdvproducompl WHERE CDPRODU = '".$codigo."' LIMIT 0,1");
 
-			if (($buscaProduCompl) && ($buscaProduCompl->rowCount() == 1))
+			if (($buscaProduCompl) && ($buscaProduCompl->rowCount() == 1)) 
 				$complemento["produtoCompl"] = $buscaProduCompl->fetch();
 
 			// BUSCA MENU QUE O PRODUTO ESTÁ COMPREENDIDO
 			$this->load->model('menu');// CARREGA MODELO DE BUSCA MENU
 			$menu = array("menu1" => null, "menu2" => null, "menu3" => null);
-
-			if ($buscaMenu1 = $this->menu->buscar('menu1', $complemento['produtoCompl']->menu1, null))
-				if ($buscaMenu1->rowCount() > 0)
-					$menu["menu1"] = $buscaMenu1;
-
-			// BUSCA PRODUTOS PARECIDOS
-			$colunas = "a.CODIGO,a.NOME,a.PRECO,a.PREPRO";
-			$tabelas = "pdvprodu a, pdvproducompl b, webmenu1 c";
 			$prodParecidos = array("parecidos" => null);
-			if ($buscaParecidos = $this->m_produtos->buscar("SELECT ".$colunas." FROM ".$tabelas." WHERE a.CODIGO = b.CDPRODU AND b.MENU1 = '".$complemento['produtoCompl']->menu1."' GROUP BY b.CDPRODU LIMIT 0"))
-				if ($buscaParecidos->rowCount() > 0)
-					$prodParecidos["parecidos"] = $buscaParecidos;
+
+			if (($complemento['produtoCompl'] != null) && ($complemento['produtoCompl']->menu1 != null)) {
+				if ($buscaMenu1 = $this->menu->buscar('menu1', $complemento['produtoCompl']->menu1, null))
+					if ($buscaMenu1->rowCount() > 0)
+						$menu["menu1"] = $buscaMenu1;
+
+				// BUSCA PRODUTOS PARECIDOS
+				$colunas = "a.CODIGO,a.NOME,a.PRECO,a.PREPRO";
+				$tabelas = "pdvprodu a, pdvproducompl b, webmenu1 c";
+
+				if ($buscaParecidos = $this->m_produtos->buscar("SELECT ".$colunas." FROM ".$tabelas." WHERE a.CODIGO = b.CDPRODU AND b.MENU1 = '".$complemento['produtoCompl']->menu1."' GROUP BY b.CDPRODU LIMIT 0"))
+					if ($buscaParecidos->rowCount() > 0)
+						$prodParecidos["parecidos"] = $buscaParecidos;
+			} else { // BUSCA TODOS OS MENUS
+				if ($buscaMenu1 = $this->menu->buscar('menu1'))
+					if ($buscaMenu1->rowCount() > 0)
+						$menu["menu1"] = $buscaMenu1;
+			}
 		}
 
 		// Retorna total de itens do carrinho para a pagina

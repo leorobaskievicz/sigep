@@ -58,6 +58,21 @@ class Correios extends CI_Controller {
 		if ($this->input->get("cep") != null)
 			$cep = $this->input->get("cep");
 
+		if ($this->input->get("peso") != null)
+			$peso = $this->input->get("peso");
+		else
+			$peso = '0.1';
+		
+		if ($this->input->get("qtd") != null)
+			$qtd = $this->input->get("qtd");
+		else
+			$qtd = 1;
+
+		// Busca peso do carrinho
+		foreach ($this->cart->contents() as $item)
+			foreach ($this->cart->product_options($item['rowid']) as $pesoItem)
+				$peso += ($pesoItem * $item["qty"]);
+
 		if ( $cep != null ) {
 
 			/* ===== Calcula a valor total e prazo de entrega do frete ===== */
@@ -65,7 +80,7 @@ class Correios extends CI_Controller {
 	        $data['sDsSenha'] = '';
 	        $data['sCepOrigem'] = '81020010';
 	        $data['sCepDestino'] = $cep;
-	        $data['nVlPeso'] = '0.5';
+	        $data['nVlPeso'] = ($peso * $qtd);
 	        $data['nCdFormato'] = '1';
 	        $data['nVlComprimento'] = '16';
 	        $data['nVlAltura'] = '2';
