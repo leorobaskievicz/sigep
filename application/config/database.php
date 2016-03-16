@@ -76,8 +76,8 @@ $query_builder = TRUE;
 $db['default'] = array(
 	'dsn'	=> 'mysql:host=localhost;dbname=tecworks;charset=utf8',
 	'hostname' => 'localhost',
-	'username' => 'tecworks',
-	'password' => 'auj267',
+	'username' => 'root',
+	'password' => 'NHd,S3VN7zTs#WeW',
 	'database' => 'ecommerce',
 	'dbdriver' => 'pdo',
 	'dbprefix' => '',
