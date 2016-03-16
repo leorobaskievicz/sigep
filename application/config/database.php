@@ -79,7 +79,7 @@ $db['default'] = array(
 	'username' => 'tecworks',
 	'password' => 'auj267',
 	'database' => 'ecommerce',
-	'dbdriver' => 'PDO',
+	'dbdriver' => 'pdo',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
 	'db_debug' => (ENVIRONMENT !== 'production'),
