@@ -74,11 +74,33 @@ $active_group = 'default';
 $query_builder = TRUE;
 
 $db['default'] = array(
-	'dsn'	=> 'mysql:host=localhost;dbname=ecommerce;charset=utf8',
+	'dsn'	=> 'mysql:host=localhost;dbname=sigep;charset=utf8',
 	'hostname' => 'localhost',
 	'username' => 'root',
 	'password' => 'auj267',
-	'database' => 'ecommerce',
+	'database' => 'sigep',
+	'dbdriver' => 'pdo',
+	'dbprefix' => '',
+	'pconnect' => FALSE,
+	'db_debug' => (ENVIRONMENT !== 'production'),
+	'cache_on' => FALSE,
+	'cachedir' => '',
+	'char_set' => 'utf8',
+	'dbcollat' => 'utf8_general_ci',
+	'swap_pre' => '',
+	'encrypt' => FALSE,
+	'compress' => FALSE,
+	'stricton' => FALSE,
+	'failover' => array(),
+	'save_queries' => TRUE
+);
+
+$db['televendas'] = array(
+	'dsn'	=> 'mysql:host=10.1.1.50;dbname=televendas;charset=utf8',
+	'hostname' => '10.1.1.50',
+	'username' => 'tecworks',
+	'password' => 'leo@1993',
+	'database' => 'televendas',
 	'dbdriver' => 'pdo',
 	'dbprefix' => '',
 	'pconnect' => FALSE,

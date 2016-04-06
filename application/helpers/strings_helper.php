@@ -68,3 +68,20 @@ if (! function_exists('formataString'))
 function formataStringToURL ($strIn) {
 	return(strtolower(preg_replace("/[^a-zA-Z0-9_]/", "", strtr($strIn, "áàãâéêíóôõúüçÁÀÃÂÉÊÍÓÔÕÚÜÇ ", "aaaaeeiooouucAAAAEEIOOOUUC"))));
 }
+
+/**
+*	FUNCAO USADA PARA REMOVER CHAR ESPECIAL DE STRING
+*	@param string
+*	@return string (sem acentos especiais)
+*/
+
+if (! function_exists('limpaString'))
+{
+	function limpaString ($var = null)
+	{
+		if ($var == null)
+			return "";
+
+		return preg_replace("/[^0-9,a-z,A-Z]/", "", $var);
+	}
+}

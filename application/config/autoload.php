@@ -58,7 +58,7 @@ $autoload['packages'] = array('url','file');
 |
 |	$autoload['libraries'] = array('user_agent' => 'ua');
 */
-$autoload['libraries'] = array('session','pagination','cart');
+$autoload['libraries'] = array('session','pagination','sigep');
 
 /*
 | -------------------------------------------------------------------
@@ -83,7 +83,7 @@ $autoload['drivers'] = array();
 |
 |	$autoload['helper'] = array('url', 'file');
 */
-$autoload['helper'] = array('url','file','strings');
+$autoload['helper'] = array('url','file','strings','form');
 
 /*
 | -------------------------------------------------------------------
